@@ -1,0 +1,65 @@
+\documentclass[a4paper,12pt]{report}
+%	options include 12pt or 11pt or 10pt
+%	classes include article, report, book, letter
+
+%% Always need these
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,pagebackref,hyperindex=true]{hyperref} % load hyperref before algorithm!!!!!!!
+\usepackage{subfigure}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{amsmath}
+
+%% Colored links in pdf
+\usepackage{color}
+\newcommand{\blue}{ \color{blue} }
+\definecolor{linkcol}{rgb}{0,0,0.4}
+\definecolor{citecol}{rgb}{0.5,0,0}
+
+%% Bibliography text
+% nicer backref links
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]{%
+\ifcase #1 %
+(Not cited.)%
+\or
+(Cited on page~#2.)%
+\else
+(Cited on pages~#2.)%
+\fi}
+\renewcommand*{\backrefsep}{, }
+\renewcommand*{\backreftwosep}{ and~}
+\renewcommand*{\backreflastsep}{ and~}
+
+%% Language
+\usepackage[ngerman,english]{babel}
+\selectlanguage{english}
+
+%% Fonts
+\usepackage[T1]{fontenc}
+\usepackage{amsfonts} % need for mathbb
+%
+% Latin Modern
+%\usepackage{lmodern}
+%
+% Computer Concrete
+%\usepackage{concmath}
+%
+% Utopia Regular with Math Design
+%\usepackage[adobe-utopia]{mathdesign}
+%
+% Charter
+\usepackage{charter}
+
+%% Customizations
+\newenvironment{packed_item}{
+\vspace{-2mm}
+\begin{itemize}
+  \setlength{\itemsep}{1.5pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\vspace{-2mm}\end{itemize}}
+
+%% Include macros
+\input{macros}
+

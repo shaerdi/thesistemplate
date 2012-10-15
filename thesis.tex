@@ -1,0 +1,53 @@
+\include{include}
+
+\hypersetup
+{
+bookmarksopen=true,
+pdftitle=Literature Summary,
+pdfauthor=Robert Gantner,
+pdfsubject=MLMC, %subject of the document
+%pdftoolbar=false, % toolbar hidden
+pdfmenubar=true, %menubar shown
+pdfhighlight=/O, %effect of clicking on a link
+colorlinks=true, %couleurs sur les liens hypertextes
+pdfpagemode=None, %aucun mode de page
+pdfpagelayout=SinglePage, %ouverture en simple page
+pdffitwindow=true, %pages ouvertes entierement dans toute la fenetre
+linkcolor=linkcol, %couleur des liens hypertextes internes
+citecolor=citecol, %couleur des liens pour les citations
+urlcolor=linkcol %couleur des liens pour les url
+}
+
+\title{Example Thesis}
+\author{Author Name}
+\date{\today}
+
+%
+%% Begin the document
+%
+\begin{document}
+\maketitle
+
+\tableofcontents
+\newpage
+\chapter*{List of Symbols\hfill}% \addcontentsline{toc}{chapter}{List of Symbols}
+\listofsymbols
+
+\chapter{Algorithms}
+\label{cha:algorithms}
+
+\section{Walk on Spheres}
+\label{sec:walk_on_spheres}
+
+\subsection{Convergence properties} % (fold)
+\label{sub:convergence_properties}
+There is a stopping region $\Gamma_S$ \newnot{symbol:GammaS} of width $\delta>0$. \newnot{symbol:delta}
+\cite{Muller}
+
+%%% Bibliography
+\bibliographystyle{ThesisStyleWithEtAl}
+%\bibliographystyle{ThesisStyle}
+%\bibliographystyle{plain}
+\bibliography{sources}
+
+\end{document}
