@@ -3,9 +3,9 @@
 \hypersetup
 {
 bookmarksopen=true,
-pdftitle=Literature Summary,
-pdfauthor=Robert Gantner,
-pdfsubject=MLMC, %subject of the document
+pdftitle=Example Thesis,
+pdfauthor=Author Name,
+pdfsubject=ShortTitle, %subject of the document
 %pdftoolbar=false, % toolbar hidden
 pdfmenubar=true, %menubar shown
 pdfhighlight=/O, %effect of clicking on a link
@@ -21,11 +21,13 @@ urlcolor=linkcol %couleur des liens pour les url
 \title{Example Thesis}
 \author{Author Name}
 \date{\today}
+%\usepackage{draftwatermark} %% DRAFT watermark
 
 %
 %% Begin the document
 %
 \begin{document}
+\frontmatter
 \maketitle
 
 \tableofcontents
@@ -33,6 +35,7 @@ urlcolor=linkcol %couleur des liens pour les url
 \chapter*{List of Symbols\hfill}% \addcontentsline{toc}{chapter}{List of Symbols}
 \listofsymbols
 
+\mainmatter
 \chapter{Algorithms}
 \label{cha:algorithms}
 
@@ -44,6 +47,7 @@ urlcolor=linkcol %couleur des liens pour les url
 There is a stopping region $\Gamma_S$ \newnot{symbol:GammaS} of width $\delta>0$. \newnot{symbol:delta}
 \cite{Muller}
 
+\backmatter
 %%% Bibliography
 \bibliographystyle{ThesisStyleWithEtAl}
 %\bibliographystyle{ThesisStyle}

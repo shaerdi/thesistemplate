@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{report}
+\documentclass[a4paper,12pt]{book}
 %	options include 12pt or 11pt or 10pt
 %	classes include article, report, book, letter
 
@@ -38,6 +38,7 @@
 %% Fonts
 \usepackage[T1]{fontenc}
 \usepackage{amsfonts} % need for mathbb
+\usepackage[font=footnotesize,labelfont=bf]{caption} % small captions
 %
 % Latin Modern
 %\usepackage{lmodern}
@@ -59,6 +60,13 @@
   \setlength{\parskip}{0pt}
   \setlength{\parsep}{0pt}
 }{\vspace{-2mm}\end{itemize}}
+
+%% switch margins (printer-friendly)
+\let\tmp\oddsidemargin
+\let\oddsidemargin\evensidemargin
+\let\evensidemargin\tmp
+\reversemarginpar
+% TODO: switch headers!
 
 %% Include macros
 \input{macros}
