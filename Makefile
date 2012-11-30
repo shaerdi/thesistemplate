@@ -1,4 +1,5 @@
 FILE = thesis
+SHELL=/bin/bash
 
 all: build
 
