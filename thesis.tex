@@ -18,35 +18,27 @@ citecolor=citecol, %couleur des liens pour les citations
 urlcolor=linkcol %couleur des liens pour les url
 }
 
-\title{Example Thesis}
-\author{Author Name}
-\date{\today}
-%\usepackage{draftwatermark} %% DRAFT watermark
+\usepackage{draftwatermark} %% DRAFT watermark
 
 %
 %% Begin the document
 %
 \begin{document}
 \frontmatter
-\maketitle
 
+\input{Chapters/titlepage}
+
+\input{Chapters/abstract}
+
+\newpage
 \tableofcontents
 \newpage
-\chapter*{List of Symbols\hfill}% \addcontentsline{toc}{chapter}{List of Symbols}
+\section*{List of Symbols\hfill}% \addcontentsline{toc}{chapter}{List of Symbols}
 \listofsymbols
 
+% Actual thesis
 \mainmatter
-\chapter{Algorithms}
-\label{cha:algorithms}
-
-\section{Walk on Spheres}
-\label{sec:walk_on_spheres}
-
-\subsection{Convergence properties} % (fold)
-\label{sub:convergence_properties}
-There is a stopping region $\Gamma_S$ \newnot{symbol:GammaS} of width $\delta>0$. \newnot{symbol:delta}
-\cite{Muller}
-\todo{add a picture here}
+\input{Chapters/exampleCode}
 
 \backmatter
 %%% Bibliography
