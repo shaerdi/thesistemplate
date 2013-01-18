@@ -1,0 +1,20 @@
+\section{Numerik}
+\label{Kapitel:Numerik}
+Fue;r das Loe;sen der in Kapitel \ref{Kapitel:Rheologie} vorgestellten Gleichungen gibt es eine Vielzahl von Verfahren. In diesem Kapitel werden die in dieser Arbeit verwendeten Algorithmen vorgestellt und ihre Verwendung begrue;ndet.
+
+\subsection{SIMPLE}
+Der SIMPLE (\textbf{S}emi-\textbf{I}mplicit \textbf{M}ethod for \textbf{P}ressure-\textbf{L}inked \textbf{E}quations) Algorithmus \todo{Quelle Simple} ist eine Methode um das Druck- und Geschwindigkeitsfeld in einem inkompressiblen Fluid fue;r eine stationae;re Loe;sung zu berechnen.\\
+Dabei wird abwechslungsweise ein Update fue;r den Druck und die Geschwindigkeit berechnet, und ein Konvergenzkriterium entscheidet, wann die stationae;re Loe;sung erreicht ist.
+\todo{insert simple algorithm}
+
+Der SIMPLE Algorithmus wurde in dieser Arbeit fue;r das Simulieren zeitunabhae;ngiger nicht-Newtonscher Fluide benutzt. Dabei wurde der variablen Viskositae;t $\eta$ Rechnung getragen, indem diese in jedem Iterationsschritt an das aktuelle Geschwindigkeitsfeld angepasst wurde. Dabei muss berue;cksichtigt werden, dass dadurch im Vergleich zu der normalen Navier-Stokes Gleichung eine zusae;tzliche nicht-linearitae;t entsteht. Dies beeinflusst das Konvergenzverhalten und muss beim Festlegen der Simulationsparameter wie z.B. Relaxationsfaktoren mit einbezogen werden.
+
+\subsection{PISO}
+Der PISO (\textbf{P}ressure \textbf{I}mplicit with \textbf{S}plit \textbf{O}perator) Algorithmus ist ein Verfahren, um transiente Loe;sungen des Druck- und Geschwindigkeitsfeldes zu berechnen.
+\todo{insert piso algorithm}
+
+\subsection{DEVSS}
+Einer der Unterschiede zwischen Newtonschen / scherratenabhae;ngiger Fluide \todo{besserer Ausdruck} und viskoelastischen Fluiden ist die Tatsache dass der Spannungstensor nicht mehr nur eine Funktion des Geschwindigkeitsfeldes ist, sondern durch die Zeitabhae;ngigkeit als weitere abhae;ngige Variable betrachtet werden muss. Dadurch wird das Loe;sen einer weiteren Gleichung notwendig.
+
+Eine Moe;glichkeit fue;r die Diskretisierung dieser zusae;tzlichen Gleichung ist die \textbf{D}iscrete \textbf{E}lastic \textbf{V}iscous \textbf{S}plit \textbf{S}tress (DEVSS) Methode \cite{devss}.
+Dabei wird die Impulsgleichung \eqref{eq:Impulserhaltung} 
