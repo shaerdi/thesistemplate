@@ -1,0 +1,45 @@
+\section{Model Parameter}
+\label{Kapitel:Parameter}
+Die scherratenabhängige Viskosität der von Hilti verwendeten Mörteln wurde schon in früheren Arbeiten untersucht. Das Resultat war, dass sich die Viskosität am besten mit dem modifizierten Herschel-Bulkley Modell abbilden lässt:
+\newnot{symbol:tau0}
+\newnot{symbol:K}
+\newnot{symbol:n}
+\begin{equation}
+    \label{eq:modHB}
+    \eta\left( \gammap \right) = \tau_0 \frac{1-\exp \left( -m\gammap \right)}{\gammap}+K\gammap^{n-1}
+\end{equation}
+Die materialabhängigen Parameter sind dabei die Fliessgrenze $\tau_0$, die Konsistenz $K$ und der Fliessindex $n$.
+
+Für einige der Mörtel wurden diese Parameter schon bestimmt. Einerseits wurden aber in der Zwischenzeit neue Mörtel entwickelt und andererseits ist es wünschenswert, ein Tool zur Bestimmung dieser Parameter zu haben das unabhängig von Drittanbietern in Form von Lizenzen und Support ist.
+Dies wurde mithilfe einer Kombination aus \openfoam{} und der Programmiersprache Python umgesetzt.
+%
+\subsection{Messaufbau}
+Die Messungen wurden von einem Hilti-internen Rheologen durchgefue;hrt. Verwendet wurden zwei Messgerae;te, ein Platte-Platte Rheometer und ein Kapillarrheometer.
+\begin{todocontent}
+    \1 Beschreibung Rheometer
+    \1 Bilder von Messkurven
+\end{todocontent}
+%
+\subsection{Korrektursimulation}
+\begin{todocontent}
+    \1 Ring herausrechnen
+    \1 Netze
+    \1 Drehmoment Runtime function
+\end{todocontent}
+%
+\subsection{Parameterfit}
+\begin{todocontent}
+    \1 Verwendung Python
+    \1 Kopplung Python <-> OpenFOAM
+    \1 Parallelisierung
+    \1 Kapillarrheometerdaten
+    \1 Vergleich mit alten Daten
+\end{todocontent}
+%
+\subsection{Ergebnisse}
+\begin{todocontent}
+    \1 Kapillarrheometer Netze
+    \1 Vergleich Platten und Kapillarrheometer unter Verwendung der errechneten Daten
+    \1 Einfluss Viskoelastiziaet
+\end{todocontent}
+%

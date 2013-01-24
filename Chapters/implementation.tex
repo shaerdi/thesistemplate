@@ -4,27 +4,16 @@ Die Implementierung der Gleichungen und ihre Diskretisierung wurde in \openfoam{
 \openfoam{} ist eine freie CFD Bibliothek für finite Volumen, in der zahlreiche standard Löser schon implementiert sind und die es erlaubt auf eine einfache Art und Weise eigenen Code zu implementieren.\\
 Für die Simulation der Viskoelastischen Fluide wurde ein Code von J.~Favero verwendet \cite{faveroOF}, der an die in dieser Arbeit verwendeten Modelle und Gleichungen angepasst wurde.
 %
-\subsection{Parameter}
-Die scherratenabhängige Viskosität der von Hilti verwendeten Mörteln wurde schon in früheren Arbeiten untersucht. Das Resultat war, dass sich die Viskosität am besten mit dem modifizierten Herschel-Bulkley Modell abbilden lässt:
-\newnot{symbol:tau0}
-\newnot{symbol:K}
-\newnot{symbol:n}
-\begin{equation}
-    \label{eq:modHB}
-    \eta\left( \gammap \right) = \tau_0 \frac{1-\exp \left( -m\gammap \right)}{\gammap}+K\gammap^{n-1}
-\end{equation}
-Die materialabhängigen Parameter sind dabei die Fliessgrenze $\tau_0$, die Konsistenz $K$ und der Fliessindex $n$.
-
-Für einige der Mörtel wurden diese Parameter schon bestimmt. Einerseits wurden aber in der Zwischenzeit neue Mörtel entwickelt und andererseits ist es wünschenswert, ein Tool zur Bestimmung dieser Parameter zu haben das unabhängig von Drittanbietern in Form von Lizenzen und Support ist.
-Dies wurde mithilfe einer Kombination aus \openfoam{} und der Programmiersprache Python umgesetzt.
+\subsection{Scherratenabhae;ngige Modelle}
+\begin{todocontent}
+    \1 Verwendung SimpleFoam
+    \1 Implementierung modHB und limHB
+    \1 Druck beobachten fuer Konvergenzverhalten
+\end{todocontent}
 %
-\subsubsection{Messaufbau}
-Die Messungen wurden von einem Hilti-internen Rheologen durchgefue;hrt. Verwendet wurden zwei Messgerae;te, ein Platte-Platte Rheometer und ein Kapillarrheometer.
-%
-\subsubsection{Korrektursimulation}
-Ring herausrechnen
-%
-\subsubsection{Parameterfit}
-%
-\subsubsection{}<++>
-
+\subsection{Viskoelastische Modelle}
+\begin{todocontent}
+    \1 Verwendung Code Favero
+    \1 Implementierung Carreau Yasuda
+    \1 (Konvergenz Problem Loesungen)
+\end{todocontent}
