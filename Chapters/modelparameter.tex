@@ -1,33 +1,58 @@
 \section{Model Parameter}
 \label{Kapitel:Parameter}
-Die scherratenabhängige Viskosität der von Hilti verwendeten Mörteln wurde schon in früheren Arbeiten untersucht. Das Resultat war, dass sich die Viskosität am besten mit dem modifizierten Herschel-Bulkley Modell abbilden lässt:
-\newnot{symbol:tau0}
-\newnot{symbol:K}
-\newnot{symbol:n}
-\begin{equation}
-    \label{eq:modHB}
-    \eta\left( \gammap \right) = \tau_0 \frac{1-\exp \left( -m\gammap \right)}{\gammap}+K\gammap^{n-1}
-\end{equation}
-Die materialabhängigen Parameter sind dabei die Fliessgrenze $\tau_0$, die Konsistenz $K$ und der Fliessindex $n$.
-
-Für einige der Mörtel wurden diese Parameter schon bestimmt. Einerseits wurden aber in der Zwischenzeit neue Mörtel entwickelt und andererseits ist es wünschenswert, ein Tool zur Bestimmung dieser Parameter zu haben das unabhängig von Drittanbietern in Form von Lizenzen und Support ist.
+Um eine moe;glichst realistische Simulation zu ermoe;glichen, ist es notwendig die verwendeten Modelle moe;glichst genau an Messdaten der realen Moe;rtel anzupassen.
+Für einige der Mörtel wurden die Parameter, die im verwendeten Modell \eqref{eq:modHB} vorkommen, schon bestimmt. \\
+Einerseits wurden aber in der Zwischenzeit neue Mörtel entwickelt und andererseits ist es wünschenswert, ein Tool zur Bestimmung dieser Parameter zu haben das unabhängig von Drittanbietern in Form von Lizenzen und Support ist. \\
 Dies wurde mithilfe einer Kombination aus \openfoam{} und der Programmiersprache Python umgesetzt.
 %
 \subsection{Messaufbau}
 Die Messungen wurden von einem Hilti-internen Rheologen durchgefue;hrt. Verwendet wurden zwei Messgerae;te, ein Platte-Platte Rheometer und ein Kapillarrheometer.
+%
+\subsubsection{Platte-Platte Rheometer}
+\label{Kapitel:Parameter:PlattePlatteRheo}
+Ein Platte-Platte Rheometer ist ein Messgerae;t zur Bestimmung der Viskositae;t eines Fluids abhae;ngig von der Scherrate.\\
+Die Flue;ssigkeit wird zwischen zwei Platten platziert, von denen die eine Fix ist und die andere mit einer vorgegebenen Geschwindigkeit gedreht wird.
+Dabei wird das benoe;tigte Drehmoment gemessen, das fue;r die Drehgeschwindigkeit aufgewendet werden muss.
+\todo{Formeln Berechnung Viskositaet}
+
+Das Platte-Platte Rheometer eignet sich ebenfalls dazu, zeitabhae;gige Effekte wie die Relaxationszeit eines viskoelastischen Fluids zu messen. 
+Dazu wird die obere Platte nicht mit einer konstanten Geschwindigkeit bewegt, sondern mit einer schwingungsae;hnlichen Drehung auf die eine oder die andere Seite gedreht.
+%
+\begin{todocontent}
+    \1 Beschreibung Rheometer
+    \1 Bilder von Messkurven
+\end{todocontent}
+%
+\subsubsection{Kapillarrheometer}
+Das Kapillarrheometer kann wie das Platte-Platte Rheometer zur Bestimmung der scherratenabhae;ngigen Viskositae;t verwendet werden. Das Fluid wird dabei aber nicht gedreht, sondern durch eine schmale Due;se gepresst
+\todo{Formeln Kapillarrheometer}
 \begin{todocontent}
     \1 Beschreibung Rheometer
     \1 Bilder von Messkurven
 \end{todocontent}
 %
 \subsection{Korrektursimulation}
-\begin{todocontent}
-    \1 Ring herausrechnen
-    \1 Netze
-    \1 Drehmoment Runtime function
-\end{todocontent}
+\label{Kapitel:Korrektursimulation}
+Die in Kapitel \ref{Kapitel:Parameter:PlattePlatteRheo} beschriebenen Rheometer messen das fue;r eine vorgegebene Geschwindigkeit benoe;tigte Drehmoment. Daraus kann die Viskositae;t des Fluides berechnet werden.\\
+Um zu verhindern, dass der Moe;rtel wae;hrend der Messung in radialer Richtung davon fliesst, wurde um das Rheometer herum ein Ring montiert. Dadurch wird zwar ein Herausfliessen verhindert, gleichzeitig wird aber die Messung verfae;lscht. Der Ring ist eine zusae;tzliche Wand an der das Fluid entlangstroe;men muss, was in einem erhoe;hten Drehmoment resultiert.
+
+Um trotzdem eine zuverlae;ssige Bestimmung der Modell-Parameter zu ermoe;glichen, ist es notwendig diesen Ring im Fit zu berue;cksichtigen. Dazu wird nicht die gemessene Viskositae;t verwendet, sondern versucht die Modell-Parameter so zu wae;hlen dass eine Simulation des Platte-Platte Rheometers eine moe;glichst genaue Approximation des Drehmoments ergibt.
+
+Beim Platte-Platte Rheometer handelt es sich um eine rotationssymmetrische Geometrie. Um Rechenzeit zu sparen wurde deshalb nur ein schmaler Ausschnitt der Geometrie simuliert, wie im Bild (x) \todo{figure Netz Platte Rheo} zu sehen ist.\\
 %
 \subsection{Parameterfit}
+Die in Kapitel \ref{Kapitel:Korrektursimulation} beschriebene Wahl der Parameter ist ein nichtlineares Ausgleichsproblem. Dabei soll die Gleichung \eqref{eq:modHB} moe;glichst gut an Mess- und Simulationsdaten gefittet werden, indem die Parameter $\tau_0$, $K$ und $n$ variiert werden.
+
+Fue;r die Loe;sung dieses Ausgleichproblemes wurde die Programmiersprache Python verwendet. Die Tatsache dass sie, ebenso wie \openfoam{}, frei verfue;gbar \todo{Lizenz abklaeren} ist und dass es unzae;hlige schon implementierte numerische Algorithmen gibt machen Python zur idealen Wahl dafue;r.
+
+Die Optimierung wurde als Python Modul \codeemph{MaT\_Optimizer} implementiert. Dabei wurde auf die Bibliotheken \codeemph{Numpy} und \codeemph{Scipy} \todo{referenz} zurue;ckgegriffen um verschiedene Standardfunktionen zur Verfue;gung zu haben.\\
+Das Ausgleichsproblem wird dabei mittels der Funktion \codeemph{leastsq} aus dem Modul \codeemph{optimize} von \codeemph{Scipy} geloe;st. Diese Funktion ist eine Implementierung des Levenberg-Marquardt Algorithmus, der das Problem auf eine iterative Weise loe;st.
+
+Dazu wird eine eine enge Kopplung von Python und \openfoam{} noe;tig, da die Auswertung der Funktion, an die gefittet werden soll, eine Reihe von Simulationen ist.
+Diese Kopplung wurde dabei mit Hilfe von \codeemph{PyFoam} \todo{Referenz} realisiert. \codeemph{PyFoam} ist eine Python Bibliothek die es ermoe;glicht, die von \openfoam{} als Ein- und Ausgabe benutzten Textdateien auf eine einfache Art und Weise zu erzeugen, zu ae;ndern und auszulesen.
+
+Um den Prozess der Parameter-Optimierung zu beschleunigen, wurde ausserdem die Bibliothek \codeemph{Parallel Python} \todo{Referenz} verwendet. Da eine Funktionsauswertung aus einer ganzen Reihe Simulationen besteht, wird dazu viel Zeit benoe;tigt. Diese Simulationen sind aber unabhae;ngig voneinander und koe;nnen deshalb sehr einfach parallelisiert werden. Mit \codeemph{Parallel Python} koe;nnen beliebig viele Prozessoren fue;r den Parameterfit verwendet werden.
+%
 \begin{todocontent}
     \1 Verwendung Python
     \1 Kopplung Python <-> OpenFOAM
@@ -40,6 +65,7 @@ Die Messungen wurden von einem Hilti-internen Rheologen durchgefue;hrt. Verwende
 \begin{todocontent}
     \1 Kapillarrheometer Netze
     \1 Vergleich Platten und Kapillarrheometer unter Verwendung der errechneten Daten
+    \1 Einfluss Netze
     \1 Einfluss Viskoelastiziaet
 \end{todocontent}
 %
