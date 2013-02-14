@@ -214,8 +214,24 @@ Die Berechnung dieses Drehmomentes kann zwar mit den schon vorhandenen Utilities
 Um das zu vermeiden, wurde die Funktion \codeemph{torqueCalc} geschrieben, die das Drehmoment in jedem Zeitschritt berechnet.
 Dadurch ist nicht nur die Auswertung der Simulation einfacher, es kann durch eine Überprue;fung der Änderung des Drehmoments auch eine Konvergenzbedingung angegeben und die Simulation in jedem Zeitschritt beendet werden.
 
-Die Implementierung wurde ebenfalls als runtime function umgesetzt. In der Funktion \codeemph{calcTorque()} wird das Drehmoment an den vom Nutzer bestimmten Randflae;chen berechnet, indem der Gradient des Geschwindigkeitfeldes mit \ldots \todo{Formeln wallShearStress}
+Die Implementierung wurde ebenfalls als runtime function umgesetzt. In der Funktion \codeemph{calcTorque()} wird das Drehmoment $M$ an den vom Nutzer bestimmten Randflae;chen $A_i$ berechnet:
+\newnot{symbol:M}
+\begin{equation}
+    M = \sum_i \int_{A_i}r\tau\left( r \right)dA_i
+\end{equation}
+wobei 
+\begin{equation}
+    \tau\left( r \right) = \nu\left( r \right) \cdot \frac{\partial \u\left( r \right)}{\partial \n\left( r \right)}
+\end{equation}
+die Schubspannung an der Wand und $r$ der Abstand zum Rotationszentrum ist.
+
+In \openfoam{} kann die Schubspannung mithilfe der schon implementierten Funktion \codeemph{snGrad()} sehr einfach berechnet werden, wobei die Viskositae;t erst spae;ter dazu multipliziert wird:
 %
+\begin{lstlisting}
+wallShearStress = vel.boundaryField()[patchi].snGrad();
+\end{lstlisting}
+
+Der Abstand $r$ ist die X-Komponente eines lokalen Zylinder-Koordinatensystems
 \begin{lstlisting}
 cylindricalCS ccs
 (
@@ -224,13 +240,13 @@ cylindricalCS ccs
  vector(0,1,0), // Cylindrical axis
  vector(1,0,0)  // Vector with zero angle
 );
+\end{lstlisting}
 
+Die Summe und das Integral ue;ber die vorgegebenen Flae;chen kann dann mittels einer for-Schleife implementiert werden:
+\begin{lstlisting}
 forAllConstIter(labelHashSet,patchSet_, iter)
 {
  label patchi = iter.key();
-
- wallShearStress = vel.boundaryField()[patchi].snGrad();
-
  torque+= sum
  (
   ccs.localVector(wallShearStress)().
@@ -243,7 +259,6 @@ forAllConstIter(labelHashSet,patchSet_, iter)
  );
 }
 \end{lstlisting}
-%
 
 Die Konvergenzbedingung ist in der Funktion \codeemph{checkConvergence()} eingebaut.
 Dabei wird fue;r das Berechnen der ersten und der zweiten Ableitung die finite Differenzen Methode benutzt:
@@ -279,3 +294,11 @@ if (mag(firstDeriv) < convergence_ && mag(secondDeriv) < convergence_/100)
 %convListIt_=convList_.fcIndex(convListIt_);
 %\end{lstlisting}
 %
+\subsection{Betriebssystem und Hardware}
+\label{Kapitel:Hardware}
+\begin{todocontent}
+    \1 Ubuntu
+    \1 CSCS
+    \1 Rothorn
+    \1 Eiger
+\end{todocontent}

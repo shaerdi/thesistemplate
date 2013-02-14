@@ -72,8 +72,10 @@ wobei
 \end{equation}
 das doppelte innere Produkt ist.
 
-Mit Hilfe von \eqref{eq:Scherrate} lassen sich Modelle für die Funktion $F$ in zwei Kategorien unterteilen. Dilatante Fluide werden zähflüssiger wenn sie geschert werden, pseudoplastische Fluide haben eine sinkende Viskosität für steigende Scherraten. Die Grenze zwischen diesen zwei Fällen ist das Newtonsche Fluid.\\
-In Tabelle [\ref{tab:Fliessgesetze}] sind einige dieser Fliessgesetze genannten Modelle aufgeführt.
+Mit Hilfe von \eqref{eq:Scherrate} lassen sich Modelle für die Funktion $F$ in zwei Kategorien unterteilen. Dilatante Fluide werden zähflüssiger wenn sie geschert werden, strukturviskose Fluide haben eine sinkende Viskosität für steigende Scherraten. 
+Die Grenze zwischen diesen zwei Fällen ist das Newtonsche Fluid bei dem die Viskositae;t unabhae;ngig von der Scherrate ist. 
+Ein Spezialfall des strukturviskosen Fluids ist die Viskoplastizitae;t, bei der erst nach dem Überschreiten einer Fliessgrenze $\tau$ ein Fliessvorgang moe;glich ist.\\
+Im Bild [\ref{fig:fliessKurven}] \todo{Bild} sind diese Fliesskurven genannten Zusammenhae;nge dargestellt.
 %
 \begin{figure}
     \centering
@@ -101,7 +103,9 @@ Die scherratenabhängige Viskosität der von Hilti verwendeten Mörteln wurde sc
     \label{eq:modHB}
     \eta\left( \gammap \right) = \tau_0 \frac{1-\exp \left( -m\gammap \right)}{\gammap}+K\gammap^{n-1}
 \end{equation}
-Die materialabhängigen Parameter sind dabei die Fliessgrenze $\tau_0$, die Konsistenz $K$ und der Fliessindex $n$.
+Die materialabhängigen Parameter sind dabei die Fliessgrenze $\tau_0$, die Konsistenz $K$ und der Fliessindex $n$. Im Bild [\ref{fig:modHBKurven}] \todo{Bild} ist der Zusammenhang zwischen Viskositae;t und Scherrate fue;r verschiedene Parametersets aufgetragen.
+
+In Tabelle [\ref{tab:Fliessgesetze}] sind weitere dieser Fliessgesetze genannten Modelle aufgeführt.
 %
 \subsubsection{Zeitabhängige Spannungen}
 Für viele Flüssigkeiten spielt nicht nur der aktuelle Zustand des Fluids eine Rolle, sondern auch die Geschichte der früheren Deformationen. Die konstitutive Gleichung $F$ ist also nicht mehr nur von $\D$ abhängig, sondern auch von der Zeit $t$ und der Verzerrungsgeschichte
@@ -112,7 +116,7 @@ Für viele Flüssigkeiten spielt nicht nur der aktuelle Zustand des Fluids eine 
 
 Ein Modell um das Verhalten solch eines Stoffes zu beschreiben, ist das Maxwell-Modell.
 Dabei wird das Material als einer in Reihe geschaltete Mischung aus einer viskosen Flue;ssigkeit und einer elastischen Feder beschrieben, wie im Bild [\ref{fig:Maxwell-Material}] dargestellt.
-Wird nun auf dieses Material eine Kraft ausgeue;bt, nehmen beide Komponenten einen Teil der Kraft auf, wobei die elastische Komponente diese als elastische Energie speichert und zu einem spae;teren Zeitpunkt wieder zurue;ckgeben kann.
+Wird nun auf dieses Material eine Kraft in Form einer Spannung ausgeue;bt, nehmen beide Komponenten einen Teil davon auf, wobei die elastische Komponente diese als elastische Energie speichert und zu einem spae;teren Zeitpunkt wieder zurue;ckgeben kann.
 %
 \begin{figure}
     \centering
@@ -144,12 +148,12 @@ wobei
 \end{equation}
 Diese Modifikation dient dazu, Drehungen und Verzerrungen des Fluides in der Differentialgleichung zu berue;cksichtigen.
 
-Falls zusae;tzlich $\lambda$ und $\eta$ eine Funktion von $\gammap$ sein sollen, wird vom White-Metzner Modell gesprochen:
+Das in dieser Arbeit verwendete Modell fue;r viskoelastische Fluide ist das White-Metzner Modell. Dieses ist eine Erweiterung des Oldroyd-B Modelles, bei dem zusae;tzlich $\lambda$ und $\eta$ eine Funktion von $\gammap$ sind:
 \begin{equation}
     \label{eq:whiteMetznerModell}
     \T + \lambda\left( \gammap \right) \overset{\nabla}{\T}=2\eta\left( \gammap \right) \D
 \end{equation}
-Dabei koe;nnen fue;r die Funktionen $\lambda$ und $\eta$ die selben Modelle wie fue;r die nicht Zeitabhae;ngigen Gesetze verwendet werden.
+Dabei koe;nnen fue;r die Funktionen $\lambda$ und $\eta$ die selben Modelle wie fue;r die nicht zeitabhae;ngigen Gesetze verwendet werden.
 %
 %\subsubsection{Strukturviskosität}
 %%
