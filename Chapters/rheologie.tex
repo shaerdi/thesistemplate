@@ -148,12 +148,22 @@ wobei
 \end{equation}
 Diese Modifikation dient dazu, Drehungen und Verzerrungen des Fluides in der Differentialgleichung zu berue;cksichtigen.
 
-Das in dieser Arbeit verwendete Modell fue;r viskoelastische Fluide ist das White-Metzner Modell. Dieses ist eine Erweiterung des Oldroyd-B Modelles, bei dem zusae;tzlich $\lambda$ und $\eta$ eine Funktion von $\gammap$ sind:
+Das in dieser Arbeit verwendete Modell fue;r viskoelastische Fluide muss zusae;tzlich zu der Zeitabhae;ngigkeit auch die stark scherratenabhae;ngigen Effekte berue;cksichtigen koe;nnen.\\
+Dazu in der Lage ist das White-Metzner Modell. Dieses ist eine Erweiterung des Oldroyd-B Modelles, bei dem zusae;tzlich $\lambda$ und $\eta$ eine Funktion von $\gammap$ sind:
 \begin{equation}
     \label{eq:whiteMetznerModell}
     \T + \lambda\left( \gammap \right) \overset{\nabla}{\T}=2\eta\left( \gammap \right) \D
 \end{equation}
-Dabei koe;nnen fue;r die Funktionen $\lambda$ und $\eta$ die selben Modelle wie fue;r die nicht zeitabhae;ngigen Gesetze verwendet werden.
+Dabei koe;nnen im Allgemeinen fue;r die Funktionen $\lambda$ und $\eta$ die selben Modelle wie fue;r die nicht zeitabhae;ngigen Gesetze verwendet werden.
+In dieser Arbeit wurde fue;r $\eta$ das schon bewae;hrte modifizierte Herschel Bulkley Modell \eqref{eq:modHB} implementiert.\\
+Fue;r die Relaxationszeit $\lambda$ wird auf Empfehlung des Rheologiespezialisten von Hilti das Carreau-Yasuda Modell verwendet:
+%
+\begin{equation}
+    \label{eq:carreauYasuda}
+    \lambda \left( \gammap \right) = \eta_{\inf} +\left( \eta_0 - \eta_{\inf} \right) \left( 1+\left( L\gammap \right)^\alpha \right)^{\frac{n_{\lambda}-1}{\alpha}}
+\end{equation}
+%
+Die Parameter $\eta_{\inf}$, $\eta_0$, $L$, $\alpha$ und $n_{\lambda}$ sind dabei wieder materialabhae;ngig. 
 %
 %\subsubsection{Strukturviskosität}
 %%

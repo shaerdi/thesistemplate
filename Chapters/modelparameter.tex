@@ -90,7 +90,7 @@ plsq = runLeastSq(
       initialParam,            % Anfangssch@ä@tzer
       plateRheoTorque,         % Messdaten
       plateRheoOmega,          % Messdaten
-      referenceCaseName',      % @\openfoam{}@ Case
+      referenceCaseName,       % @\openfoam{}@ Case
       numberOfCpus,            % Anzahl Prozessoren
       kapRheoPressure,         % optionale Messdaten
       kapRheoShearRate         % optionale Messdaten
@@ -111,7 +111,7 @@ Zur Verifikation des Verfahrens wurde einerseits die Qualitae;t des Parameterfit
 
 Der Vergleich mit alten Daten zeigt eine gute Übereinstimmung, die schon berechneten Parameter konnten mit einer Genauigkeit von unter x\% \todo{Uebereinstimmung angeben} nachgebildet werden.
 
-Die Qualitae;t des Fits kann anhand des von der Funktion \codeemph{leastsq} angegebenen Residuums abgeschae;tzt werden. Dabei zeigt sich, dass das verwendete Herschel-Bulkley Modell nicht fue;r alle von Hilti eingesetzten Moe;rtel gleich gut geeignet ist. Wae;hrend fue;r die HY Reihe \todo{Darf Name rein?} durchwegs kleine Residuuen \todo{Zahlen} erreicht wurden, konnte der Algorithmus fue;r Moe;rtel des Re Typs keine gute Ue;bereinstimmung gefunden werden.\\
+Die Qualitae;t des Fits kann anhand des von der Funktion \codeemph{leastsq} angegebenen Residuums abgeschae;tzt werden. Dabei zeigt sich, dass das verwendete Herschel-Bulkley Modell nicht fue;r alle von Hilti eingesetzten Moe;rtel gleich gut geeignet ist. Wae;hrend fue;r die \hit{} Reihe durchwegs kleine Residuuen \todo{Zahlen} erreicht wurden, konnte der Algorithmus fue;r Moe;rtel des \re{} Typs keine gute Ue;bereinstimmung gefunden werden.\\
 Dies liegt daran, dass das Herschel-Bulkley Modell die Eigenschaften des Moe;rtels nur entweder im Bereich kleiner Scherraten \todo{Zahlen} oder im Bereich von Scherraten ue;ber x\todo{Zahlen} nachbilden kann. Passende Parameter ue;ber den ganzen Bereich gibt es nicht.
 %
 \subsubsection{Netze}
@@ -125,17 +125,25 @@ Das verwendete Netz, dargestellt in Abbildung (x) \todo{Bild} ist ein hexaedrisc
 Ebenfalls untersucht wurde das Verhalten des Drehmoments bei einer Verfeinerung der Netz-Randschicht. Dazu wurde ein O-Netz verwendet, dessen Randschicht schrittweise verfeinert wurde, wie in Abbildung (x)\todo{Bild Randschicht} \todo{Resultate Randschicht}
 %
 \subsubsection{Resultierende Parameter}
-Die in dieser Arbeit untersuchten Moe;rtel tragen die Bezeichnung HYMAX 150 und Re500, wobei bei beiden jeweils eine A und eine B Komponente existiert (Vergleiche Kapitel \ref{Kapitel:Auspressgeraet}).\\
+Die in dieser Arbeit untersuchten Moe;rtel tragen die Bezeichnung \hit{} und \re{}, wobei bei beiden jeweils eine A und eine B Komponente existiert (Vergleiche Kapitel \ref{Kapitel:Auspressgeraet}).\\
 In Tabelle \ref{fig:resultParameter} ist eine Übersicht ue;ber die angepassten Materialparameter dargestellt, in Abbildung \ref{fig:shearVisco} sind die Messwerte und der Fit in einem doppelt logarithmischen Plot der Viskositae;t abhae;ngig von der Scherrate dargestellt.
+
+Dabei schoe;n zu sehen ist der Einfluss des Rings, der dazu fue;hrt dass die Viskositae;tskurve beim Platte-Platte Rheometer deutlich unter den Messpunkten durchlae;uft.
+Hier wurde die Viskositae;tsmessung durch den Ring verfae;lscht, was bei der Simulation wieder korrigiert wurde.
 \begin{figure}
     \centering
-    \begin{tabular}{l l l}
-        \textbf{Moe;rtel} & \textbf{Komponente} & $\tau_0$, $K$, $n$ \\
+    \begin{tabular}{l c l l l}
+        \textbf{Moe;rtel} & \textbf{Komponente} & 
+        \multicolumn{1}{c}{$\tau_0$} &
+        \multicolumn{1}{c}{$K$} &
+        \multicolumn{1}{c}{$n$} \\
         \hline
-        HY Max & A & 199.98, 60.90, 0.62\\ 
-        HY Max & B & 238.75, 34.45, 0.52\\ 
-        Re 500 & A & 108.85, 35.22, 0.71\\ 
-        Re 500 & B & 134.39, 37.83, 0.62
+        \hline
+        \multirow{2}{*}{\hit{}} & A & 199.98& 60.90& 0.62\\ 
+        & B & 238.75& 34.45& 0.52\\ 
+        \hline
+        \multirow{2}{*}{\re{}}  & A & 108.85& 35.22& 0.71\\ 
+        & B & 134.39& 37.83& 0.62
     \end{tabular}
     \caption{Übersicht ue;ber die verwendeten Modellparameter fue;r das Herschel-Bulkley Modell}
     \label{fig:resultParameter}
@@ -143,24 +151,88 @@ In Tabelle \ref{fig:resultParameter} ist eine Übersicht ue;ber die angepassten 
 %
 \begin{figure}
     \centering
-    \subfigure[HY150 Max A]{
+    \subfigure[\hit{} A]{
         \includegraphics[width=0.47\textwidth]{figures/shearViscoMaxA.png}
         \label{fig:shearViscoHY:subA}
     }
-    \subfigure[HY150 Max B]{
+    \subfigure[\hit{} B]{
         \includegraphics[width=0.47\textwidth]{figures/shearViscoMaxB.png}
         \label{fig:shearViscoHY:subB}
     } \\
-    \subfigure[RE150 Re A]{
+    \subfigure[\re{} A]{
         \includegraphics[width=0.47\textwidth]{figures/shearViscoReA.png}
         \label{fig:shearViscoRE:subA}
     }
-    \subfigure[RE150 Re B]{
+    \subfigure[\re{} B]{
         \includegraphics[width=0.47\textwidth]{figures/shearViscoReB.png}
         \label{fig:shearViscoRE:subB}
     }
     \caption{Viskositae;t abhae;ngig von der Scherrate der Moe;rtel.\\Die Kreuze sind Messpunkte aus den beiden Rheometern, die rote Kurve der daran angepasste Fit.}
     \label{fig:shearVisco}
 \end{figure}
+%
+\subsubsection{Relaxationszeit}
+Bei den Simulationen mit dem viskoelastischen White-Metzner Materialmodell \eqref{eq:whiteMetznerModell} wird zusae;tzlich zu der scherratenabhae;ngigen Viskositae;t auch ein Modell fue;r die Relaxationszeit benoe;tigt.\\
+Das dazu verwendete Carreau-Yassuda Modell \eqref{eq:carreauYasuda} benoe;tigt die fue;nf Parameter $\eta_{\inf}$, $\eta_0$, $L$, $\alpha$ und $n_{\lambda}$. Da die Messung der Relaxationszeit keine Korrektursimulation benoe;tigt, kann das Modell direkt an die Messdaten gefittet werden.
+Dazu wurde ebenfalls die Python-Funktion \codeemph{leastsq} verwendet. Die resultierenden Werte sind in Tabelle \ref{fig:relaxParameter} dargestellt, in Abbildung \ref{fig:shearLambda} sind die Messpunkte und der entsprechende Fit in einem Relaxationszeit - Scherraten Diagramm gezeigt.
+\begin{figure}
+    \centering
+    \begin{tabular}{l c l l l l l}
+        \textbf{Moe;rtel} & 
+        \textbf{Komponente} & 
+        \multicolumn{1}{c}{$\eta_{\inf}$} & 
+        \multicolumn{1}{c}{$\eta_0$} &
+        \multicolumn{1}{c}{$L$} & 
+        \multicolumn{1}{c}{$n_{\lambda}$} & 
+        \multicolumn{1}{c}{$\alpha$} \\
+        \hline
+        \hline
+        \multirow{2}{*}{\hit{}} & A & 0.01   & 3.81  & 15.97 & 0.05 & 3       \\ 
+                                & B & 0.002  & 0.18  & 40.12 & 0.65 & 1.8     \\ 
+        \hline
+        \multirow{2}{*}{\re{}}  & A & 0.0012 & 9.43 & 26.37  & 0.13 & 1.64    \\ 
+                                & B & 0.01   & 7.8  & 70.12  & 0.04 & 2.3         
+    \end{tabular}
+    \caption{Übersicht ue;ber die verwendeten Modellparameter fue;r das Carreau-Yasuda Modell}
+    \label{fig:relaxParameter}
+\end{figure}
+%
+\begin{figure}
+    \centering
+    \subfigure[\hit{} A]{
+        \includegraphics[width=0.47\textwidth]{figures/shearLambdaMaxA.png}
+        \label{fig:shearLambdaHY:subA}
+    }
+    \subfigure[\hit{} B]{
+        \includegraphics[width=0.47\textwidth]{figures/shearLambdaMaxB.png}
+        \label{fig:shearLambdaHY:subB}
+    } \\
+    \subfigure[\re{} A]{
+        \includegraphics[width=0.47\textwidth]{figures/shearLambdaReA.png}
+        \label{fig:shearLambdaRE:subA}
+    }
+    \subfigure[\re{} B]{
+        \includegraphics[width=0.47\textwidth]{figures/shearLambdaReB.png}
+        \label{fig:shearLambdaRE:subB}
+    }
+    \caption{Relaxationszeit abhae;ngig von der Scherrate der Moe;rtel.\\Die Kreuze sind Messpunkte aus der Rheometermessung, die rote Kurve der daran angepasste Fit.}
+    \label{fig:shearLambda}
+\end{figure}
+%
 \subsubsection{Simulation Kapillarrheometer}
+Das Kapillarrheometer musste fue;r die Anpassung der Parameter nicht simuliert werden. Um eine weitere Kontrollmoe;glichkeit ue;ber die Verlae;sslichkeit der Parameter zu haben wurden deshalb Simulationen des Kapillarrheometers mit Messwerten verglichen.
+
+Zur Vermessung des Moe;rtels wurden zwei Kapillarrheometer mit verschiedenen Kapillaren verwendet. Die eine hat eine Lae;nge von $L=32\mbox{mm}$ und einen Durchmesser von $R=1\mbox{mm}$, wae;hrend die andere mit $L=16\mbox{mm}$ und $R=0.5\mbox{mm}$ nur halb so gross ist.\\
+Dabei wurden sowohl Simulationen mit dem rein scherratenabhae;ngigen Modell als auch mit dem viskoelastischen Materialmodell durchgefue;hrt.
+
+Die Simulation wurde Aufgrund der rotationssymmetrischen Geometrie ebenfalls nur fue;r einen fue;nf Grad Schnitz \todo{Ausdruck Schnitz} des Rheometers durchgefue;hrt, wie in Abbildung \ref{fig:kapRheo} \todo{Bild} zu sehen ist.\\
+Das verwendete Netz wurde so skaliert, dass die Aufloe;sung nahe an der Einlassdue;se zur Kapillare sehr fein Aufgeloe;st ist, wae;hrend in Regionen die weit von der Due;se entfernt sind eine eher grobe Aufloe;sung verwendet wurde.
+
+Zur Untersuchung des Einfluss der harten Kannte an der Einlassdue;se wurde zusae;tzlich noch ein Netz mit einer abgerundeten Kante simuliert. (Abbildung \ref{fig:roundMesh}) \todo{Einfluss Rundung} \todo{Bild}
+
+Die Resultate sind in Tabelle \ref{fig:kapRheoResults} aufgefueh;rt.
+
+\begin{todocontent}
+    \1 Einfluss visco
+\end{todocontent}
 %
