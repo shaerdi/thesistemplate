@@ -1,13 +1,14 @@
 FILE = thesis
 SHELL=/bin/bash
+OUTPUTNAME = thesis
 
 all: build
 
 build:
-	pdflatex $(FILE)
+	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex
 	bibtex $(FILE)
-	pdflatex $(FILE).tex
-	pdflatex $(FILE).tex
+	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex
+	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex 
 
 clean:
 	@echo -e "\033[1mCleaning up...\033[0m"
@@ -15,4 +16,4 @@ clean:
 	@rm -f *~
 
 fast:
-	pdflatex $(FILE).tex
+	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex
