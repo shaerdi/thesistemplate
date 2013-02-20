@@ -1,12 +1,12 @@
 FILE = thesis
 SHELL=/bin/bash
-OUTPUTNAME = thesis
+OUTPUTNAME = Masterarbeit_shaerdi
 
 all: build
 
 build:
 	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex
-	bibtex $(FILE)
+	bibtex $(OUTPUTNAME)
 	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex
 	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex 
 
