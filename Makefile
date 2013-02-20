@@ -5,6 +5,7 @@ OUTPUTNAME = Masterarbeit_shaerdi
 all: build
 
 build:
+	sed -i 's/oe;/ö/g; s/ae;/ä/g; s/ue;/ü/g' Chapters/*
 	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex
 	bibtex $(OUTPUTNAME)
 	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex
