@@ -6,6 +6,7 @@ all: build
 
 build:
 	sed -i 's/oe;/ö/g; s/ae;/ä/g; s/ue;/ü/g' Chapters/*
+	sed -i 's/Oe;/Ö/g; s/Ae;/Ä/g; s/Ue;/Ü/g' Chapters/*
 	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex
 	bibtex $(OUTPUTNAME)
 	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex

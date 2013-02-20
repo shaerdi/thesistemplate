@@ -111,7 +111,7 @@ Zur Verifikation des Verfahrens wurde einerseits die Qualität des Parameterfits
 
 Der Vergleich mit alten Daten zeigt eine gute Übereinstimmung, die schon berechneten Parameter konnten mit einer Genauigkeit von unter x\% \todo{Uebereinstimmung angeben} nachgebildet werden.
 
-Die Qualität des Fits kann anhand des von der Funktion \codeemph{leastsq} angegebenen Residuums abgeschätzt werden. Dabei zeigt sich, dass das verwendete Herschel-Bulkley Modell nicht für alle von Hilti eingesetzten Mörtel gleich gut geeignet ist. Während für die \hit{} Reihe durchwegs kleine Residuuen \todo{Zahlen} erreicht wurden, konnte der Algorithmus für Mörtel des \re{} Typs keine gute Ue;bereinstimmung gefunden werden.\\
+Die Qualität des Fits kann anhand des von der Funktion \codeemph{leastsq} angegebenen Residuums abgeschätzt werden. Dabei zeigt sich, dass das verwendete Herschel-Bulkley Modell nicht für alle von Hilti eingesetzten Mörtel gleich gut geeignet ist. Während für die \hit{} Reihe durchwegs kleine Residuuen \todo{Zahlen} erreicht wurden, konnte der Algorithmus für Mörtel des \re{} Typs keine gute Übereinstimmung gefunden werden.\\
 Dies liegt daran, dass das Herschel-Bulkley Modell die Eigenschaften des Mörtels nur entweder im Bereich kleiner Scherraten \todo{Zahlen} oder im Bereich von Scherraten über x\todo{Zahlen} nachbilden kann. Passende Parameter über den ganzen Bereich gibt es nicht.
 %
 \subsubsection{Netze}
@@ -119,7 +119,7 @@ Da die Rechenzeit einer einzelnen Simulation durch die grosse Anzahl an Simulati
 
 Dazu wurde das resultierende Drehmoment bei der Verwendung verschiedener Netze verglichen. Simuliert wurde das Platte-Platte Rheometer mit Ring, mit einer no-slip Randbedingung an der unteren Wand und am Ring, einer konstanten Drehgeschwindigkeit von 10 rad/s und einem offenen Spalt zwischen oberer Platte und dem Ring.
 
-Das verwendete Netz, dargestellt in Abbildung \ref{fig:PlattenRheoGitter:subA} ist ein hexaedrisches Gitter mit einer Zelle in tangentialer Richtung und einer Diskretisierungslänge von $2^{-h} \cdot 0.2\mbox{mm}$, wobei $h\in\left\{ 0,1,2,3,4 \right\}$.
+Das verwendete Netz, dargestellt in Abbildung \ref{fig:PlatteRheoGitter:subA} ist ein hexaedrisches Gitter mit einer Zelle in tangentialer Richtung und einer Diskretisierungslänge von $2^{-h} \cdot 0.2\mbox{mm}$, wobei $h\in\left\{ 0,1,2,3,4 \right\}$.
 %
 \begin{figure}
     \centering
@@ -133,11 +133,11 @@ Das verwendete Netz, dargestellt in Abbildung \ref{fig:PlattenRheoGitter:subA} i
     }
     \caption{Die verwendeten Gitter für die Simulation des Platte-Platte Rheometers. \subref{fig:PlatteRheoGitter:subA} ist das quadratische Netz, \subref{fig:PlatteRheoGitter:subB} das O-Netz.
     Der Parameter $h$ wurde variiert zwischen 0 und 4.}
-    \label{fig:PlattenRheoGitter}
+    \label{fig:PlatteRheoGitter}
 \end{figure}
 %
 
-Ebenfalls untersucht wurde das Verhalten des Drehmoments bei einer Verfeinerung der Netz-Randschicht. Dazu wurde ein O-Netz verwendet, dessen Randschicht verfeinert wurde, wie in Abbildung (x)\todo{Bild Randschicht}
+Ebenfalls untersucht wurde das Verhalten des Drehmoments bei einer Verfeinerung der Netz-Randschicht. Dazu wurde ein O-Netz verwendet, dessen Randschicht verfeinert wurde, wie in Abbildung \ref{fig:PlatteRheoGitter:subB} zu sehen ist.
 
 Die resultierenden Werte für das Drehmoment sind in Tabelle \ref{fig:ResultingTorque} aufgeführt. Aufgrund der hohen Rechenzeit für feinere Auflösungen wurde entschieden, die Simulationen mit dem Netz $h=1$ durchzuführen.
 %
