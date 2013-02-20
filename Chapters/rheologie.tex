@@ -1,9 +1,12 @@
-\section{Rheologie}
+\section{Theorie}
 \label{Kapitel:Rheologie}
-Rheologie ist die Wissenschaft über das Verhalten von Stoffen unter Einfluss äusserer Kräfte. Es wird untersucht wie Festkörper, Flüssigkeiten und Gase reagieren wenn sie deformiert werden.\\
-Diese Arbeit beschäftigt sich mit der Simulation von Flüssigmörteln, weshalb hier nicht weiter auf Festkörper und Gase eingangen wird. \todo{Quellen}
+In diesem Kapitel werden die grundlegenden Gleichungen vorgestellt, die in dieser Arbeit benutzt werden.
+Dazu gehoe;ren sowohl Erhaltungssaetze als auch rheologische Stoffgleichungen.
 
-\todo{Zitat Entfernen}\cite{boehme}
+Rheologie ist die Wissenschaft über das Verhalten von Stoffen unter Einfluss äusserer Kräfte. Es wird untersucht wie Festkörper, Flüssigkeiten und Gase reagieren wenn sie deformiert werden.
+
+Diese Arbeit beschäftigt sich mit der Simulation von Flüssigmörteln, weshalb hier nicht weiter auf Festkörper und Gase eingangen wird.
+%
 \subsection{Massen- und Impulserhaltung}
 Die Massen- und Impulserhaltungsgleichung eines inkompressiblen Fluids kann in Matrix-Vektor Form als 
 %
@@ -46,7 +49,7 @@ Dabei ist
 Der Zusammenhang zwischen Viskosität und Dehngeschwindigkeitstensor sowie die viskoelastischen Eigenschaften werden durch konstitutive (stoffabhängige)
 Gesetze beschrieben.\\
 Die Anforderungen an diese Gesetze sind vielfältig. Einerseits sollen sie die reellen Stoffeigenschaften möglichst gut beschreiben um realitätsnahe Modellierung zu ermöglichen. Andererseits sollen sie die zu lösenden Gleichungen nicht unnötig komplizieren und deshalb mit einfachen Zusammenhängen und wenig Parametern auskommen.\\
-Aus diesen Anforderungen ist eine Vielzahl von Modellen entstanden, von denen einige nachfolgend beschrieben werden. Weitere Modelle werden in $\ldots$\todo{Quellen} beschrieben.
+Aus diesen Anforderungen ist eine Vielzahl von Modellen entstanden, von denen einige nachfolgend beschrieben werden. Weitere Modelle werden in \cite{boehme}, \cite{introtorheo} und \cite{comprheo} beschrieben.
 
 \subsubsection{Zeitunabhängige Spannungen}
 Ist $\T$ keine Funktion der Zeit, gilt $\T=f\left( \D \right)$.
@@ -75,7 +78,14 @@ das doppelte innere Produkt ist.
 Mit Hilfe von \eqref{eq:Scherrate} lassen sich Modelle für die Funktion $F$ in zwei Kategorien unterteilen. Dilatante Fluide werden zähflüssiger wenn sie geschert werden, strukturviskose Fluide haben eine sinkende Viskosität für steigende Scherraten. 
 Die Grenze zwischen diesen zwei Fällen ist das Newtonsche Fluid bei dem die Viskositae;t unabhae;ngig von der Scherrate ist. 
 Ein Spezialfall des strukturviskosen Fluids ist die Viskoplastizitae;t, bei der erst nach dem Überschreiten einer Fliessgrenze $\tau$ ein Fliessvorgang moe;glich ist.\\
-Im Bild [\ref{fig:fliessKurven}] \todo{Bild} sind diese Fliesskurven genannten Zusammenhae;nge dargestellt.
+In Abbildung \ref{fig:fliessKurven} sind diese Fliesskurven genannten Zusammenhae;nge dargestellt.
+%
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/Fliesskurven.png}
+    \caption{Fliesskurven von verschiedenen Fluiden, dargestellt im doppelt logarithmischen Plot}
+    \label{fig:fliessKurven}
+\end{figure}
 %
 \begin{figure}
     \centering

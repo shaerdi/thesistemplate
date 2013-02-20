@@ -119,10 +119,41 @@ Da die Rechenzeit einer einzelnen Simulation durch die grosse Anzahl an Simulati
 
 Dazu wurde das resultierende Drehmoment bei der Verwendung verschiedener Netze verglichen. Simuliert wurde das Platte-Platte Rheometer mit Ring, mit einer no-slip Randbedingung an der unteren Wand und am Ring, einer konstanten Drehgeschwindigkeit von 10 rad/s und einem offenen Spalt zwischen oberer Platte und dem Ring.
 
-Das verwendete Netz, dargestellt in Abbildung (x) \todo{Bild} ist ein hexaedrisches Gitter mit einer Zelle in tangentialer Richtung und einer Diskretisierungslae;nge von $2^{-h} \cdot 0.2\mbox{mm}$, wobei $h\in\left\{ 0,1,2,3,4 \right\}$.
-\todo{Resultate Netz Studie}
+Das verwendete Netz, dargestellt in Abbildung \ref{fig:PlattenRheoGitter:subA} ist ein hexaedrisches Gitter mit einer Zelle in tangentialer Richtung und einer Diskretisierungslae;nge von $2^{-h} \cdot 0.2\mbox{mm}$, wobei $h\in\left\{ 0,1,2,3,4 \right\}$.
+%
+\begin{figure}
+    \centering
+    \subfigure[]{
+    \includegraphics[width=\textwidth]{figures/PlatteRheoGitterAnnot.png}
+    \label{fig:PlatteRheoGitter:subA}
+    }\\
+    \subfigure[]{
+    \includegraphics[width=\textwidth]{figures/PlatteRheoOGitterAnnot.png}
+    \label{fig:PlatteRheoGitter:subB}
+    }
+    \caption{Die verwendeten Gitter fue;r die Simulation des Platte-Platte Rheometers. \subref{fig:PlatteRheoGitter:subA} ist das quadratische Netz, \subref{fig:PlatteRheoGitter:subB} das O-Netz.
+    Der Parameter $h$ wurde variiert zwischen 0 und 4.}
+    \label{fig:PlattenRheoGitter}
+\end{figure}
+%
 
-Ebenfalls untersucht wurde das Verhalten des Drehmoments bei einer Verfeinerung der Netz-Randschicht. Dazu wurde ein O-Netz verwendet, dessen Randschicht schrittweise verfeinert wurde, wie in Abbildung (x)\todo{Bild Randschicht} \todo{Resultate Randschicht}
+Ebenfalls untersucht wurde das Verhalten des Drehmoments bei einer Verfeinerung der Netz-Randschicht. Dazu wurde ein O-Netz verwendet, dessen Randschicht verfeinert wurde, wie in Abbildung (x)\todo{Bild Randschicht}
+
+Die resultierenden Werte fue;r das Drehmoment sind in Tabelle \ref{fig:ResultingTorque} aufgefue;hrt. Aufgrund der hohen Rechenzeit fue;r feinere Aufloe;sungen wurde entschieden, die Simulationen mit dem Netz $h=1$ durchzufue;hren.
+%
+\begin{figure}
+    \centering
+    \begin{tabular}{r r r r r r}
+        \textbf{h} \vline & 0 & 1 & 2 & 3 & 4\\
+        \hline
+        \textbf{Quadr. Netz} \vline & 1.4178e-3 & 1.4353e-3 & 1.4443e-3 & 1.4479e-3 & ?.????e-3\\
+        \textbf{O-Netz} \vline & 1.4381e-3 & 1.4531e-3 & 1.4514e-3 & 1.4377e-3 & ?.????e-3
+    \end{tabular}
+    \caption{Resultierendes Drehmoment fue;r verschiedene Netzaufloe;sungen.\\
+    In der ersten Zeile ist der die Aufloe;sung bestimmende Parameter h aufgefue;hrt, in der zweiten und dritten Zeile das resultierende Drehmoment fue;r das quadratische und das O-Netz.}
+    \label{fig:ResultingTorque}
+\end{figure}
+\todo{endgueltige Werte}
 %
 \subsubsection{Resultierende Parameter}
 Die in dieser Arbeit untersuchten Moe;rtel tragen die Bezeichnung \hit{} und \re{}, wobei bei beiden jeweils eine A und eine B Komponente existiert (Vergleiche Kapitel \ref{Kapitel:Auspressgeraet}).\\

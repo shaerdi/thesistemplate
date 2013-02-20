@@ -55,7 +55,12 @@ maxDeltaT 1;
 %
 eingefügt werden, um den Zeitschritt variabel zu machen.
 
-Der resultierende Code \codeemph{timeAdjustNonNewtIcoFoam} ist in der Lage, sowohl mit nicht konstanten Viskositäten zu rechnen, als auch den Zeitschritt so zu wählen dass eine vom Nutzer bestimmte Courant Zahl \todo{Definition Courant Zahl} nicht überschritten wird.
+Der resultierende Code \codeemph{timeAdjustNonNewtIcoFoam} ist in der Lage, sowohl mit nicht konstanten Viskositäten zu rechnen, als auch den Zeitschritt so zu wählen dass eine vom Nutzer bestimmte Courant Zahl nicht überschritten wird.\\
+Die Courant oder auch CFL Zahl ist dabei definiert als Verhae;ltnis zwischen Zeitschritt und rae;umlicher Aufloe;sung.
+%
+\begin{equation}
+    c = \frac{\u\cdot \Delta t}{\Delta x}
+\end{equation}
 %
 \subsubsection{viscoelasticFluidFoam}
 Der Löser für die viskoelastischen Simulationen wurde von J.~Favero implementiert. Der Code ist eine Implementation des DEVSS Algorithmus, der aber für die Berechnung der Schubspannungsterme auf eine separat implementierte Klasse zurückgreift.\\
@@ -169,7 +174,7 @@ tauEqn.solve();
 \end{lstlisting}
 %
 \subsection{Post processing}
-Fue;r die Auswertung der Simulationen gibt es mit ParaView \todo{Quelle Paraview} und diversen \openfoam{} Utilities schon eine ganze Anzahl von Moe;glichkeiten.\\
+Fue;r die Auswertung der Simulationen gibt es mit ParaView \cite{paraview} und diversen \openfoam{} Utilities schon eine ganze Anzahl von Moe;glichkeiten.\\
 In dieser Arbeit wurde zusae;tzlich noch die Moe;glichkeit genutzt eigene Runtime Functions zu schreiben, also Funktionen die schon wae;hrend der Simulation bestimme Werte berechnen und damit Einblick in die laufende Simulation ermoe;glichen.
 %
 \subsubsection{patchAverage}
