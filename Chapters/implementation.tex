@@ -56,7 +56,7 @@ maxDeltaT 1;
 eingefügt werden, um den Zeitschritt variabel zu machen.
 
 Der resultierende Code \codeemph{timeAdjustNonNewtIcoFoam} ist in der Lage, sowohl mit nicht konstanten Viskositäten zu rechnen, als auch den Zeitschritt so zu wählen dass eine vom Nutzer bestimmte Courant Zahl nicht überschritten wird.\\
-Die Courant oder auch CFL Zahl ist dabei definiert als Verhae;ltnis zwischen Zeitschritt und rae;umlicher Aufloe;sung.
+Die Courant oder auch CFL Zahl ist dabei definiert als Verhältnis zwischen Zeitschritt und räumlicher Auflösung.
 %
 \begin{equation}
     c = \frac{\u\cdot \Delta t}{\Delta x}
@@ -107,7 +107,7 @@ calcNu() {
 %
 wobei \codeemph{sr()} die Scherrate ist und \codeemph{tau0\_}, \codeemph{k\_} und \codeemph{n\_} die Modellparameter sind.\\
 Durch die Division durch das Maximum der Scherrate und \codeemph{VSMALL}, einer sehr kleinen Konstante, wird die Division durch Null vermieden.\\
-Da das Herschel-Bulkley Modell eine unendliche Viskosität vorsieht wenn das Fluide nicht geschert wird, dies aber zu numerischen Problem führen kann, wird ausserdem die Viskositae;t nach oben hin durch die Nullviskosität \codeemph{nu0\_} beschränkt.
+Da das Herschel-Bulkley Modell eine unendliche Viskosität vorsieht wenn das Fluide nicht geschert wird, dies aber zu numerischen Problem führen kann, wird ausserdem die Viskosität nach oben hin durch die Nullviskosität \codeemph{nu0\_} beschränkt.
 %
 \subsubsection{Viskoelastische Modelle}
 Der Löser \codeemph{viscoelasticFluidFoam} greift für die Berechnung des Schubspannungtensors auf eine separate Klasse \codeemph{viscoelasticModel} zurück, die ähnlich der \codeemph{transportModel} Klasse in \codeemph{simpleFoam} die Methoden \codeemph{divTau()} und \codeemph{correct()} zur Verfügung stellt.\\
@@ -174,20 +174,20 @@ tauEqn.solve();
 \end{lstlisting}
 %
 \subsection{Post processing}
-Fue;r die Auswertung der Simulationen gibt es mit ParaView \cite{paraview} und diversen \openfoam{} Utilities schon eine ganze Anzahl von Moe;glichkeiten.\\
-In dieser Arbeit wurde zusae;tzlich noch die Moe;glichkeit genutzt eigene Runtime Functions zu schreiben, also Funktionen die schon wae;hrend der Simulation bestimme Werte berechnen und damit Einblick in die laufende Simulation ermoe;glichen.
+Für die Auswertung der Simulationen gibt es mit ParaView \cite{paraview} und diversen \openfoam{} Utilities schon eine ganze Anzahl von Möglichkeiten.\\
+In dieser Arbeit wurde zusätzlich noch die Möglichkeit genutzt eigene Runtime Functions zu schreiben, also Funktionen die schon während der Simulation bestimme Werte berechnen und damit Einblick in die laufende Simulation ermöglichen.
 %
 \subsubsection{patchAverage}
 Die Funktion \codeemph{patchAverage} ist eine vereinfachte Version der schon in \openfoam{} implementierten Runtime Function \codeemph{fieldValue}.\\
-Sie dient dazu, in vom Nutzer bestimmten Zeitabstae;nden ein bestimmtes Feld ue;ber eine oder mehrere Randflae;chen der simulierten Geometrie zu mitteln und das Resultat in eine separate Datei zu speichern.\\
-Ein Beispiel fue;r die Anwendung ist das Beobachten des mittleren Einlassdruckes bei festgelegter Einlassgeschwindigkeit in einer Stroe;mung.\\
-Dazu mue;ssen im \fileemph{controlDict} folgende Zeilen hinzugefue;gt werden:
+Sie dient dazu, in vom Nutzer bestimmten Zeitabständen ein bestimmtes Feld über eine oder mehrere Randflächen der simulierten Geometrie zu mitteln und das Resultat in eine separate Datei zu speichern.\\
+Ein Beispiel für die Anwendung ist das Beobachten des mittleren Einlassdruckes bei festgelegter Einlassgeschwindigkeit in einer Strömung.\\
+Dazu müssen im \fileemph{controlDict} folgende Zeilen hinzugefügt werden:
 %
 \begin{lstlisting}
 functions
 (
     DruckAmEinlass {
-        type averageValue;
+        type averageValue ;
         functionObjectLibs (``libaverageValue.so'');
         patches (Einlass);
         outputControl timeStep;
@@ -196,7 +196,7 @@ functions
 );
 \end{lstlisting}
 %
-Dadurch wird in jedem Zeitschritt die Funktion \codeemph{calcAverageValues} aufgerufen, die ue;ber alle Felder und Flae;chen iteriert und den Durchschnitt berechnet:
+Dadurch wird in jedem Zeitschritt die Funktion \codeemph{calcAverageValues} aufgerufen, die über alle Felder und Flächen iteriert und den Durchschnitt berechnet:
 %
 \begin{lstlisting}
 forAll(fieldNames_, fieldi) {    
@@ -214,12 +214,12 @@ return avgVals;
 \end{lstlisting}
 %
 \subsubsection{torqueCalc}
-Im Kapitel \ref{Kapitel:Korrektursimulation} wird beschrieben, wie die Viskositae;t des Moe;rtels anhand des Drehmomentes in einem Platte-Platte Rheometer bestimmt wird.\\
-Die Berechnung dieses Drehmomentes kann zwar mit den schon vorhandenen Utilities in \openfoam{} durchgefue;hrt werden, allerdings ist das eher umstae;ndlich und es mue;ssen mehrere Funktionen aufgerufen werden.\\
+Im Kapitel \ref{Kapitel:Korrektursimulation} wird beschrieben, wie die Viskosität des Mörtels anhand des Drehmomentes in einem Platte-Platte Rheometer bestimmt wird.\\
+Die Berechnung dieses Drehmomentes kann zwar mit den schon vorhandenen Utilities in \openfoam{} durchgeführt werden, allerdings ist das eher umständlich und es müssen mehrere Funktionen aufgerufen werden.\\
 Um das zu vermeiden, wurde die Funktion \codeemph{torqueCalc} geschrieben, die das Drehmoment in jedem Zeitschritt berechnet.
-Dadurch ist nicht nur die Auswertung der Simulation einfacher, es kann durch eine Überprue;fung der Änderung des Drehmoments auch eine Konvergenzbedingung angegeben und die Simulation in jedem Zeitschritt beendet werden.
+Dadurch ist nicht nur die Auswertung der Simulation einfacher, es kann durch eine Überprüfung der Änderung des Drehmoments auch eine Konvergenzbedingung angegeben und die Simulation in jedem Zeitschritt beendet werden.
 
-Die Implementierung wurde ebenfalls als runtime function umgesetzt. In der Funktion \codeemph{calcTorque()} wird das Drehmoment $M$ an den vom Nutzer bestimmten Randflae;chen $A_i$ berechnet:
+Die Implementierung wurde ebenfalls als runtime function umgesetzt. In der Funktion \codeemph{calcTorque()} wird das Drehmoment $M$ an den vom Nutzer bestimmten Randflächen $A_i$ berechnet:
 \newnot{symbol:M}
 \begin{equation}
     M = \sum_i \int_{A_i}r\tau\left( r \right)dA_i
@@ -230,7 +230,7 @@ wobei
 \end{equation}
 die Schubspannung an der Wand und $r$ der Abstand zum Rotationszentrum ist.
 
-In \openfoam{} kann die Schubspannung mithilfe der schon implementierten Funktion \codeemph{snGrad()} sehr einfach berechnet werden, wobei die Viskositae;t erst spae;ter dazu multipliziert wird:
+In \openfoam{} kann die Schubspannung mithilfe der schon implementierten Funktion \codeemph{snGrad()} sehr einfach berechnet werden, wobei die Viskosität erst später dazu multipliziert wird:
 %
 \begin{lstlisting}
 wallShearStress = vel.boundaryField()[patchi].snGrad();
@@ -247,7 +247,7 @@ cylindricalCS ccs
 );
 \end{lstlisting}
 
-Die Summe und das Integral ue;ber die vorgegebenen Flae;chen kann dann mittels einer for-Schleife implementiert werden:
+Die Summe und das Integral über die vorgegebenen Flächen kann dann mittels einer for-Schleife implementiert werden:
 \begin{lstlisting}
 forAllConstIter(labelHashSet,patchSet_, iter)
 {
@@ -266,7 +266,7 @@ forAllConstIter(labelHashSet,patchSet_, iter)
 \end{lstlisting}
 
 Die Konvergenzbedingung ist in der Funktion \codeemph{checkConvergence()} eingebaut.
-Dabei wird fue;r das Berechnen der ersten und der zweiten Ableitung die finite Differenzen Methode benutzt:
+Dabei wird für das Berechnen der ersten und der zweiten Ableitung die finite Differenzen Methode benutzt:
 %
 \begin{eqnarray}
     \label{eq:torqueCalc:fd}
@@ -274,7 +274,7 @@ Dabei wird fue;r das Berechnen der ersten und der zweiten Ableitung die finite D
     \ddot{m} & = & \frac{1}{2}\left(  m[t+1] - 2 \cdot m[t] + m[t-1] \right) 
 \end{eqnarray}
 %
-Die Werte $m[t]$ wurden dabei in einer \codeemph{fixedList} der Groe;sse drei gespeichert, in die jeweils periodisch die neuen Werte geschrieben werden
+Die Werte $m[t]$ wurden dabei in einer \codeemph{fixedList} der Grösse drei gespeichert, in die jeweils periodisch die neuen Werte geschrieben werden
 %
 \begin{lstlisting}
 label ip1 = convListIt_;
@@ -294,7 +294,7 @@ if (mag(firstDeriv) < convergence_ && mag(secondDeriv) < convergence_/100)
 %\begin{lstlisting}
 %scalar torque = calcTorque();
 
-%convList_[convListIt_]=torque;
+%convList_[convListIt_]=torqü
 %// Get next index (periodic)
 %convListIt_=convList_.fcIndex(convListIt_);
 %\end{lstlisting}
