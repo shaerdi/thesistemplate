@@ -1,9 +1,15 @@
 \section{Einleitung}
 \label{Kapitel:Einleitung}
-Die Firma Hilti AG verwendet im Bereich der Dübel-Befestigungstechnik neben Kunststoff- und Metalldübeln auch chemische Dübel, bei denen die Haltekraft durch das Aushärten eines Mörtels um eine Ankerstange zustandekommt. \\
-Diese Mörtel sind rheologisch komplex und zeigen sowohl ein struktuviskoses als auch viskoelastisches Verhalten. Diese Eigenschaften sind teilweise gewünscht, da sie ein Arbeiten auf der Baustelle erleichtern. Teilweise sind sie aber auch Nebeneffekte der Inhaltsstoffe, die für die chemische Reaktion des Mörtels gebraucht werden.
+Die Firma Hilti AG verwendet im Bereich der Dübel-Befestigungstechnik neben Kunststoff- und Metalldübeln auch chemische Dübel, bei denen die Haltekraft durch das Aushärten eines Mörtels um eine Anker- oder Gewinde"-stange zustande kommt. \\
+Dazu kommen Zwei-Komponenten Mörtel auf Epoxy- und auf Harzbasis zum Einsatz. Die Aushärtung geschieht dabei aufgrund einer chemischen Reaktion sobald die beiden Komponenten in Kontakt kommen.\\
+Diese Mörtel sind rheologisch komplex und zeigen sowohl strukturviskoses als auch viskoelastisches Verhalten. Diese Eigenschaften sind teilweise gewünscht, da sie ein Arbeiten auf der Baustelle erleichtern. Teilweise sind sie aber auch Nebeneffekte der Inhaltsstoffe, die für die chemische Reaktion des Mörtels gebraucht werden.
 
-Die Hilti AG ist bekannt für zuverläsige, innovative und topmoderne Produkte. Um diesen Standard auch weiterhin aufrechtzuerhalten, werden in der Forschungsabteilung unter anderem auch Computersimulationen verwendet. \\
-Zur Simulation von Fluiden wurde bei Hilti AG bisher \comsol{} und \cfx{} verwendet. Beide Programme sind aber nicht ohne weiteres in der Lage viskoelastische Stoffe zu simulieren. Deshalb wurde beschlossen, auf eine Alternative umzusteigen.
+Die Hilti AG ist bekannt für zuverlässige, innovative und topmoderne Produkte. Um diesen Standard auch weiterhin aufrecht zu erhalten, werden in der Forschungsabteilung unter anderem auch Computersimulationen verwendet. \\
+Zur Simulation von Fluiden wurde bei Hilti AG bisher \comsol{} und \cfx{} verwendet. Beide Programme sind aber nicht ohne weiteres in der Lage, viskoelastische Stoffe zu simulieren.% Deshalb wurde beschlossen, auf eine Alternative umzusteigen.
 
-Das Ziel dieser Arbeit ist es, die entsprechenden Modelle in \openfoam{} zu implementieren und zu lösen.
+In dieser Arbeit soll als Alternative zu den genannten Programmen die Open-source Bibliothek \openfoam{} \cite{openfoam} verwendet werden, um das Fliessverhalten der verwendeten Mörtel zu simulieren.
+
+Dazu sollen passende konstitutive Gesetze ausgewählt werden, um die nicht-Newtonschen Eigenschaften der Mörtel abzubilden. Die variablen Parameter dieser Gesetze sollen anhand von Messdaten eruiert und mit Simulationen verifiziert werden.\\
+Die notwendigen Tools sollen dabei, sofern nicht schon darin enthalten, in \openfoam{} implementiert werden.
+
+Zum Abschluss sollen die Modelle durch die Simulation eines anwendungsnahen Versuchaufbaus validiert werden.

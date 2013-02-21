@@ -19,13 +19,10 @@ parSet4 = [1e1,1e2,0.1] # Plastic
 
 x = logspace(-3,4,100)
 
+fig = figure(figsize=(12,4))
 # Newtonsch
 newtLeg = 'Newtonsch'
 newt,=loglog(x,modHB(parSet1,x),'k',label=newtLeg)
-
-# Viskoplastisch
-plasticLeg = 'Viskoplastisch'
-plastic,=loglog(x,sikoModell(parSet4,x),'g',label=plasticLeg)
 
 # Dilatant
 dilLeg = 'Dilatant'
@@ -35,9 +32,15 @@ dil,=loglog(x,dilatantMod(parSet2,x*1e4),'b',label=dilLeg)
 scherLeg = 'Strukturviskos'
 scher,=loglog(x,carreauModell(parSet3,x),'r-',label=scherLeg)
 
+# Viskoplastisch
+plasticLeg = 'Viskoplastisch'
+plastic,=loglog(x,sikoModell(parSet4,x),'g',label=plasticLeg)
+
 #legend([newt,dil,scher,newt],[newtLeg,dilLeg,scherLeg,plasticLeg])
 legend(loc='lower left')
 xlabel('Scherrate')
 ylabel("Viskosit$\ddot{a}$t")
 ylim([5e0,1e3])
-savefig('fliesskurven.png',bbox_inches=0)
+tight_layout()
+savefig('/home/simon/Documents/ETH/Master-Thesis/Thesis/figures/Fliesskurven.png',bbox_inches=0)
+

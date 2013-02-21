@@ -1,9 +1,9 @@
-\section{Hilti Auspressgerät}
+\section{Anwendung auf das Hilti Auspressgerät}
 \label{Kapitel:Auspressgeraet}
 Die von Hilti hergestellten chemischen Dübel bestehen aus zwei Komponenten. Diese werden bei der Anwendung gemischt und in ein vorgebohrtes Loch gedrückt. Durch das Mischen der Komponenten beginnt der Mörtel auszuhärten und befestigt dadurch eine ebenfalls in das Loch eingeführte Gewindestange.
 
 Die Mörtelkomponenten werden mit einem eigens dafür entwickelten Auspressgerät in die Löcher gedrückt. Dieses Auspressgerät soll gleichzeitig möglichst zuverlässig und stabil sein, aber auch so konstruiert dass für die Anwendung wenig Kraft gebraucht wird und exakt so viel Fluid ausgepresst wird wie vom Anwender gewollt.\\
-Das derzeit auf dem Markt erhältliche Gerät ist in Abbildung \ref{fig:Auspressgeraet} gezeigt.
+Das derzeit auf dem Markt erhältliche Gerät ist in Abbildung~\ref{fig:Auspressgeraet} gezeigt.
 %
 \begin{figure}
     \centering
@@ -25,7 +25,7 @@ Das derzeit auf dem Markt erhältliche Gerät ist in Abbildung \ref{fig:Auspress
 \end{figure}
 %
 
-Das Mischen der beiden Komponenten geschieht in einem Mischer, der vorne am Auspressgerät angeschraubt wird (Abbildung \ref{fig:Mischer}).
+Das Mischen der beiden Komponenten geschieht in einem Mischer, der vorne am Auspressgerät angeschraubt wird (Abbildung~\ref{fig:Mischer}).
 %
 \begin{figure}
     \centering
@@ -47,7 +47,7 @@ Diese Ansprüche an das Gerät und den Mischer erfordern ein hohes Mass an Verst
 %
 \subsection{Messaufbau}
 Das für die Mörtel verwendete Auspressgerät besteht zum grössten Teil aus Kunststoff. Da dieser selber elastische Eigenschaften besitzt, ist es sehr schwierig die viskoelastischen Eigenschaften eines Fluides zu bestimmen, das durch das Gerät fliesst.\\
-Um einen Einfluss des Gerätes auf das Fluid auszuschliessen, wurde deshalb die Geometrie des Auspressgerätes in einer sogenannten Funktionsersatzprüfung (FEP) aus Metall nachgebaut. In Abbildung \ref{fig:FEP} sind Bilder dieser FEP zu sehen, in \ref{fig:FEP_schema} ist der Aufbau schematisch dargestellt.
+Um einen Einfluss des Gerätes auf das Fluid auszuschliessen, wurde deshalb die Geometrie des Auspressgerätes in einer sogenannten Funktionsersatzprüfung (FEP) aus Metall nachgebaut. In Abbildung~\ref{fig:FEP} sind Bilder dieser FEP zu sehen, in \ref{fig:FEP_schema} ist der Aufbau schematisch dargestellt.
 %
 \begin{figure}
     \centering
@@ -63,7 +63,7 @@ Um einen Einfluss des Gerätes auf das Fluid auszuschliessen, wurde deshalb die 
         \includegraphics[width=0.31\textwidth]{figures/FEP_3.png}
         \label{fig:FEP:subC}
     }
-    \caption{Der Messaufbau für das Auspressgerät.\\In Abbildung \subref{fig:FEP:subA} ist der Nachbau der Geometrie aus Metall zu sehen, der in \subref{fig:FEP:subB} mit Mörtel befüllt worden ist.\\
+    \caption{Der Messaufbau für das Auspressgerät.\\In Abbildung~\subref{fig:FEP:subA} ist der Nachbau der Geometrie aus Metall zu sehen, der in \subref{fig:FEP:subB} mit Mörtel befüllt worden ist.\\
     Dieser Mörtel wird dann von einem Kolben durch eine Blende in den Mischer gepresst, der Übergang ist in \subref{fig:FEP:subC} zu sehen.}
     \label{fig:FEP}
 \end{figure}
@@ -79,13 +79,13 @@ Um einen Einfluss des Gerätes auf das Fluid auszuschliessen, wurde deshalb die 
 
 Bei der Messung wird der Mörtel wird in die Metallröhre eingefüllt und dann von einem Kolben nach unten gedrückt. Beim Übergang zwischen FEP und Mischer ist auf jeder Seite eine auswechselbare Blende eingebaut, die den Durchmesser der engsten Stelle bestimmt durch die das Fluid fliessen muss. Danach kommen die beiden Ströme zusammen und werden in den Mischer geleitet.
 
-Die variablen Grössen bei der Versuchsausführung sind dabei die Kolbengeschwindigkeit (und damit der Volumenstrom), die Grösse der eingelegten Blenden die de und der Typ des verwendeten Mörtels. In der Praxis sind dabei auf den zwei Seiten jeweils die A und die B Komponente des Mörtels, in der FEP wurde, um den Vergleich mit den Simulationen einfach zu machen, jeweils nur ein Typ Mörtel eingesetzt.
+Die variablen Grössen bei der Versuchsausführung sind dabei die Kolben"-geschwindig"-keit (und damit der Volumenstrom), die Grösse der eingelegten Blenden und der Typ des verwendeten Mörtels. In der Praxis sind dabei auf den zwei Seiten jeweils die A und die B Komponente des Mörtels, in der FEP wurde, um den Vergleich mit den Simulationen einfach zu machen, jeweils nur ein Typ Mörtel eingesetzt.
 
-Gemessen wird jeweils vor dem Durchströmen der Blende und vor dem Mischereingang (Drucksensor 1 und 2 in Abbildung \ref{fig:FEP_schema}) der Druckunterschied zum Umgebungsdruck und die Kraft, die für das Runterdrücken der Kolben notwendig ist.
+Gemessen wird jeweils vor dem Durchströmen der Blende und vor dem Mischereingang (Drucksensor 1 und 2 in Abbildung~\ref{fig:FEP_schema}) der Druckunterschied zum Umgebungsdruck und die Kraft, die für das Runterdrücken der Kolben notwendig ist.
 %
 \subsection{Simulation}
 Durch den Vergleich der gemachten Messungen mit Simulationen sollen Aussagen über die Verlässlichkeit der verwendeten Modelle gemacht werden können.\\
-Dazu wurde die Geometrie der FEP und des Mischers virtuell nach gebaut und vernetzt. Dabei wurde darauf geachtet, dass die kritischen Regionen wie zum Beispiel die Blende in der FEP besonders fein vernetzt ist, während Regionen in denen erwartungsgemea;ss keine grosse Veränderung in den Variablen zu erwarten ist nur grob vernetzt sind. Ein Beispiel ist in Abbildung \ref{fig:FEP_Gitter} und \ref{fig:Mischer_Gitter} zu sehen.
+Dazu wurde die Geometrie der FEP und des Mischers virtuell nach gebaut und vernetzt. Dabei wurde darauf geachtet, dass die kritischen Regionen wie zum Beispiel die Blende in der FEP besonders fein vernetzt ist, während Regionen in denen erwartungsgemea;ss keine grosse Veränderung in den Variablen zu erwarten ist nur grob vernetzt sind. Ein Beispiel ist in Abbildung~\ref{fig:FEP_Gitter} und \ref{fig:Mischer_Gitter} zu sehen.
 %
 \begin{figure}
     \centering
@@ -113,7 +113,7 @@ Die Viskosität $\eta$ ist direkt abhängig von $\u$ und musste deshalb bei Star
 
 \codeemph{viscoelasticFluidFoam} arbeitet mit den drei Feldern Geschwindigkeit $\u$, Druck $\p$ und Schubspannungstensor $\tau$. Start- und Randbedingungen für $\u$ und $p$ wurden gleich wie beim Löser \codeemph{simpleFoam} behandelt, bei $\tau$ wurde am Einlass ein konstanter Wert von Null vorgegeben, an Wänden und beim Auslass wurde der Gradient auf Null gesetzt.
 %
-\subsection{Resultate}
+\subsection{Ergebnisse}
 \begin{todocontent}
     \1 Resultat Simulation (Bilder)
     \1 Druckvergleich

@@ -89,7 +89,7 @@ class limitedHerschelBulkley : public viscosityModel {
 \end{lstlisting}
 %
 In der Funktion \codeemph{correct()} wird hier eine private Funktion \codeemph{calcNu()} aufgerufen, die die Viskosität neu berechnet.
-Das modifizierte Herschel-Bulkley Modell \todo{modHB referenzieren} kann dabei, dank der exzellenten Operatorüberladung von \openfoam{}, in einer sehr simplen Schreibweise implementiert werden:
+Das modifizierte Herschel-Bulkley Modell \eqref{eq:modHB} kann dabei, dank der exzellenten Operatorüberladung von \openfoam{}, in einer sehr simplen Schreibweise implementiert werden:
 %
 \begin{lstlisting}
 Foam::tmp<Foam::volScalarField>
