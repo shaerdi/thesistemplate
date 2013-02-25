@@ -1,10 +1,11 @@
 \section{Simulationsframework}
+\todo{Begriff Simulationsframework}
 \label{Kapitel:Implementierung}
-Die Implementierung der zugrunde liegenden Gleichungen und ihre Diskretisierung wurde in \openfoam{} \cite{openfoam} realisiert.
+Die Implementierung der zugrunde liegenden Gleichungen und ihre Diskreti"-sierung wurde in \openfoam{} \cite{openfoam} realisiert.
 \openfoam{} ist eine freie CFD Bibliothek für finite Volumen, in der zahlreiche Standardlöser schon implementiert sind und die es erlaubt auf eine einfache Art und Weise eigenen Code zu implementieren.\\
 Für die Simulation der Viskoelastischen Fluide wurde ein Code von J.~Favero \cite{faveroOF} verwendet, der an die in dieser Arbeit verwendeten Modelle und Gleichungen angepasst wurde.
 
-Die simulierten Mörtel weisen eine im Verhältnis zu den Strömungsgeschwindigkeiten hohe Viskosität auf. 
+Die simulierten Mörtel weisen eine im Verhältnis zu den Strömungs"-geschwind"-ig"-keiten hohe Viskosität auf. 
 Die maximale Reynolds-Zahl die in in dieser Arbeit gemachten Simulationen auftritt ist im einstelligen Bereich, weshalb auf eine Turbulenz-Modellierung verzichtet und eine laminare Strömung vorausgesetzt wurde.
 %
 \subsection{Löser}
@@ -70,7 +71,7 @@ Dieser Code wurde unverändert übernommen und ist hier nur der Komplettheit hal
 \subsubsection{Scherratenabhängige Modelle}
 Die Implementation eigener Modelle wurde realisiert indem eine neue \cpp{} Klasse implementiert wurde, die von der in \openfoam{} vorhandenen Klasse \codeemph{viscosityModel} abgeleitet ist.
 Diese neue Klasse muss die Funktionen \codeemph{nu()} und \codeemph{correct()} zur Verfügung stellen, die die kinematische Viskosität zurückgeben beziehungsweise neu berechnen.
-Dabei kann auf die Scherrate $\gammap$ zurückgegriffen werden durch die von der Basisklasse zur verfügung gestellte Funktion \codeemph{strainRate()}. Das Einlesen von zusätzlichen Parametern geschieht dabei in der Funktion \codeemph{read()}.
+Dabei kann auf die Scherrate $\gammap$ zurückgegriffen werden durch die von der Basisklasse zur Verfügung gestellte Funktion \codeemph{strainRate()}. Das Einlesen von zusätzlichen Parametern geschieht dabei in der Funktion \codeemph{read()}.
 
 Der schematische Aufbau solch einer Klasse:
 %

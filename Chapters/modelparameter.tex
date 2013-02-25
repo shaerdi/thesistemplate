@@ -1,28 +1,65 @@
 \section{Bestimmung und Validierung von Materialparametern}
 \label{Kapitel:Parameter}
 Um eine realistische Simulation zu ermöglichen, ist es notwendig die verwendeten Modelle möglichst genau an Messdaten der realen Mörtel anzupassen. Dazu können die materialabhängigen Parameter in den Modellen variiert werden.\\
-Für einige der Mörtel wurden die Parameter, die im verwendeten Modell \eqref{eq:modHB} vorkommen, schon in früheren Arbeiten bestimmt. \\
+Für einige der Mörtel wurden die Parameter, die im verwendeten Modell~\eqref{eq:modHB} vorkommen, schon in früheren Arbeiten bestimmt. \\
 Einerseits wurden aber in der Zwischenzeit neue Mörtel entwickelt und andererseits ist es wünschenswert, ein Tool zur automatischen Bestimmung dieser Parameter zu haben das unabhängig von Drittanbietern in Form von Lizenzen und Support ist. \\
 Dies wurde mithilfe einer Kombination aus \openfoam{} und der Programmiersprache Python umgesetzt.
 %
 \subsection{Rheometer}
-Die Messungen wurden von einem Hilti-internen Rheologen durchgeführt. Verwendet wurden zwei Messgeräte, ein Platte-Platte Rheometer und ein Kapillarrheometer.\\
-Dabei wird in beiden Geräten das Fluid in eine einachsige, laminare Strömung versetzt, die es erlauben anhand einer Messgrösse die Viskosität abhängig von der Scherrate zu bestimmen.
+Rheometer sind Geräte, mit denen man die Fliesskurve von nicht-Newtonschen Fluiden experimentell bestimmen kann.
+Dabei wird das Fluid in eine stationäre, laminare Schichtenströmung versetzt, die es erlaubt anhand einer vom Gerät abhängigen Messgrösse die Viskosität abhängig von der Scherrate zu bestimmen.
+Die Messungen wurden von einem Hilti-internen Rheologen durchgeführt. Verwendet wurden zwei Messgeräte, ein Platte-Platte Rheometer und ein Kapillarrheometer.
 %
 \subsubsection{Platte-Platte Rheometer}
 \label{Kapitel:Parameter:PlattePlatteRheo}
 Das Platte-Platte Rheometer besteht aus zwei zylindrischen Platten, die so montiert sind dass zwischen ihnen ein schmaler, ebenfalls zylinderförmiger Spalt entsteht. \todo{Bild Rheometer}
 Die Flüssigkeit wird in diesem Scherspalt platziert, der in radialer Richtung von einem Ring abgeschlossen werden kann. Beim Messvorgang wird die eine Platte fixiert, die andere mit einer vorgegebenen Geschwindigkeit $\Omega$ gedreht.
 Dabei wird das benötigte Drehmoment gemessen, das für die Drehgeschwindigkeit aufgewendet werden muss.
-\todo{Formeln Berechnung Viskositaet}
 
-Das Platte-Platte Rheometer eignet sich ebenfalls dazu, zeitabhängige Effekte wie die Relaxationszeit eines viskoelastischen Fluids zu messen. 
-Dazu wird die obere Platte nicht mit einer konstanten Geschwindigkeit bewegt, sondern mit einer schwingungsähnlichen Drehung auf die eine oder die andere Seite bewegt.
-\todo{Schwingungs Modi}
-%
-\begin{todocontent}
-    \1 Bilder von Messkurven
-\end{todocontent}
+Die verwendete Formel dazu lautet:
+\begin{equation}
+    \label{eq:platterheovisko}
+    \eta\left( \gammap \right) = \frac{2M}{\pi R^3 \gammap}\left( \frac{3+n}{4} \right) \text{ mit } n=\frac{d\ln M}{d\ln\gammap}
+\end{equation}
+Wobei $M$ das notwendige Drehmoment ist und $R$ der Radius der verwendeten Platten.
+Für eine Herleitung dieser Formel wird auf \cite{introtorheo} verwiesen.
+
+Das Platte-Platte Rheometer eignet sich ebenfalls dazu, zeitabhängige Effekte wie die Relaxationszeit eines viskoelastischen Fluids zu messen.
+Dazu wird die obere Platte nicht mit einer konstanten Geschwindigkeit bewegt, sondern mit einer schwingungsähnlichen Drehung auf die eine oder die andere Seite bewegt.\\
+Bei diesem Vorgang, der Oszillationsmessung genannt wird, kann anhand der resultierenden, nicht stationäre Strömung über die Messung des Widerstandes eine Abschätzung der der Schwinungsmodi der Flüssigkeit gemacht werden.
+
+Die sinusförmige Deformation $\gamma$ des Fluides verursacht dabei einen ebenfalls sinusförmigen Widerstand, der durch eine Schubspannung $\tau$ im Fluid zustandekommt.\\
+Bei einem ideal viskosem Fluid ist dieser mit der Deformation um 90$^\circ$ Phasenverschoben, da der Widerstand proportional zur Schergeschwindigkeit $\gammap$ der Flüssigkeit ist.\\
+Bei einem ideal elastischem Material ist der Widerstand in Phase mit der Deformation, da er direkt proportional zur Verzerrung $\gamma$ des Materials ist.\\
+Ein viskoelastisches Fluid besitzt die Eigenschaften beider Materialien und hat deshalb einen Antworts-Widerstand, der um einen Winkel zwischen 0 und 90$^\circ$ phasenverschoben ist. Dieser Zusammenhang ist in Abbildung~\ref{fig:schwingungsmodi} dargestellt.
+
+Diese Beziehungen können als Zusammenhang zwischen Schubspannung $\tau$ und Zeit $t$ ausgedrückt werden:
+\begin{align}
+    \label{eq:schwingungsmodi}
+    \tau\left( t \right)&=G'\cdot\hat{\gamma}\cdot \sin\left( \omega\cdot t \right) && \text{elastisch}\\
+    \tau\left( t \right)&=\eta\cdot\omega\cdot\hat{\gamma}\cdot \cos\left( \omega\cdot t \right)&& \text{viskos}\\
+    \tau\left( t \right)&=G'\cdot\hat{\gamma}\cdot \sin\left( \omega\cdot t \right)+G''\cdot\hat{\gamma}\cdot \cos\left( \omega\cdot t \right)&& \text{viskoelastisch}
+\end{align}
+Dabei ist $\omega$ die Kreisfrequenz und $\hat\gamma$ die Amplitude der am Rheometer angelegten Schwingung, $\eta$ die Viskosität des Fluids und $G'$ das Elastizitätsmodul des elastischen Materials. Der Term $\eta\cdot\omega$ wird auch als Verlustmodul $G''$ bezeichnet.
+
+Anhand von $G'$ und $G''$ können die viskoelastischen Eigenschaften wie z.B. die Relaxationszeit eines Fluids bestimmt werden.
+
+\begin{figure}
+    \centering
+    \subfloat[Auslenkung $\gamma$ und Schergeschwindigkeit $\gammap$]{
+    \includegraphics[width=\textwidth]{figures/SchwingungsmodiA.png}
+    \label{fig:schwingungsmodi:subA}
+    }\\
+    \subfloat[Widerstand des Materials]{
+    \includegraphics[width=\textwidth]{figures/SchwingungsmodiB.png}
+    \label{fig:schwingungsmodi:subB}
+    }
+    \caption{Oszillationsversuch mit dem Platte-Platte Rheometer.\\
+    In \subref{fig:schwingungsmodi:subA} ist die sinusförmige Auslenkung $\gamma$ als durchgezogene Linie, die resultierende Schergeschwindigkeit $\gammap$ als gestrichelte Linie gezeichnet.\\
+    In \subref{fig:schwingungsmodi:subB} ist die Reaktion des Materials auf die Auslenkung dargestellt. Ein elastisches Material hat einen Widerstand in Phase mit der Auslenkung, eine viskose Flüssigkeit ist um 90$^\circ$ Phasenverschoben. Ein viskoelastisches Material liegt zwischen diesen beiden Kurven.
+    }
+    \label{fig:schwingungsmodi}
+\end{figure}
 %
 \subsubsection{Kapillarrheometer}
 Das Kapillarrheometer kann wie das Platte-Platte Rheometer zur Bestimmung der scherratenabhängigen Viskosität verwendet werden. Das Fluid wird dabei aber nicht gedreht, sondern durch eine zylinderförmige Kapillare gepresst. Als Messgrösse dient dabei der Druckunterschied.\\
@@ -48,9 +85,6 @@ Mit Hilfe von \eqref{eq:KapRheoTau} und \eqref{eq:KapRheoScherrate} lässt sich 
 \end{equation}
 mit dem gemessenen Druckunterschied bei einem vorgegebenen Volumenstrom bestimmen.
 %
-\begin{todocontent}
-    \1 Bilder von Messkurven
-\end{todocontent}
 %
 \subsection{Korrektursimulation}
 \label{Kapitel:Korrektursimulation}
@@ -63,8 +97,9 @@ Beim Platte-Platte Rheometer handelt es sich um eine rotationssymmetrische Geome
 \begin{figure}
 \centering
 \includegraphics[width=.6\textwidth]{figures/plattenRheometerSchnitz.png}
+\caption{Simulierter Teil des Platte-Platte Rheometers.\\
+Eingefärbt ist das Bild nach der resultierenden Geschwindigkeitsverteilung im Rheometer.}
 \label{fig:plattePlatteRheo}
-\caption{Simulierter Teil des Platte-Platte Rheometers}
 \end{figure}
 %
 \subsection{Parameterfit}
@@ -77,7 +112,7 @@ Das Ausgleichsproblem wird dabei mittels der Funktion \codeemph{leastsq} aus dem
 Diese Funktion ist eine Implementierung des Levenberg-Marquardt Algorithmus, der das Problem auf eine iterative Weise löst.\\
 Dazu wird eine eine enge Kopplung von Python und \openfoam{} nötig, da die Auswertung der Funktion, an die gefittet werden soll, eine Reihe von Simulationen ist.
 
-Diese Kopplung wurde dabei mit Hilfe von \codeemph{PyFoam} \todo{Referenz} realisiert. \codeemph{PyFoam} ist eine Python Bibliothek die es ermöglicht, die von \openfoam{} als Ein- und Ausgabe benutzten Textdateien auf eine einfache Art und Weise zu erzeugen, zu ändern und auszulesen.
+Diese Kopplung wurde dabei mit Hilfe von \codeemph{PyFoam} \cite{pyfoam} realisiert. \codeemph{PyFoam} ist eine Python Bibliothek die es ermöglicht, die von \openfoam{} als Ein- und Ausgabe benutzten Textdateien auf eine einfache Art und Weise zu erzeugen, zu ändern und auszulesen.
 
 Um den Prozess der Parameter-Optimierung zu beschleunigen, wurde ausserdem die Bibliothek \codeemph{Parallel Python} \cite{parallelpython} verwendet. Da eine Funktionsauswertung eine ganze Reihe Simulationen beinhaltet, wird dazu viel Zeit benötigt. Diese Simulationen sind aber unabhängig voneinander und können deshalb sehr einfach parallelisiert werden. Mit \codeemph{Parallel Python} können beliebig viele Prozessoren für den Parameterfit verwendet werden.
 

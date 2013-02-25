@@ -1,11 +1,18 @@
 \section{Physikalische Grundlagen}
 \label{Kapitel:Rheologie}
-In diesem Kapitel werden die grundlegenden Gleichungen vorgestellt, die in dieser Arbeit benutzt werden.
-Dazu gehören sowohl Erhaltungssätze als auch rheologische Stoffgleichungen.
+Diese Arbeit beschäftigt sich mit der Simulation von Flüssigmörteln, weshalb hier nicht weiter auf Festkörper und Gase eingangen wird.\\
+Ebenfalls nicht weiter vertieft werden turbulente Eigenschaften und Dichteänderungen, da die Mörtel verhältnismässig langsam strömen und nahezu inkompressibel sind.
 
-Rheologie ist die Wissenschaft über das Verhalten von Stoffen unter Einfluss äusserer Kräfte. Es wird untersucht wie Festkörper, Flüssigkeiten und Gase reagieren wenn sie deformiert werden.
+%In diesem Kapitel werden die grundlegenden Gleichungen vorgestellt, die in dieser Arbeit benutzt werden.
+In diesem Kapitel werden Gleichungen vorgestellt, die den in dieser Arbeit untersuchten Phänomenen zugrunde liegen.\\
+Diese bestehen aus den Bilanzgleichungen für inkompressible, isothermische Fluide, die mit rheologischen Stoffgleichungen geschlossen werden.
+%Dazu gehören sowohl Erhaltungssätze als auch rheologische Stoffgleichungen.
 
-Diese Arbeit beschäftigt sich mit der Simulation von Flüssigmörteln, weshalb hier nicht weiter auf Festkörper und Gase eingangen wird.
+%Rheologie ist die Wissenschaft über das Verhalten von Stoffen unter Einfluss äusserer Kräfte. Es wird untersucht wie Festkörper, Flüssigkeiten und Gase reagieren wenn sie deformiert werden.
+Rheologie ist die Wissenschaft über die Verformung und das Fliessen von Stoffen.
+Viele Materialien können nicht in einer der Kategorien Flüssigkeit oder Festkörper eingeteilt werden, weil sie Eigenschaften von beiden besitzen. Die Untersuchung von solchen viskoelastischen Stoffen und ihrem Verhalten unter Einfluss von äusseren Kräften ist das Ziel der Rheologie.\\
+Dabei wird versucht, die verschiedenen Eigenschaften dieser Stoffe mithilfe von mathematischen Modellen nachzubilden, um mit ihnen die Erhaltungssätze zu schliessen.
+
 %
 \subsection{Massen- und Impulserhaltung}
 Die Massen- und Impulserhaltungsgleichung eines inkompressiblen Fluids kann in Matrix-Vektor Form als 
@@ -36,14 +43,16 @@ In dieser Arbeit wird diese Abhängigkeit eingegrenzt, indem $\T$ auf eine Funkt
 %
 \begin{equation}
     \label{eq:Spannungstensor}
-    \T = f\left( \D,t \right)
+    \T = f\left( \D,t \right).
 \end{equation}
 %
 Dabei ist 
 \begin{equation}
     \label{eq:Dehngeschwindigkeitstensor}
-    \D =\frac{1}{2} \left( \nabla \u + \nabla \u^T \right)
+    \D =\frac{1}{2} \left( \nabla \u + \nabla \u^T \right).
 \end{equation}
+
+Eine ausführliche Herleitung dieser Bilanzgleichungen ist in \cite{boehme} zu finden.
 %
 \subsection{Konstitutive Gesetze}
 Der Zusammenhang zwischen Viskosität und Dehngeschwindigkeitstensor sowie die viskoelastischen Eigenschaften werden durch konstitutive (stoffabhängige) Gesetze beschrieben.\\
@@ -74,10 +83,12 @@ wobei
 \end{equation}
 das doppelte innere Produkt ist.
 
-Mit Hilfe von \eqref{eq:Scherrate} lassen sich Modelle für die Funktion $F$ in zwei Kategorien unterteilen. Dilatante Fluide werden zähflüssiger wenn sie geschert werden, strukturviskose Fluide haben eine sinkende Viskosität für steigende Scherraten. 
-Die Grenze zwischen diesen zwei Fällen ist das Newtonsche Fluid bei dem die Viskosität unabhängig von der Scherrate ist. 
-Ein Spezialfall des strukturviskosen Fluids ist die Viskoplastizität, bei der erst nach dem Überschreiten einer Fliessgrenze $\tau_0$ ein Fliessvorgang möglich ist.\\
-In Abbildung~\ref{fig:fliessKurven} sind diese Fliesskurven genannten Zusammenhänge dargestellt.
+Die Funktion $\eta\left( \D \right)$ wird auch Fliesskurve genannt.
+Mit Hilfe von \eqref{eq:Scherrate} lassen sich diese in zwei Kategorien unterteilen. Dilatante Fluide werden zähflüssiger wenn sie geschert werden, strukturviskose Fluide haben eine sinkende Viskosität für steigende Scherraten. 
+Die konstante Viskosität eines Newtonschen Fluids kann ebenfalls als Fliessfunktion geschrieben werden $\eta\left( \D \right)=\mu$.
+
+Ein Spezialfall des strukturviskosen Fluids ist die Viskoplastizität, bei der erst nach dem Überschreiten einer Fliessgrenze $\tau_0$ ein Fliessvorgang möglich ist.
+In Abbildung~\ref{fig:fliessKurven} einige dieser Fliesskurven dargestellt.
 %
 \begin{figure}
     \centering
@@ -86,39 +97,74 @@ In Abbildung~\ref{fig:fliessKurven} sind diese Fliesskurven genannten Zusammenh�
     \label{fig:fliessKurven}
 \end{figure}
 %
-\begin{table}
-    \centering
-    \begin{tabular}{l l l}
-        Modell & Fliessfunktion & Parameter \\
-        \hline
-        Newton & $\mu= \mbox{const}$ & $\mu$ \\ 
-        Ostwald-de Waele & $\eta=K \gammap^{n-1}$ & $K,n$ \\ 
-        Bingham-Modell & $\eta= \frac{\tau_0}{\gammap}+K $ & $\tau_0,K$ \\ 
-        Carreau-Yasuda & $\eta=\eta_\infty+\left( \eta_0-\eta_\infty \right)\left[ \left( \gammap \right)^\alpha \right] ^{\frac{n-1}{\alpha}} $ & $\eta_0,\eta_\infty,\alpha,n$ \\ 
-        Herschel-Bulkley & $\eta= \frac{\tau_0}{\gammap}+K\gammap^{n-1} $ & $\tau_0,K,n$
-    \end{tabular}
-    \caption{Fliessgesetze für zeitunabhängige Spannungen}
-    \label{tab:Fliessgesetze}
-\end{table}
+%\begin{table}
+    %\centering
+    %\begin{tabular}{l l l}
+        %Modell & Fliessfunktion & Parameter \\
+        %\hline
+        %Newton & $\mu= \mbox{const}$ & $\mu$ \\ 
+        %Ostwald-de Waele & $\eta=K \gammap^{n-1}$ & $K,n$ \\ 
+        %Bingham-Modell & $\eta= \frac{\tau_0}{\gammap}+K $ & $\tau_0,K$ \\ 
+        %Carreau-Yasuda & $\eta=\eta_\infty+\left( \eta_0-\eta_\infty \right)\left[ \left( \gammap \right)^\alpha \right] ^{\frac{n-1}{\alpha}} $ & $\eta_0,\eta_\infty,\alpha,n$ \\ 
+        %Herschel-Bulkley & $\eta= \frac{\tau_0}{\gammap}+K\gammap^{n-1} $ & $\tau_0,K,n$
+    %\end{tabular}
+    %\caption{Fliessgesetze für zeitunabhängige Spannungen}
+    %\label{tab:Fliessgesetze}
+%\end{table}
 %
+\paragraph{Empirische Fliessgesetze}~\\*~\\*
+Eine Approximation der Fliesskurven durch analytische Funktionen ermöglicht eine geschlossene Behandlung der Gleichungen, ohne dass auf Tabellendaten oder andere Hilfsmittel zurückgegriffen werden muss.\\
+Solche Modelle enthalten eine bestimme Anzahl freier Parameter, die an das jeweilige Material angepasst werden muss.
+\subparagraph{Newton}
+Das Newtonsche Fliessgesetz kann ebenfalls als analytisches Modell mit dem Parameter $\mu$ aufgefasst werden.
+\begin{equation}
+    \eta = \mu
+    \label{eq:fg:newton}
+\end{equation}
+\subparagraph{Ostwald-de-Waele}
+Das einfachste nicht-Newtonsche Fliessgesetz ist das Potenzgesetz nach Ostwald und de~Waele.
+\begin{equation}
+    \eta=K\gammap^{n-1}.
+    \label{eq:fg:potenz}
+\end{equation}
+ Es besitzt zwei Parameter, den Fliessindex $n$ und den Konsistenzparameter $K$. Der Fliessindex entscheidet dabei über das Verhalten des Fluids bei sich ändernder Scherrate (Dilatant, Struktuviskos oder Newtonsch für $n=1$), der Konsistenzparameter ähnelt der Viskosität bei newtonschen Flüssigkeiten.
+\subparagraph{Bingham}
+Ein Bingham Plastik ist ein Stoff, der erst ab einer Fliessgrenze zu fliessen beginnt, danach aber Newtonsches Verhalten zeigt.
+\begin{equation}
+    \eta=
+    \begin{cases}
+        0                                & \tau<\tau_{0}    \\
+        \frac{\tau-\tau_{0}}{\mu\gammap} & \tau\geq\tau_{0}
+    \end{cases}
+    \label{eq:fg:bingham}
+\end{equation}
+Dabei ist $\tau_0$ die Fliessgrenze und $\mu$ die Viskosität im Newtonschen Bereich.
+\subparagraph{Carreau-Yasuda}
+Ein Mangel des Ostwald-de-Waele-Modells ist das unrealistische Verhalten beim Grenzübergang $\gammap\rightarrow 0$. Abhängig von $n$ geht diese gegen Unendlich, oder gegen Null.
+Eine Möglichkeit dies zu beheben, ist mit dem Carreau-Yasuda-Modell
+\begin{equation}
+    \eta=\eta_\infty+\left( \eta_0-\eta_\infty \right)\left[ \left( \gammap \right)^\alpha \right] ^{\frac{n-1}{\alpha}}.
+    \label{eq:fg:carreauyasuda}
+\end{equation}
+Die Materialparameter des Modells sind die Nullviskosität $\eta_0$, die Grenzviskosität $\eta_\infty$, eine Zeitkonstante $\lambda$, den Fliessindex $n$ und $\alpha$, das den Übergang zwischen Null- und Grenzviskosität steuert.
 
+\subparagraph{Herschel-Bulkley Modell}
 Die scherratenabhängige Viskosität der von Hilti verwendeten Mörteln wurde schon in früheren Arbeiten untersucht. Diese zeigen ein viskoplastisches Verhalten, das sich am besten mit dem modifizierten Herschel-Bulkley Modell abbilden lässt:
 \newnot{symbol:tau0}
 \newnot{symbol:K}
 \newnot{symbol:n}
 \begin{equation}
     \label{eq:modHB}
-    \eta\left( \gammap \right) = \tau_0 \frac{1-\exp \left( -m\gammap \right)}{\gammap}+K\gammap^{n-1}
+    \eta\left( \gammap \right) = \tau_0 \frac{1-\exp \left( -m\gammap \right)}{\gammap}+K\gammap^{n-1}.
 \end{equation}
 Die materialabhängigen Parameter sind dabei die Fliessgrenze $\tau_0$, die Konsistenz $K$ und der Fliessindex $n$. Der Parameter $m$ bestimmt das Verhalten des Modells bei sehr kleinen Scherraten und wurde in dieser Arbeit auf 1000 gesetzt.%Im Bild [\ref{fig:modHBKurven}] \todo{Bild} ist der Zusammenhang zwischen Viskosität und Scherrate für verschiedene Parametersets aufgetragen.
-
-In Tabelle \ref{tab:Fliessgesetze} sind weitere dieser Fliessgesetze genannten Modelle aufgeführt.
+%In Tabelle \ref{tab:Fliessgesetze} sind weitere dieser Fliessgesetze genannten Modelle aufgeführt.
 %
 \subsubsection{Zeitabhängige Spannungen}
-Für viele Flüssigkeiten spielt nicht nur der aktuelle Zustand des Fluids eine Rolle, sondern auch die Geschichte der früheren Deformationen. Die konstitutive Gleichung $F$ ist also nicht mehr nur von $\D$ abhängig, sondern auch von der Zeit $t$ und der Verzerrungsgeschichte:
+Für viele Flüssigkeiten spielt nicht nur der aktuelle Zustand des Fluids eine Rolle, sondern auch die Geschichte der früheren Deformationen. Die konstitutive Gleichung $f$ ist also nicht mehr nur von $\D$ abhängig, sondern auch von der Zeit $t$ und der Verzerrungsgeschichte:
 \begin{equation}
     \label{eq:Tviskoelastisch}
-    \T\left( \D,t \right) = \underset{s\leq t}{F}\left[ \D(s) \right]
+    \T\left( \D,t \right) = \underset{s\leq t}{f}\left[ \D(s) \right].
 \end{equation}
 
 Ein Modell um das Verhalten solch eines Stoffes zu beschreiben, ist das Maxwell-Modell.
@@ -128,7 +174,8 @@ Wird nun auf dieses Material eine Kraft in Form einer Spannung ausgeübt, nehmen
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{figures/Maxwell-material.png}
-    \caption{Schematische Darstellung des Maxwell - Materials}
+    \caption{Schematische Darstellung des Maxwell - Materials.\\
+    Links der viskose Dämpfer, rechts die elastische Feder.}
     \label{fig:Maxwell-Material}
 \end{figure}
 
@@ -137,7 +184,7 @@ Die resultierende Differentialgleichung für die Schubspannung $\T$ nimmt folgen
 \newnot{symbol:lambda}
 \begin{equation}
     \label{eq:maxwellModell}
-    \T + \lambda \frac{\partial\T}{\partial t}=2\eta \D
+    \T + \lambda \frac{\partial\T}{\partial t}=2\eta \D.
 \end{equation}
 Die Voraussetzung dafür ist dass das Stoffverhalten als linear angenommen wird, indem nur Verzerrungen mit hinreichend kleiner Amplitude betrachtet werden. Zusätzlich muss noch die Annahme eines exponentiell schwindenden Gedächtnisses getroffen werden, das heisst der Einfluss von Verzerrungen auf die aktuelle Spannung nimmt mit der Zeit exponentiell ab.
 Wie schnell dieser Einfluss abnimmt, hängt dabei von der Relaxationszeit $\lambda$ ab.
@@ -150,15 +197,16 @@ Eine Erweiterung dieses Modells ist das Oldroyd-B Modell, bei dem statt die part
 wobei
 \begin{equation}
     \label{eq:upperconvectedDerivative}
-    \overset{\nabla}{\T} = \frac{D}{Dt}\T-\left[ \nabla u^T\cdot \T \right]-\left[ \T\cdot \nabla u \right] 
+    \overset{\nabla}{\T} = \frac{D}{Dt}\T-\left[ \nabla u^T\cdot \T \right]-\left[ \T\cdot \nabla u \right].
 \end{equation}
 Diese Modifikation dient dazu, Drehungen und Verzerrungen des Fluides in der Differentialgleichung zu berücksichtigen.
+Die Herleitung dieser Ableitung stammt von J.G. Oldroyd \cite{oldroyd}, nach dem auch das Modell benannt ist.
 
 Das in dieser Arbeit verwendete Modell für viskoelastische Fluide muss zusätzlich zu der Zeitabhängigkeit auch die stark scherratenabhängigen Effekte berücksichtigen können.\\
 Dazu in der Lage ist das White-Metzner Modell. Dieses ist eine Erweiterung des Oldroyd-B Modelles, bei dem zusätzlich $\lambda$ und $\eta$ eine Funktion von $\gammap$ sind:
 \begin{equation}
     \label{eq:whiteMetznerModell}
-    \T + \lambda\left( \gammap \right) \overset{\nabla}{\T}=2\eta\left( \gammap \right) \D
+    \T + \lambda\left( \gammap \right) \overset{\nabla}{\T}=2\eta\left( \gammap \right) \D.
 \end{equation}
 Dabei können im Allgemeinen für die Funktionen $\lambda$ und $\eta$ die selben Modelle wie für die nicht zeitabhängigen Gesetze verwendet werden.
 In dieser Arbeit wurde für $\eta$ das schon bewährte modifizierte Herschel Bulkley Modell \eqref{eq:modHB} implementiert.\\
@@ -166,10 +214,10 @@ Für die Relaxationszeit $\lambda$ wird auf Empfehlung des Rheologiespezialisten
 %
 \begin{equation}
     \label{eq:carreauYasuda}
-    \lambda \left( \gammap \right) = \eta_{\inf} +\left( \eta_0 - \eta_{\inf} \right) \left( 1+\left( L\gammap \right)^\alpha \right)^{\frac{n_{\lambda}-1}{\alpha}}
+    \lambda \left( \gammap \right) = \eta_{\infty} +\left( \eta_0 - \eta_{\infty} \right) \left( 1+\left( L\gammap \right)^\alpha \right)^{\frac{n_{\lambda}-1}{\alpha}}.
 \end{equation}
 %
-Die Parameter $\eta_{\inf}$, $\eta_0$, $L$, $\alpha$ und $n_{\lambda}$ sind dabei wieder materialabhängig. 
+Die Parameter $\eta_{\infty}$, $\eta_0$, $L$, $\alpha$ und $n_{\lambda}$ sind dabei wieder materialabhängig. 
 %
 %\subsubsection{Strukturviskosität}
 %%
