@@ -4,29 +4,33 @@ Für das Lösen der in Kapitel \ref{Kapitel:Rheologie} vorgestellten Gleichungen
 
 \subsection{SIMPLE}
 Der SIMPLE (\textbf{S}emi-\textbf{I}mplicit \textbf{M}ethod for \textbf{P}ressure-\textbf{L}inked \textbf{E}quations) Algorithmus \todo{Quelle Simple} ist eine Methode um das Druck- und Geschwindigkeitsfeld in einem inkompressiblen Fluid für eine stationäre Lösung zu berechnen.\\
-Dabei wird abwechslungsweise ein Update für den Druck und die Geschwindigkeit berechnet, und ein Konvergenzkriterium entscheidet, wann die stationäre Lösung erreicht ist.\\
+Dabei wird abwechselnd ein Update für den Druck und die Geschwindigkeit berechnet. Über ein Konvergenzkriterium wird entschieden, wann die stationäre Lösung erreicht ist.\\
 Ein Iterationsschritt des SIMPLE Algorithmus kann dabei wie folgt zusammengefasst werden:
 \begin{outline}[enumerate]
     \1 Verwende eine Startlösung $p^*$
     \1 Ausgehend von $p^*$ berechne ein Geschwindigkeitsfeld $u^*$ mit Hilfe der (stationären) Impulsgleichung
     \1 Berechne eine Druckkorrektur $p^{'}$ durch das Lösen der Druckkorrekturgleichung $\nabla^2p=-\nabla \cdot \left( u^*\cdot\nabla \right)u^*$
-    \1 Berechne ein neues Druckfeld $p^{**}=p^*+\alpha p^{'}$ wobei $\alpha$ ein Unterrelaxationsparameter ist
+    \1 Berechne ein neues Druckfeld $p^{**}=p^*+\alpha p^{'}$ wobei $\alpha \in (0,1]$ ein Unterrelaxationsparameter ist
     \1 Korrigiere die Geschwindigkeit um $\nabla u=0$ zu erfüllen.
 \end{outline}
 
-Der SIMPLE Algorithmus wurde in dieser Arbeit für das Simulieren zeitunabhängiger nicht-Newtonscher Fluide benutzt. Dabei wurde der variablen Viskosität $\eta$ Rechnung getragen, indem diese in jedem Iterationsschritt an das aktuelle Geschwindigkeitsfeld angepasst wurde. Dabei muss berücksichtigt werden, dass dadurch im Vergleich zu der normalen Navier-Stokes Gleichung eine zusätzliche nicht-linearität entsteht. Dies beeinflusst das Konvergenzverhalten und muss beim Festlegen der Simulationsparameter wie z.B. Relaxationsfaktoren mit einbezogen werden.
+Der SIMPLE Algorithmus wurde in dieser Arbeit für die Simulation zeitunabhängiger nicht-Newtonscher Fluide benutzt. Dabei wurde der variablen Viskosität $\eta$ Rechnung getragen, indem diese in jedem Iterationsschritt an das aktuelle Geschwindigkeitsfeld angepasst wurde. Dabei muss berücksichtigt werden, dass dadurch im Vergleich zu der normalen Navier-Stokes Gleichung eine zusätzliche nicht-Linearität entsteht. Dies beeinflusst das Konvergenzverhalten und muss bei der Wahl der Simulationsparameter wie z.B. Relaxationsfaktoren mit einbezogen werden.
 
 \subsection{PISO}
 Der \mbox{PISO} (\textbf{P}ressure \textbf{I}mplicit with \textbf{S}plit \textbf{O}perator) \todo{Quelle \mbox{PISO}} Algorithmus ist ein Verfahren, um transiente Lösungen des Druck- und Geschwindigkeitsfeldes zu berechnen.\\
-Ähnlich wie der \mbox{SIMPLE} Algorithmus wird dabei zwischen Druck und Geschwindigkeit hin und her iteriert. Die Hauptunterschiede sind, dass keine Underrelaxation angewendet wird, und dass die Impulsgleichung mehrfach gelöst wird. Ein Iterationsschritt beinhaltet also die selben Schritte wie im \mbox{SIMPLE} Algorithmus, mit folgenden Änderungen:
-\begin{outline}
-    \1[2.] Verwende die instationäre Impulsgleichung
-    \1[4.] Verwende $\alpha=1$ (keine Unterrelaxation)
-    \1[6.] Wiederhole die Schritte 3-5 Mehrmals pro Zeitschritt
+Ähnlich wie der \mbox{SIMPLE} Algorithmus wird dabei zwischen Druck und Geschwindigkeit hin- und heriteriert. Die Hauptunterschiede sind, dass keine Underrelaxation angewendet wird, und dass die Impulsgleichung mehrfach gelöst wird:
+%Ein Iterationsschritt beinhaltet also die selben Schritte wie im \mbox{SIMPLE} Algorithmus, mit folgenden Änderungen:
+\begin{outline}[enumerate]
+    \1 Verwende eine Startlösung $p^*$
+    \1 Ausgehend von $p^*$ berechne ein Geschwindigkeitsfeld $u^*$ mit Hilfe der instationären Impulsgleichung
+    \1 Berechne eine Druckkorrektur $p^{'}$ durch das Lösen der Druckkorrekturgleichung $\nabla^2p=-\nabla \cdot \left( u^*\cdot\nabla \right)u^*$
+    \1 Berechne ein neues Druckfeld $p^{**}=p^*+ p^{'}$
+    \1 Korrigiere die Geschwindigkeit um $\nabla u=0$ zu erfüllen.
+    \1 Wiederhole die Schritte 3-5 Mehrmals pro Zeitschritt
 \end{outline}
 
 \subsection{DEVSS}
-Einer der Unterschiede zwischen zeitunabhängigen Fluiden und viskoelastischen Fluiden ist die Tatsache dass der Spannungstensor nicht mehr nur eine Funktion des Geschwindigkeitsfeldes ist, sondern durch die Zeitabhängigkeit als weitere abhängige Variable betrachtet werden muss. Dadurch wird das Lösen einer weiteren Gleichung notwendig.
+Einer der Unterschiede zwischen zeitunabhängigen Fluiden und viskoelastischen Fluiden ist die Tatsache, dass der Spannungstensor nicht mehr nur eine Funktion des Geschwindigkeitsfeldes ist. Durch die Zeitabhängigkeit muss er als unabhängige Variable betrachtet werden, für die auch Anfangs- und Randbedingungen vorgegeben werden müssen. Dadurch wird das Lösen einer weiteren Gleichung notwendig.
 
 Eine Möglichkeit für die stabile Diskretisierung dieser zusätzlichen Gleichung ist die \textbf{D}iscrete \textbf{E}lastic \textbf{V}iscous \textbf{S}plit \textbf{S}tress (DEVSS) Methode \cite{devss}.
 Dabei wird die Hilfsvariable $\underline{\D}$ eingeführt, so dass 
