@@ -79,3 +79,8 @@
 \def\addsymbol #1: #2#3{$#1$ \> \parbox{115mm}{#2 \dotfill \pageref{#3}}\\}
 \def\newnot#1{\label{#1}}
 
+\newcommand*{\nom}[3][\empty]{%%% \empty: Standardwert des optionalen Parameters
+  \ifthenelse{\equal{#1}{\empty}}%
+    {#2\nomenclature{#2}{#3}}%
+    {#2\nomenclature[#1]{#2}{#3}}%
+}

@@ -82,6 +82,12 @@
   stringstyle=\color[rgb]{0.627,0.126,0.941},
 }
 
+
+% Nomenclature
+\usepackage[refpage, german]{nomencl}
+\makenomenclature
+\renewcommand{\pagedeclaration}[1]{\dotfill\makebox[4em][l]{Seite #1}}
+
 %% Customizations
 \newenvironment{packed_item}{
 \vspace{-2mm}
