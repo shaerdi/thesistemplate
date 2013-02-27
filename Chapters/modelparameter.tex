@@ -12,8 +12,22 @@ Die Messungen wurden von einem Hilti-internen Rheologen durchgeführt. Verwendet
 %
 \subsubsection{Platte-Platte Rheometer}
 \label{Kapitel:Parameter:PlattePlatteRheo}
-Das Platte-Platte Rheometer besteht aus zwei zylindrischen Platten, die so montiert sind dass zwischen ihnen ein schmaler, ebenfalls zylinderförmiger Spalt entsteht. \todo{Bild Rheometer}
-Die Flüssigkeit wird in diesem Scherspalt platziert, der in radialer Richtung von einem Ring abgeschlossen werden kann. Beim Messvorgang wird die eine Platte fixiert, die andere mit einer vorgegebenen Geschwindigkeit $\Omega$ gedreht.
+Das Platte-Platte Rheometer besteht aus zwei zylindrischen Platten, die so montiert sind dass zwischen ihnen ein schmaler, ebenfalls zylinderförmiger Spalt entsteht (Abbildung~\ref{fig:platteRheoSchema:subA}).
+\begin{figure}
+    \centering
+    \subfloat[Platte-Platte Rheometer ohne Ring]{
+    \includegraphics[width=0.45\textwidth]{figures/PlatteOhneRing.PNG}
+    \label{fig:platteRheoSchema:subA}
+    }
+    \subfloat[Platte-Platte Rheometer mit Ring]{
+    \includegraphics[width=0.45\textwidth]{figures/PlatteMitRing.png}
+    \label{fig:platteRheoSchema:subB}
+    }
+    \caption{Eine schematische Darstellung des Platte-Platte Rheometers. In \subref{fig:platteRheoSchema:subA} ist die Version ohne den Ring zu sehen, in \subref{fig:platteRheoSchema:subB} umschliesst ein Ring den Scherspalt, um ein Herausfliessen des Mörtels zu verhindern.\\
+    Bildquelle: Marco Lüchinger.}
+    \label{fig:kapRheo}
+\end{figure}
+Die Flüssigkeit wird in diesem Scherspalt platziert, der in radialer Richtung von einem Ring abgeschlossen werden kann. Beim Messvorgang wird die eine Platte fixiert, die andere mit einer vorgegebenen Geschwindigkeit $\omega$ gedreht.
 Dabei wird das benötigte Drehmoment gemessen, das für die Drehgeschwindigkeit aufgewendet werden muss.
 
 Die verwendete Formel dazu lautet:
@@ -63,7 +77,14 @@ Anhand von $G'$ und $G''$ können die viskoelastischen Eigenschaften wie z.B. di
 %
 \subsubsection{Kapillarrheometer}
 Das Kapillarrheometer kann wie das Platte-Platte Rheometer zur Bestimmung der scherratenabhängigen Viskosität verwendet werden. Das Fluid wird dabei aber nicht gedreht, sondern durch eine zylinderförmige Kapillare gepresst. Als Messgrösse dient dabei der Druckunterschied.\\
-Um dabei den durch das Mitmessen des Einlaufdruckverlustes (Bagley-Druck) gemachten systematischen Fehler zu korrigieren, wird meistens parallel zum eigentlichen Kapillarrheomter auch noch der Druckverlust in einer Nullblende gemessen, wie in Abbildung~(x) dargestellt. \todo{Bild Kapillarrheometer}
+Um dabei den durch das Mitmessen des Einlaufdruckverlustes (Bagley-Druck) gemachten systematischen Fehler zu korrigieren, wird meistens parallel zum eigentlichen Kapillarrheomter auch noch der Druckverlust in einer Nullblende gemessen, wie in Abbildung~\ref{fig:kapRheo} dargestellt.
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{figures/KapRheo.png}
+    \caption{Eine schematische Darstellung des Kapillarrheometers. Links ist der Einlaufkolben mit anschliessender Kapillare zu sehen, rechts ist der Einlaufkolben ohne Kapillare zur Messung des Bagley-Druckes.\\
+    Bildquelle: Marco Lüchinger.}
+    \label{fig:kapRheo}
+\end{figure}
 
 Die Beziehung der Messgrösse \nom[gv:pmess]{$\Delta p_{\mbox{\tiny Mess}}$}{Gemessener Druckverlust beim Kapillarrheometer} zu der Schubspannung $\tau$ ist dabei wie folgt:
 \nomenclature[gv:pbagley]{$\Delta p_{\mbox{\tiny Bagley}}$}{Einlaufdruckverlust beim Kapillarrheometer}
@@ -90,17 +111,24 @@ mit dem gemessenen Druckunterschied bei einem vorgegebenen Volumenstrom bestimme
 \subsection{Korrektursimulation}
 \label{Kapitel:Korrektursimulation}
 Die in Kapitel \ref{Kapitel:Parameter:PlattePlatteRheo} beschriebenen Rheometer messen das für eine vorgegebene Geschwindigkeit benötigte Drehmoment. Daraus kann die Viskosität des Fluides berechnet werden.\\
-Um zu verhindern, dass der Mörtel während der Messung in radialer Richtung aus dem Gerät fliesst, wurde um den Scherspalt ein Ring montiert. Dadurch wird zwar ein Herausfliessen verhindert, gleichzeitig wird aber die Messung verfälscht. Der Ring ist eine zusätzliche Wand an der das Fluid entlangströmen muss, was in ein erhöhtes Drehmoment und damit eine höhere gemessene Viskosität zur Folge hat.
+Um zu verhindern, dass der Mörtel während der Messung in radialer Richtung aus dem Gerät fliesst, wurde um den Scherspalt ein Ring montiert (Abbildung~\ref{fig:platteRheoSchema:subB}). Dadurch wird zwar ein Herausfliessen verhindert, gleichzeitig wird aber die Messung verfälscht. Der Ring ist eine zusätzliche Wand an der das Fluid entlangströmen muss, was in ein erhöhtes Drehmoment und damit eine höhere gemessene Viskosität zur Folge hat.
 
 Um trotzdem eine zuverlässige Bestimmung der Modell-Parameter zu ermöglichen, ist es notwendig diesen Ring im Fit zu berücksichtigen. Dazu wird nicht die gemessene Viskosität verwendet, sondern versucht die Modell-Parameter so anzupassen, dass eine Simulation des Platte-Platte Rheometers eine möglichst genaue Approximation des Drehmoments ergibt.
 
-Beim Platte-Platte Rheometer handelt es sich um eine rotationssymmetrische Geometrie. Um Rechenzeit zu sparen wurde deshalb nur ein schmaler Ausschnitt der Geometrie simuliert, wie in Abbildung~(\ref{fig:plattePlatteRheo}) \todo{Abmessungen ins Bild einfuegen} zu sehen ist.\\
+Beim Platte-Platte Rheometer handelt es sich um eine rotationssymmetrische Geometrie. Um Rechenzeit zu sparen wurde deshalb nur ein schmaler Ausschnitt der Geometrie simuliert, wie in Abbildung~(\ref{fig:plattePlatteRheoSim}) zu sehen ist.\\
 \begin{figure}
 \centering
-\includegraphics[width=.6\textwidth]{figures/plattenRheometerSchnitz.png}
-\caption{Simulierter Teil des Platte-Platte Rheometers.\\
+\subfloat[Ohne Ring]{
+\includegraphics[width=.45\textwidth]{figures/platteRheoSimOhneRing.png}
+\label{fig:platteRheoSim:subA}
+}
+\subfloat[Mit Ring]{
+\includegraphics[width=.45\textwidth]{figures/platteRheoSimMitRing.png}
+\label{fig:platteRheoSim:subB}
+}
+\caption{Simulierter Teil des Platte-Platte Rheometers, in \subref{fig:platteRheoSim:subA} ohne Ring, in \subref{fig:platteRheoSim:subB} mit Ring.\\
 Eingefärbt ist das Bild nach der resultierenden Geschwindigkeitsverteilung im Rheometer.}
-\label{fig:plattePlatteRheo}
+\label{fig:plattePlatteRheoSim}
 \end{figure}
 %
 \subsection{Parameterfit}
@@ -291,7 +319,7 @@ Das Kapillarrheometer musste für die Anpassung der Parameter nicht simuliert we
 Zur Vermessung des Mörtels wurden zwei Kapillarrheometer mit verschiedenen Kapillaren verwendet. Die eine hat eine Länge von $L=32\mbox{mm}$ und einen Durchmesser von $R=1\mbox{mm}$, während die andere mit $L=16\mbox{mm}$ und $R=0.5\mbox{mm}$ nur halb so gross ist.\\
 Dabei wurden sowohl Simulationen mit dem rein scherratenabhängigen Modell als auch mit dem viskoelastischen Materialmodell durchgeführt.
 
-Die Simulation wurde Aufgrund der rotationssymmetrischen Geometrie ebenfalls nur für einen fünf Grad Schnitz \todo{Ausdruck Schnitz} des Rheometers durchgeführt, wie in Abbildung~\ref{fig:kapRheo} \todo{Bild} zu sehen ist.\\
+Die Simulation wurde Aufgrund der rotationssymmetrischen Geometrie ebenfalls nur für einen fünf Grad Schnitz \todo{Ausdruck Schnitz} des Rheometers durchgeführt, wie in Abbildung~\ref{fig:kapRheo} zu sehen ist.\\
 Das verwendete Netz wurde so skaliert, dass die Auflösung nahe an der Einlassdüse zur Kapillare sehr fein Aufgelöst ist, während in Regionen die weit von der Düse entfernt sind eine eher grobe Auflösung verwendet wurde.
 
 Zur Untersuchung des Einfluss der harten Kannte an der Einlassdüse wurde zusätzlich noch ein Netz mit einer abgerundeten Kante simuliert. (Abbildung~\ref{fig:roundMesh}) \todo{Einfluss Rundung} \todo{Bild}
