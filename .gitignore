@@ -14,6 +14,9 @@
 *.synctex.gz
 *.lol
 *.kilepr
+*.nlo
+*.nls
+*.ilg
 
 # Vim stuff
 *.swp
