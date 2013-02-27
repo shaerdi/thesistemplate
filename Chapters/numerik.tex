@@ -33,7 +33,7 @@ Der \mbox{PISO} (\textbf{P}ressure \textbf{I}mplicit with \textbf{S}plit \textbf
 Einer der Unterschiede zwischen zeitunabhängigen Fluiden und viskoelastischen Fluiden ist die Tatsache, dass der Spannungstensor nicht mehr nur eine Funktion des Geschwindigkeitsfeldes ist. Durch die Zeitabhängigkeit muss er als unabhängige Variable betrachtet werden, für die auch Anfangs- und Randbedingungen vorgegeben werden müssen. Dadurch wird das Lösen einer weiteren Gleichung notwendig.
 
 Eine Möglichkeit für die stabile Diskretisierung dieser zusätzlichen Gleichung ist die \textbf{D}iscrete \textbf{E}lastic \textbf{V}iscous \textbf{S}plit \textbf{S}tress (DEVSS) Methode \cite{devss}.
-Dabei wird die Hilfsvariable $\underline{\D}$ eingeführt, so dass 
+Dabei wird die Hilfsvariable \nom{$\underline{\D}$}{Hilfstensor des DEVSS Verfahrens} eingeführt, so dass 
 \begin{equation}
     \label{eq:devss:d}
     \underline{\D} - \D= 0
@@ -41,13 +41,13 @@ Dabei wird die Hilfsvariable $\underline{\D}$ eingeführt, so dass
 gilt. Nimmt man von \eqref{eq:devss:d} die Divergenz und subtrahiert das Resultat von der Impulsgleichung \eqref{eq:Impulserhaltung}, erhält man
 \begin{equation}
     \label{eq:devss:impuls}
-    \rho \u _t + \rho \u \cdot \nabla\u = -\nabla p +\nabla \cdot \T - \alpha \nabla \cdot \left( \underline{\D}-\D \right)
+    \rho \u _t + \rho \u \cdot \nabla\u = -\nabla p +\nabla \cdot \T - a \nabla \cdot \left( \underline{\D}-\D \right)
 \end{equation}
-wobei $\alpha$ ein positiver Parameter ist.\\
+wobei \nom{$a$}{Parameter des DEVSS Verfahrens} ein positiver Parameter ist.\\
 Gleichung \eqref{eq:devss:impuls} kann umgeschrieben werden als
 \begin{equation}
     \label{eq:devss:impuls2}
-    \rho \u _t + \rho \u \cdot \nabla\u -\alpha \nabla \cdot \D= -\nabla p +\nabla \cdot \T - \alpha \nabla \cdot \left( \underline{\D} \right)
+    \rho \u _t + \rho \u \cdot \nabla\u -a \nabla \cdot \D= -\nabla p +\nabla \cdot \T - a \nabla \cdot \left( \underline{\D} \right)
 \end{equation}
 Diese Null-Operation hat keinen Einfluss auf die Lösung des Gleichungssystems, ermöglicht aber durch eine unterschiedliche Diskretisierung von $\D$ und $\underline{\D}$ eine Stabilisierung des numerischen Problems.
 

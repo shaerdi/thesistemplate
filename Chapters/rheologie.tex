@@ -26,11 +26,6 @@ In der Realität können viele Materialien nicht in eine der Kategorien Flüssig
 \subsection{Massen- und Impulserhaltung}
 Die Massen- und Impulserhaltungsgleichung eines inkompressiblen Fluids kann in Matrix-Vektor Form als 
 %
-\newnot{symbol:boldu}
-\newnot{symbol:rho}
-\newnot{symbol:p}
-\newnot{symbol:boldT}
-%
 \begin{equation}
     \label{eq:Massenerhaltung}
     \nabla \cdot \u = 0
@@ -41,14 +36,11 @@ und
     \rho \u _t + \rho \u \cdot \nabla\u = -\nabla p +\nabla \cdot \T + \rho \g
 \end{equation}
 %
-geschrieben werden. Dabei ist $\u$ die Geschwindigkeit, $p$ der Druck, $\T$ der Spannungstensor, $\rho$ die Dichte und $\g$ eine auf das Fluid wirkende, volumetrische Kraft.
+geschrieben werden. Dabei ist \nom[gv:u]{$\u$}{Geschwindigkeitsvektor} die Geschwindigkeit, \nom[gv:u]{$p$}{Druck} der Druck, \nom[gv:T]{$\T$}{Spannungstensor} der Spannungstensor, \nom[gv:rho]{$\rho$}{Dichte} die Dichte und $\g$ eine auf das Fluid wirkende, volumetrische Kraft.
 Der Einfachheit halber wird im Folgenden angenommen, dass $\g=0$ gilt.
 
-Im allgemeinsten Fall kann der Spannungstensor eine beliebig komplexe Funktion des Orts und der Zeit $\T\left( \r,t \right)$ sein.
-In dieser Arbeit wird diese Abhängigkeit eingegrenzt, indem $\T$ auf eine Funktion des Dehngeschwindigkeitstensors $\D$ und der Zeit beschränkt wird.
-%
-\newnot{symbol:boldD}
-\newnot{symbol:t}
+Im allgemeinsten Fall kann der Spannungstensor eine beliebig komplexe Funktion des Orts und der Zeit $\T=f\left( \r,t \right)$ \nomenclature[fv:f]{$f$}{Konstitutives Gesetz}\nomenclature[gv:t]{$t$}{Zeit} sein.
+In dieser Arbeit wird diese Abhängigkeit eingegrenzt, indem $\T$ auf eine Funktion des Dehngeschwindigkeitstensors \nom[gv:D]{$\D$}{Dehngeschwindigkeitstensor} und der Zeit beschränkt wird.
 %
 \begin{equation}
     \label{eq:Spannungstensor}
@@ -70,7 +62,7 @@ Aus diesen Anforderungen ist eine Vielzahl von Modellen entstanden, von denen ei
 
 \subsubsection{Zeitunabhängige Spannungen}
 Ist $\T$ keine Funktion der Zeit, gilt $\T=f\left( \D \right)$.
-Ein Spezialfall dieses Modelles ist die newtonsche Flüssigkeit, für die $\T=2\eta\D$, wobei hier auch oft von $\mu$ statt von $\eta$ gesprochen wird da die resultierende Viskosität konstant ist.
+Ein Spezialfall dieses Modelles ist die newtonsche Flüssigkeit, für die $\T=2\eta\D$\nomenclature[gv:eta]{$\eta$}{Viskosität}, wobei hier auch oft von \nom[pv:mu]{$\mu$}{Konstante Viskosität eines newtonschen Fluides} statt von $\eta$ gesprochen wird da die resultierende Viskosität konstant ist.
 
 Statt $\T=f\left( \D \right)$ wird oft auch der Ausdruck
 \begin{equation}
@@ -79,8 +71,7 @@ Statt $\T=f\left( \D \right)$ wird oft auch der Ausdruck
 \end{equation}
 verwendet. Diese Darstellung ermöglicht es, von einem generalisiertem Newtonschen Fluid zu sprechen, bei dem die effektive Viskosität $\eta$ abhängig von der Dehngeschwindigkeit $\D$ ist.
 
-Wird angenommen, dass $\eta$ nur von der Summe aller Dehngeschwindigkeiten abhängt (isotrope Viskosität), kann man $\D$ mit der Scherrate $\gammap$ ersetzen:
-\newnot{symbol:gammap}
+Wird angenommen, dass $\eta$ nur von der Summe aller Dehngeschwindigkeiten abhängt (isotrope Viskosität), kann man $\D$ mit der Scherrate \nom[gv:gamma]{$\gammap$}{Scherrate} ersetzen:
 \begin{equation}
     \label{eq:Scherrate}
     \gammap := \sqrt{2 \cdot \D\dipr\D}
@@ -135,26 +126,23 @@ Das Newtonsche Fliessgesetz kann ebenfalls als analytisches Modell mit dem Param
 \end{equation}
 \subparagraph{Ostwald-de-Waele}
 Das einfachste nicht-Newtonsche Fliessgesetz ist das Potenzgesetz nach Ostwald und de~Waele.
-\newnot{symbol:n}
-\newnot{symbol:K}
 \begin{equation}
     \eta=K\gammap^{n-1}.
     \label{eq:fg:potenz}
 \end{equation}
- Es besitzt zwei Parameter, den Fliessindex $n$ und den Konsistenzparameter $K$. Der Fliessindex entscheidet dabei über das Verhalten des Fluids bei sich ändernder Scherrate (Dilatant für $n>1$, Struktuviskos für $n<1$ oder Newtonsch für $n=1$), der Konsistenzparameter ähnelt der Viskosität bei newtonschen Flüssigkeiten.
+Es besitzt zwei Parameter, den Fliessindex \nom[pv:n]{$n$}{Fliessindex in Fliessgesetzen} und den Konsistenzparameter \nom[pv:K]{$K$}{Konsistenzparameter in Fliessgesetzen}. Der Fliessindex entscheidet dabei über das Verhalten des Fluids bei sich ändernder Scherrate (Dilatant für $n>1$, Struktuviskos für $n<1$ oder Newtonsch für $n=1$), der Konsistenzparameter ähnelt der Viskosität bei newtonschen Flüssigkeiten.
 %
 \subparagraph{Carreau-Yasuda}
 Ein Mangel des Ostwald-de-Waele-Modells ist das unrealistische Verhalten beim Grenzübergang $\gammap\rightarrow 0$. Abhängig von $n$ geht diese gegen Unendlich oder gegen Null.
 Eine Möglichkeit dies zu beheben, ist mit dem Carreau-Yasuda-Modell
 \begin{equation}
-    \eta=\eta_\infty+\left( \eta_0-\eta_\infty \right)\left[ \left( \gammap \right)^\alpha \right] ^{\frac{n-1}{\alpha}}.
+    \eta=\eta_\infty+\left( \eta_0-\eta_\infty \right)\left[ 1+\left( L\gammap \right)^\alpha \right] ^{\frac{n-1}{\alpha}}.
     \label{eq:fg:carreauyasuda}
 \end{equation}
-Die Materialparameter des Modells sind die Nullviskosität $\eta_0$, die Grenzviskosität $\eta_\infty$, die Zeitkonstante $\lambda$, der Fliessindex $n$ und $\alpha$, das den Übergang zwischen Null- und Grenzviskosität steuert.
+Die Materialparameter des Modells sind die Nullviskosität \nom[pv:eta0]{$\eta_0$}{Nullviskosität im Carreau-Yasuda Modell}, die Grenzviskosität \nom[pv:etainf]{$\eta_\infty$}{Grenzviskosität im Carreau-Yassuda Modell}, die Zeitkonstante \nom[pv:L]{$L$}{Zeitkonstante}, der Fliessindex $n$ und \nom[pv:alpha]{$\alpha$}{Parameter im Carreau-Yasuda Modell}, das den Übergang zwischen Null- und Grenzviskosität steuert.
 %
 \subparagraph{Bingham}
 Ein Bingham Plastik ist ein Stoff, der erst ab einer Fliessgrenze zu fliessen beginnt, danach aber Newtonsches Verhalten zeigt.
-\newnot{symbol:tau0}
 \begin{equation}
     \eta=
     \begin{cases}
@@ -163,7 +151,7 @@ Ein Bingham Plastik ist ein Stoff, der erst ab einer Fliessgrenze zu fliessen be
     \end{cases}
     \label{eq:fg:bingham}
 \end{equation}
-Dabei ist $\tau_0$ die Fliessgrenze und $\mu$ die Viskosität im Newtonschen Bereich.
+Dabei ist \nom[pv:tau0]{$\tau_0$}{Fliessgrenze von viskoplastischen Materialien} die Fliessgrenze und $\mu$ die Viskosität im Newtonschen Bereich.
 %
 \subparagraph{Herschel-Bulkley Modell}
 Ein Modell mit einer Fliessgrenze und einem nicht-Newtonschen Verhalten oberhalb dieser Grenze ist das Herschel-Bulkley-Modell.
@@ -203,15 +191,14 @@ Wird nun auf dieses Material eine Kraft in Form einer Spannung ausgeübt, nehmen
 
 Die resultierende Differentialgleichung für die Schubspannung $\T$ nimmt folgende Form an:
 %
-\newnot{symbol:lambda}
 \begin{equation}
     \label{eq:maxwellModell}
     \T + \lambda \frac{\partial\T}{\partial t}=2\eta \D.
 \end{equation}
 Die Voraussetzung dafür ist dass das Stoffverhalten als linear angenommen wird, indem nur Verzerrungen mit hinreichend kleiner Amplitude betrachtet werden. Zusätzlich muss noch die Annahme eines exponentiell schwindenden Gedächtnisses getroffen werden, das heisst der Einfluss von Verzerrungen auf die aktuelle Spannung nimmt mit der Zeit exponentiell ab.
-Wie schnell dieser Einfluss abnimmt, hängt dabei von der Relaxationszeit $\lambda$ ab.
+Wie schnell dieser Einfluss abnimmt, hängt dabei von der Relaxationszeit \nom[gv:lambda]{$\lambda$}{Relaxationszeit eines viskoelastischen Materials} ab.
 
-Eine Erweiterung dieses Modells ist das Oldroyd-B Modell, bei dem statt die partielle die kontravariante Ableitung $\overset{\nabla}{\T}$ verwendet wird:
+Eine Erweiterung dieses Modells ist das Oldroyd-B Modell, bei dem statt die partielle die kontravariante Ableitung \nom[not:oldroyd]{$\overset{\nabla}{\T}$}{Oldroydsche Zeitableitung} verwendet wird:
 \begin{equation}
     \label{eq:oldroydModell}
     \T + \lambda \overset{\nabla}{\T}=2\eta \D

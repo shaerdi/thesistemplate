@@ -9,6 +9,7 @@ build:
 	sed -i 's/Oe;/Ö/g; s/Ae;/Ä/g; s/Ue;/Ü/g' Chapters/*
 	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex
 	bibtex $(OUTPUTNAME)
+	makeindex $(OUTPUTNAME).nlo -s nomencl.ist -o $(OUTPUTNAME).nls
 	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex
 	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex 
 

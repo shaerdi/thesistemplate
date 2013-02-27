@@ -6,17 +6,9 @@ Die Modellierung der rheologischen Eigenschaften erfordert die Wahl eines konsti
 Um ein solches Modell in einen Computercode einzubauen, wird ein flexibles Simulationsprogramm benötigt.
 Aus diesem Grund wird in dieser Arbeit die Bibliothek \openfoam{} verwendet, die das Einbauen von eigenen numerischen Verfahren ermöglicht.
 
+Die für die Anpassung der Modelle an die jeweiligen Materialien erforderlichen Parameter werden mithilfe einer Optimierung an Messergebnisse angepasst. Die dafür notwendigen Messdaten stammen von zwei verschiedenen Rheometern, einem Platte-Platte Rheometer und einem Kapillarrheometer. Da die Messungen des Platte-Platte Rheometers durch einen in der internen Berechnung nicht berücksichtigten Ring verfälscht werden, müssen diese durch eine Simulation korrigiert werden. Die dazu notwendige Kopplung zwischen \openfoam{} und dem Optimierungscode wurde in Python realisiert.
 
-%In dieser Arbeit wird das rheologisch komplexe Fliessverhalten einiger von der Firma Hilti AG verwendeten Mörtel untersucht.\\
-\begin{todocontent}
-    \1 Konstitutive Modelle
-    \1 Scherratenabhaengige Viskosität
-    \1 Viskoelastizität
-    \1 Modellparameter
-    \1 Numerische Loesung
-    \1 Verwendung Openfoam
-    \1 Resultate
-\end{todocontent}
+Die Validierung und Verifizierung der verwendeten Modelle und Parameter erfolgt durch die Simulation eines anwendungsnahen Strömungsversuches.
 \end{abstr}
 %
 \selectlanguage{english}

@@ -21,14 +21,14 @@ Die verwendete Formel dazu lautet:
     \label{eq:platterheovisko}
     \eta\left( \gammap \right) = \frac{2M}{\pi R^3 \gammap}\left( \frac{3+n}{4} \right) \text{ mit } n=\frac{d\ln M}{d\ln\gammap}
 \end{equation}
-Wobei $M$ das notwendige Drehmoment ist und $R$ der Radius der verwendeten Platten.
+Wobei \nom[gv:M]{$M$}{Drehmoment} das notwendige Drehmoment ist und \nom[gv:R]{$R$}{Plattenradius des Platte-Platte Rheometers} der Radius der verwendeten Platten.
 Für eine Herleitung dieser Formel wird auf \cite{introtorheo} verwiesen.
 
 Das Platte-Platte Rheometer eignet sich ebenfalls dazu, zeitabhängige Effekte wie die Relaxationszeit eines viskoelastischen Fluids zu messen.
 Dazu wird die obere Platte nicht mit einer konstanten Geschwindigkeit bewegt, sondern mit einer schwingungsähnlichen Drehung auf die eine oder die andere Seite bewegt.\\
-Bei diesem Vorgang, der Oszillationsmessung genannt wird, kann anhand der resultierenden, nicht stationäre Strömung über die Messung des Widerstandes eine Abschätzung der der Schwinungsmodi der Flüssigkeit gemacht werden.
+Bei diesem Vorgang, der Oszillationsmessung genannt wird, kann anhand der resultierenden, nicht stationäre Strömung über die Messung des Widerstandes eine Abschätzung der der Schwingungsmodi der Flüssigkeit gemacht werden.
 
-Die sinusförmige Deformation $\gamma$ des Fluides verursacht dabei einen ebenfalls sinusförmigen Widerstand, der durch eine Schubspannung $\tau$ im Fluid zustandekommt.\\
+Die sinusförmige Deformation \nom[gv:gamma]{$\gamma$}{Scherung} des Fluides verursacht dabei einen ebenfalls sinusförmigen Widerstand, der durch eine Schubspannung \nom[gv:tau]{$\tau$}{Schubspannung} im Fluid zustandekommt.\\
 Bei einem ideal viskosem Fluid ist dieser mit der Deformation um 90$^\circ$ Phasenverschoben, da der Widerstand proportional zur Schergeschwindigkeit $\gammap$ der Flüssigkeit ist.\\
 Bei einem ideal elastischem Material ist der Widerstand in Phase mit der Deformation, da er direkt proportional zur Verzerrung $\gamma$ des Materials ist.\\
 Ein viskoelastisches Fluid besitzt die Eigenschaften beider Materialien und hat deshalb einen Antworts-Widerstand, der um einen Winkel zwischen 0 und 90$^\circ$ phasenverschoben ist. Dieser Zusammenhang ist in Abbildung~\ref{fig:schwingungsmodi} dargestellt.
@@ -40,7 +40,7 @@ Diese Beziehungen können als Zusammenhang zwischen Schubspannung $\tau$ und Zei
     \tau\left( t \right)&=\eta\cdot\omega\cdot\hat{\gamma}\cdot \cos\left( \omega\cdot t \right)&& \text{viskos}\\
     \tau\left( t \right)&=G'\cdot\hat{\gamma}\cdot \sin\left( \omega\cdot t \right)+G''\cdot\hat{\gamma}\cdot \cos\left( \omega\cdot t \right)&& \text{viskoelastisch}
 \end{align}
-Dabei ist $\omega$ die Kreisfrequenz und $\hat\gamma$ die Amplitude der am Rheometer angelegten Schwingung, $\eta$ die Viskosität des Fluids und $G'$ das Elastizitätsmodul des elastischen Materials. Der Term $\eta\cdot\omega$ wird auch als Verlustmodul $G''$ bezeichnet.
+Dabei ist \nom[gv:omega]{$\omega$}{Kreisfrequenz} die Kreisfrequenz und \nom[gv:gammah]{$\hat\gamma$}{Scherungsamplitude beim Platte-Platte Rheometer} die Amplitude der am Rheometer angelegten Schwingung, $\eta$ die Viskosität des Fluids und \nom[gv:Gs]{$G'$}{Elastizitätsmodul} das Elastizitätsmodul des elastischen Materials. Der Term $\eta\cdot\omega$ wird auch als Verlustmodul \nom[gv:Gss]{$G''$}{Verlustmodul} bezeichnet.
 
 Anhand von $G'$ und $G''$ können die viskoelastischen Eigenschaften wie z.B. die Relaxationszeit eines Fluids bestimmt werden.
 
@@ -65,19 +65,20 @@ Anhand von $G'$ und $G''$ können die viskoelastischen Eigenschaften wie z.B. di
 Das Kapillarrheometer kann wie das Platte-Platte Rheometer zur Bestimmung der scherratenabhängigen Viskosität verwendet werden. Das Fluid wird dabei aber nicht gedreht, sondern durch eine zylinderförmige Kapillare gepresst. Als Messgrösse dient dabei der Druckunterschied.\\
 Um dabei den durch das Mitmessen des Einlaufdruckverlustes (Bagley-Druck) gemachten systematischen Fehler zu korrigieren, wird meistens parallel zum eigentlichen Kapillarrheomter auch noch der Druckverlust in einer Nullblende gemessen, wie in Abbildung~(x) dargestellt. \todo{Bild Kapillarrheometer}
 
-Die Beziehung der Messgrösse $\Delta p_{\mbox{\tiny Mess}}$ zu der Schubspannung $\tau$ ist dabei wie folgt:
+Die Beziehung der Messgrösse \nom[gv:pmess]{$\Delta p_{\mbox{\tiny Mess}}$}{Gemessener Druckverlust beim Kapillarrheometer} zu der Schubspannung $\tau$ ist dabei wie folgt:
+\nomenclature[gv:pbagley]{$\Delta p_{\mbox{\tiny Bagley}}$}{Einlaufdruckverlust beim Kapillarrheometer}
 \begin{equation}
     \label{eq:KapRheoTau}
-    \tau\left( R \right) = \frac{R \Delta p}{2L}
+    \tau\left( R \right) = \frac{R \Delta p}{2L_\text{\tiny Kap}}
 \end{equation}
-wobei $\Delta p = \Delta p_{\mbox{\tiny Mess}} -\Delta p_{\mbox{\tiny Bagley}}$ der korrigierte Druckunterschied ist und $L$ und $R$ die Länge respektive der Radius der Kapillare sind.
+wobei $\Delta p = \Delta p_{\mbox{\tiny Mess}} -\Delta p_{\mbox{\tiny Bagley}}$ der korrigierte Druckunterschied ist und \nom[gv:Lkap]{$L_\text{\tiny Kap}$}{Länge des Kapillarrheometers} und \nom[gv:Rkap]{$R_\text{\tiny Kap}$}{Radius des Kapillarrheometers} die Länge respektive der Radius der Kapillare sind.
 
 Für die Berechnung der in der Kapillare auftretenden Scherrate kann die Beziehung
 \begin{equation}
     \label{eq:KapRheoScherrate}
     \gammap = \frac{4 \dot{V}}{\pi R^3}\left( \frac{3+n}{4} \right) \mbox{ mit } n=\frac{d \ln \dot{V}}{d\ln\tau}
 \end{equation}
-verwendet werden.
+verwendet werden. \nomenclature[gv:Vdot]{$\dot{V}$}{Volumenstrom}
 
 Mit Hilfe von \eqref{eq:KapRheoTau} und \eqref{eq:KapRheoScherrate} lässt sich die Fliesskurve 
 \begin{equation}
