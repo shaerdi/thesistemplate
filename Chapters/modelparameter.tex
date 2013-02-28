@@ -1,4 +1,4 @@
-\section{Bestimmung und Validierung von Materialparametern}
+\section{Bestimmung und Verifikation der Materialparameter}
 \label{Kapitel:Parameter}
 Um eine realistische Simulation zu ermöglichen, ist es notwendig die verwendeten Modelle möglichst genau an Messdaten der realen Mörtel anzupassen. Dazu können die materialabhängigen Parameter in den Modellen variiert werden.\\
 Für einige der Mörtel wurden die Parameter, die im verwendeten Modell~\eqref{eq:modHB} vorkommen, schon in früheren Arbeiten bestimmt. \\
@@ -35,7 +35,7 @@ Die verwendete Formel dazu lautet:
     \label{eq:platterheovisko}
     \eta\left( \gammap \right) = \frac{2M}{\pi R^3 \gammap}\left( \frac{3+n}{4} \right) \text{ mit } n=\frac{d\ln M}{d\ln\gammap}
 \end{equation}
-Wobei \nom[gv:M]{$M$}{Drehmoment} das notwendige Drehmoment ist und \nom[gv:R]{$R$}{Plattenradius des Platte-Platte Rheometers} der Radius der verwendeten Platten.
+Wobei \nom[rv:M]{$M$}{Drehmoment} das notwendige Drehmoment ist und \nom[rv:R]{$R$}{Plattenradius des Platte-Platte Rheometers} der Radius der verwendeten Platten.
 Für eine Herleitung dieser Formel wird auf \cite{introtorheo} verwiesen.
 
 Das Platte-Platte Rheometer eignet sich ebenfalls dazu, zeitabhängige Effekte wie die Relaxationszeit eines viskoelastischen Fluids zu messen.
@@ -54,7 +54,7 @@ Diese Beziehungen können als Zusammenhang zwischen Schubspannung $\tau$ und Zei
     \tau\left( t \right)&=\eta\cdot\omega\cdot\hat{\gamma}\cdot \cos\left( \omega\cdot t \right)&& \text{viskos}\\
     \tau\left( t \right)&=G'\cdot\hat{\gamma}\cdot \sin\left( \omega\cdot t \right)+G''\cdot\hat{\gamma}\cdot \cos\left( \omega\cdot t \right)&& \text{viskoelastisch}
 \end{align}
-Dabei ist \nom[gv:omega]{$\omega$}{Kreisfrequenz} die Kreisfrequenz und \nom[gv:gammah]{$\hat\gamma$}{Scherungsamplitude beim Platte-Platte Rheometer} die Amplitude der am Rheometer angelegten Schwingung, $\eta$ die Viskosität des Fluids und \nom[gv:Gs]{$G'$}{Elastizitätsmodul} das Elastizitätsmodul des elastischen Materials. Der Term $\eta\cdot\omega$ wird auch als Verlustmodul \nom[gv:Gss]{$G''$}{Verlustmodul} bezeichnet.
+Dabei ist \nom[gv:omega]{$\omega$}{Kreisfrequenz} die Kreisfrequenz und \nom[rv:gammah]{$\hat\gamma$}{Scherungsamplitude beim Platte-Platte Rheometer} die Amplitude der am Rheometer angelegten Schwingung, $\eta$ die Viskosität des Fluids und \nom[rv:Gs]{$G'$}{Elastizitätsmodul} das Elastizitätsmodul des elastischen Materials. Der Term $\eta\cdot\omega$ wird auch als Verlustmodul \nom[rv:Gss]{$G''$}{Verlustmodul} bezeichnet.
 
 Anhand von $G'$ und $G''$ können die viskoelastischen Eigenschaften wie z.B. die Relaxationszeit eines Fluids bestimmt werden.
 
@@ -86,13 +86,13 @@ Um dabei den durch das Mitmessen des Einlaufdruckverlustes (Bagley-Druck) gemach
     \label{fig:kapRheo}
 \end{figure}
 
-Die Beziehung der Messgrösse \nom[gv:pmess]{$\Delta p_{\mbox{\tiny Mess}}$}{Gemessener Druckverlust beim Kapillarrheometer} zu der Schubspannung $\tau$ ist dabei wie folgt:
-\nomenclature[gv:pbagley]{$\Delta p_{\mbox{\tiny Bagley}}$}{Einlaufdruckverlust beim Kapillarrheometer}
+Die Beziehung der Messgrösse \nom[rv:pmess]{$\Delta p_{\mbox{\tiny Mess}}$}{Gemessener Druckverlust beim Kapillarrheometer} zu der Schubspannung $\tau$ ist dabei wie folgt:
+\nomenclature[rv:pbagley]{$\Delta p_{\mbox{\tiny Bagley}}$}{Einlaufdruckverlust beim Kapillarrheometer}
 \begin{equation}
     \label{eq:KapRheoTau}
     \tau\left( R \right) = \frac{R \Delta p}{2L_\text{\tiny Kap}}
 \end{equation}
-wobei $\Delta p = \Delta p_{\mbox{\tiny Mess}} -\Delta p_{\mbox{\tiny Bagley}}$ der korrigierte Druckunterschied ist und \nom[gv:Lkap]{$L_\text{\tiny Kap}$}{Länge des Kapillarrheometers} und \nom[gv:Rkap]{$R_\text{\tiny Kap}$}{Radius des Kapillarrheometers} die Länge respektive der Radius der Kapillare sind.
+wobei $\Delta p = \Delta p_{\mbox{\tiny Mess}} -\Delta p_{\mbox{\tiny Bagley}}$ der korrigierte Druckunterschied ist und \nom[rv:Lkap]{$L_\text{\tiny Kap}$}{Länge des Kapillarrheometers} und \nom[rv:Rkap]{$R_\text{\tiny Kap}$}{Radius des Kapillarrheometers} die Länge respektive der Radius der Kapillare sind.
 
 Für die Berechnung der in der Kapillare auftretenden Scherrate kann die Beziehung
 \begin{equation}

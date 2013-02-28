@@ -1,14 +1,15 @@
 \thispagestyle{empty}
 \selectlanguage{ngerman}
 \begin{abstr}
-Einige von der Firma Hilti AG verwendete Mörtel zeigen ein rheologisch komplexes Fliessverhalten. Um ein besseres Verständnis der Mörtel zu ermöglichen, sollen diese mittels numerischen Simulationen untersucht werden.
-Die Modellierung der rheologischen Eigenschaften erfordert die Wahl eines konstitutiven Gesetzes, mit dem ein Zusammenhang zwischen der am Fluid anliegenden Spannung und der resultierenden Verformung hergestellt werden kann.
-Um ein solches Modell in einen Computercode einzubauen, wird ein flexibles Simulationsprogramm benötigt.
+Bei der Firma Hilti AG kommen in der Befestigungstechnik Epoxy- und Harzbasierte Mörtel zum Einsatz.
+Diese Mörtel zeigen ein rheologisch komplexes Fliessverhalten und besitzen sowohl ein scherverdünnendes als auch ein viskoelastisches Verhalten. Im Rahmen der Produktentwicklung ist ein gutes Verständnis der Mörtel von entscheidender Bedeutung, daher soll in dieser Arbeit das Fliessverhalten mittels numerischen Simulationen untersucht werden.
+Die Modellierung der rheologischen Eigenschaften erfordert die Wahl eines konstitutiven Gesetzes, mit dem ein Zusammenhang zwischen der am Fluid anliegenden Spannung und der resultierenden Verformung hergestellt werden kann. Dazu wurde für die Scherverdünnung ein Herschel-Bulkley und für die Viskoelastizität ein White-Metzner Modell verwendet.
+Um diese Modelle in einen Computercode einzubauen, wird ein flexibles Simulationsprogramm benötigt.
 Aus diesem Grund wird in dieser Arbeit die Bibliothek \openfoam{} verwendet, die das Einbauen von eigenen numerischen Verfahren ermöglicht.
 
-Die für die Anpassung der Modelle an die jeweiligen Materialien erforderlichen Parameter werden mithilfe einer Optimierung an Messergebnisse angepasst. Die dafür notwendigen Messdaten stammen von zwei verschiedenen Rheometern, einem Platte-Platte Rheometer und einem Kapillarrheometer. Da die Messungen des Platte-Platte Rheometers durch einen in der internen Berechnung nicht berücksichtigten Ring verfälscht werden, müssen diese durch eine Simulation korrigiert werden. Die dazu notwendige Kopplung zwischen \openfoam{} und dem Optimierungscode wurde in Python realisiert.
+Die für die Anpassung der Modelle an die jeweiligen Materialien erforderlichen Parameter werden mithilfe einer Optimierungsmethode an Messergebnisse angepasst. Die dafür notwendigen Messdaten stammen von zwei verschiedenen Rheometern, einem Platte-Platte Rheometer und einem Kapillarrheometer. Da die Messungen des Platte-Platte Rheometers durch einen in der internen Berechnung nicht berücksichtigten Ring verfälscht werden, müssen diese durch eine Simulation korrigiert werden. Die dazu notwendige Kopplung zwischen \openfoam{} sowie der Optimierungscode wurde in Python realisiert.
 
-Die Validierung und Verifizierung der verwendeten Modelle und Parameter erfolgt durch die Simulation eines anwendungsnahen Strömungsversuches.
+Die berechneten Materialdaten werden mittels Simulation des Kapillarrheometers verifiziert. Anschliessend wird eine Validierung anhand eines eines anwendungsnahen Strömungsversuches durchgeführt. Dieser besteht aus einer Funktionsersatzprüfung des realen Hilti Auspressgerätes und einem statischen Mischer.
 \end{abstr}
 %
 \selectlanguage{english}

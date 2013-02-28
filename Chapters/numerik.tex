@@ -33,7 +33,7 @@ Der \mbox{PISO} (\textbf{P}ressure \textbf{I}mplicit with \textbf{S}plit \textbf
 Einer der Unterschiede zwischen zeitunabhängigen Fluiden und viskoelastischen Fluiden ist die Tatsache, dass der Spannungstensor nicht mehr nur eine Funktion des Geschwindigkeitsfeldes ist. Durch die Zeitabhängigkeit muss er als unabhängige Variable betrachtet werden, für die auch Anfangs- und Randbedingungen vorgegeben werden müssen. Dadurch wird das Lösen einer weiteren Gleichung notwendig.
 
 Eine Möglichkeit für die stabile Diskretisierung dieser zusätzlichen Gleichung ist die \textbf{D}iscrete \textbf{E}lastic \textbf{V}iscous \textbf{S}plit \textbf{S}tress (DEVSS) Methode \cite{devss}.
-Dabei wird die Hilfsvariable \nom{$\underline{\D}$}{Hilfstensor des DEVSS Verfahrens} eingeführt, so dass 
+Dabei wird die Hilfsvariable \nom[num:Ud]{$\underline{\D}$}{Hilfstensor des DEVSS Verfahrens} eingeführt, so dass 
 \begin{equation}
     \label{eq:devss:d}
     \underline{\D} - \D= 0
@@ -43,7 +43,7 @@ gilt. Nimmt man von \eqref{eq:devss:d} die Divergenz und subtrahiert das Resulta
     \label{eq:devss:impuls}
     \rho \u _t + \rho \u \cdot \nabla\u = -\nabla p +\nabla \cdot \T - a \nabla \cdot \left( \underline{\D}-\D \right)
 \end{equation}
-wobei \nom{$a$}{Parameter des DEVSS Verfahrens} ein positiver Parameter ist.\\
+wobei \nom[num:a]{$a$}{Parameter des DEVSS Verfahrens} ein positiver Parameter ist.\\
 Gleichung \eqref{eq:devss:impuls} kann umgeschrieben werden als
 \begin{equation}
     \label{eq:devss:impuls2}
