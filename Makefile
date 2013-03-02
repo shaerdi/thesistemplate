@@ -7,10 +7,12 @@ all: build
 build:
 	sed -i 's/oe;/ö/g; s/ae;/ä/g; s/ue;/ü/g' Chapters/*
 	sed -i 's/Oe;/Ö/g; s/Ae;/Ä/g; s/Ue;/Ü/g' Chapters/*
+	sed -i 's/\\begin{document}.*/\\begin{document}\[draft\]/' thesis.tex
 	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex
 	bibtex $(OUTPUTNAME)
 	makeindex $(OUTPUTNAME).nlo -s nomencl.ist -o $(OUTPUTNAME).nls
 	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex
+	sed -i 's/\\begin{document}.*/\\begin{document}/' thesis.tex
 	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex 
 
 clean:

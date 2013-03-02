@@ -1,13 +1,12 @@
 \section{Implementierung}
-\todo{Begriff Simulationsframework}
 \label{Kapitel:Implementierung}
 Die Implementierung der zugrunde liegenden Gleichungen und ihre Diskreti"-sierung wurde in \openfoam{} \cite{openfoam} realisiert.
-\openfoam{} ist eine freie CFD Bibliothek für finite Volumen, in der zahlreiche Standardlöser schon implementiert sind und die es erlaubt auf eine einfache Art und Weise eigenen Code zu implementieren.\\
+\openfoam{} ist eine freie CFD Bibliothek für finite Volumen, in der zahlreiche Standardlöser schon implementiert sind. Die Bibliothek erlaubt es auf komfortable Weise, eigenen Code zu implementieren.\\
 Für die Simulation der viskoelastischen Fluide wurde als Basis ein Code von J.~Favero \cite{faveroOF} verwendet und an die in dieser Arbeit verwendeten Modelle und Gleichungen angepasst.
 
-Die Notation in diesem Kapitel verwendet eine \fileemph{kursive Schrift} für Computer"-datei-Namen und eine \codeemph{Schreibmaschinenschrift} für Computercodes wie Programme oder Teile davon.
+Die Notation in diesem Kapitel verwendet \fileemph{Kursivschrift} für Computer"-datei-Namen und \openfoam{}-spezifische Begriffe. Für für Computercodes wie Programme oder Teile davon wird \codeemph{Schreibmaschinenschrift} verwendet.
 
-Ein Simulationslauf in \openfoam{} wird 'case' genannt, der durch ein Verzeichnis auf dem Computer repräsentiert wird. Da \openfoam{} keine gra\-phi\-sche Benutzeroberfläche besitzt, werden alle Informationen und Resultate in Textdateien gespeichert, die in diesem 'case' abgelegt werden.\\
+Ein Simulationslauf in \openfoam{} wird \fileemph{case} genannt, der durch ein Verzeichnis auf dem Computer repräsentiert wird. Da \openfoam{} keine gra\-phi\-sche Benutzeroberfläche besitzt, werden alle Informationen und Resultate in Textdateien gespeichert, die in diesem \fileemph{case} abgelegt werden.\\
 Die Informationen sind aufgeteilt in die Unterverzeichnisse \fileemph{0}, \fileemph{constant} und \fileemph{system}, sowie Zeitschrittverzeichnisse die nach der jeweiligen Zeit benannt sind. Abbildung~\ref{fig:ofCaseSchema} zeigt die schematische Darstellung.\\ %In den darin gespeicherten Dateien stehen alle Informationen über die Simulation und deren Resultate.\\
 Im Verzeichnis \fileemph{0} sind die Anfangs- und Randbedingungen der Simulation definiert. Die darin enthaltenen Dateien sind nach den entsprechenden Variablen genannt wie z.B. \fileemph{p} für den Druck oder \fileemph{U} für die Geschwindigkeit.
 In \fileemph{constant} stehen die Simulationsparameter wie zum Beispiel das verwendete Viskositätsmodell und dessen Parameter. Ausserdem ist im Unterverzeichnis \fileemph{polymesh} die Geometrie definiert.
@@ -23,7 +22,7 @@ In \fileemph{system} sind schliesslich die Simulationskontrollgrössen enthalten
 %Die maximale Reynolds-Zahl die in in dieser Arbeit gemachten Simulationen auftritt ist im einstelligen Bereich, weshalb auf eine Turbulenz-Modellierung verzichtet und eine laminare Strömung vorausgesetzt wurde.
 %
 \subsection{Löser}
-Ein Löser in \openfoam{} ist ein \cpp{} Programm, das in einem 'case' arbeitet. Der Löser ruft dabei die Informationen aus den im 'case' enthaltenen Verzeichnissen ab und benützt diese, um einen Simulationslauf zu definieren. Danach beginnt er die Simulation und erzeugt neue Zeitschritt-Verzeichnisse, in denen er den berechneten Zustand des Systems zu einem späteren Zeitpunkt abspeichert.
+Ein Löser in \openfoam{} ist ein \cpp{} Programm, das in einem \fileemph{case} arbeitet. Der Löser ruft dabei die Informationen aus den im \fileemph{case} enthaltenen Verzeichnissen ab und benützt diese, um einen Simulationslauf zu definieren. Danach beginnt er die Simulation und erzeugt neue Zeitschritt-Verzeichnisse, in denen er den berechneten Zustand des Systems zu einem späteren Zeitpunkt abspeichert.
 
 \subsubsection{simpleFoam}
 Für die scherratenabhängigen Viskositätsmodelle wurde als Basislöser die schon in \openfoam{} eingebaute Version \codeemph{simpleFoam} des SIMPLE Algorithmus verwendet.
@@ -192,7 +191,7 @@ tauEqn.relax();
 tauEqn.solve();
 \end{lstlisting}
 %
-\subsection{Post processing}
+\subsection{Nachbearbeitung}
 Für die Auswertung der Simulationen gibt es mit ParaView \cite{paraview} und diversen \openfoam{} Utilities schon eine ganze Anzahl von Möglichkeiten.\\
 In dieser Arbeit wurde zusätzlich noch die Möglichkeit genutzt eigene Runtime Functions zu schreiben, also Funktionen die schon während der Simulation bestimme Werte berechnen und damit Einblick in die laufende Simulation ermöglichen.
 %
@@ -245,7 +244,7 @@ Die Implementierung wurde ebenfalls als runtime function umgesetzt. In der Funkt
 \end{equation}
 wobei 
 \begin{equation}
-    \tau\left( r \right) = \nu\left( r \right) \cdot \frac{\partial \u\left( r \right)}{\partial \n\left( r \right)}
+    \tau\left( r \right) = \eta\left( r \right) \cdot \frac{\partial \u\left( r \right)}{\partial \n\left( r \right)}
 \end{equation}
 die Schubspannung an der Wand und $r$ der Abstand zum Rotationszentrum ist.
 

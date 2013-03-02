@@ -2,9 +2,9 @@
 \label{Kapitel:Numerik}
 Für das Lösen der in Kapitel \ref{Kapitel:Rheologie} vorgestellten Gleichungen gibt es eine Vielzahl von Verfahren. In diesem Kapitel werden die in dieser Arbeit verwendeten Algorithmen vorgestellt und ihre Verwendung begründet.
 
-\subsection{SIMPLE}
-Der SIMPLE (\textbf{S}emi-\textbf{I}mplicit \textbf{M}ethod for \textbf{P}ressure-\textbf{L}inked \textbf{E}quations) Algorithmus \todo{Quelle Simple} ist eine Methode um das Druck- und Geschwindigkeitsfeld in einem inkompressiblen Fluid für eine stationäre Lösung zu berechnen.\\
-Dabei wird abwechselnd ein Update für den Druck und die Geschwindigkeit berechnet. Über ein Konvergenzkriterium wird entschieden, wann die stationäre Lösung erreicht ist.\\
+\subsection{Semi-Implicit Method for Pressure-Linked Equations}
+Der \textbf{S}emi-\textbf{I}mplicit \textbf{M}ethod for \textbf{P}ressure-\textbf{L}inked \textbf{E}quations (SIMPLE) Algorithmus \todo{Quelle Simple} ist eine Methode um das Druck- und Geschwindigkeitsfeld in einem inkompressiblen Fluid für eine stationäre Lösung zu berechnen.\\
+Dabei wird abwechselnd eine Aktualisierung für den Druck und die Geschwindigkeit berechnet. Über ein Konvergenzkriterium wird entschieden, wann die stationäre Lösung erreicht ist.\\
 Ein Iterationsschritt des SIMPLE Algorithmus kann dabei wie folgt zusammengefasst werden:
 \begin{outline}[enumerate]
     \1 Verwende eine Startlösung $p^*$
@@ -14,11 +14,11 @@ Ein Iterationsschritt des SIMPLE Algorithmus kann dabei wie folgt zusammengefass
     \1 Korrigiere die Geschwindigkeit um $\nabla u=0$ zu erfüllen.
 \end{outline}
 
-Der SIMPLE Algorithmus wurde in dieser Arbeit für die Simulation zeitunabhängiger nicht-Newtonscher Fluide benutzt. Dabei wurde der variablen Viskosität $\eta$ Rechnung getragen, indem diese in jedem Iterationsschritt an das aktuelle Geschwindigkeitsfeld angepasst wurde. Dabei muss berücksichtigt werden, dass dadurch im Vergleich zu der normalen Navier-Stokes Gleichung eine zusätzliche nicht-Linearität entsteht. Dies beeinflusst das Konvergenzverhalten und muss bei der Wahl der Simulationsparameter wie z.B. Relaxationsfaktoren mit einbezogen werden.
+Der SIMPLE Algorithmus wurde in dieser Arbeit für die Simulation zeitunabhängiger nicht-Newtonscher Fluide benutzt. Dabei wurde der Abhängigkeit der Viskosität $\eta$ von der Schergeschwindigkeit $\gammap$ Rechnung getragen, indem diese in jedem Iterationsschritt ausgewertet wurde. Dadurch entsteht im Vergleich zu der normalen Navier-Stokes Gleichung eine zusätzliche nicht-Linearität. Dies beeinflusst das Konvergenzverhalten und muss bei der Wahl der Simulationsparameter wie z.B. Relaxationsfaktoren mit einbezogen werden.
 
-\subsection{PISO}
-Der \mbox{PISO} (\textbf{P}ressure \textbf{I}mplicit with \textbf{S}plit \textbf{O}perator) \todo{Quelle \mbox{PISO}} Algorithmus ist ein Verfahren, um transiente Lösungen des Druck- und Geschwindigkeitsfeldes zu berechnen.\\
-Ähnlich wie der \mbox{SIMPLE} Algorithmus wird dabei zwischen Druck und Geschwindigkeit hin- und heriteriert. Die Hauptunterschiede sind, dass keine Underrelaxation angewendet wird, und dass die Impulsgleichung mehrfach gelöst wird:
+\subsection{Pressure Implicit with Split Operator}
+Der \textbf{P}ressure \textbf{I}mplicit with \textbf{S}plit \textbf{O}perator (PISO) \todo{Quelle \mbox{PISO}} Algorithmus ist ein Verfahren, um transiente Lösungen des Druck- und Geschwindigkeitsfeldes zu berechnen.\\
+Ähnlich wie der \mbox{SIMPLE} Algorithmus wird dabei zwischen Druck und Geschwindigkeit iteriert. Die Hauptunterschiede sind, dass keine Unterrelaxation angewendet wird, und dass die Impulsgleichung mehrfach gelöst wird:
 %Ein Iterationsschritt beinhaltet also die selben Schritte wie im \mbox{SIMPLE} Algorithmus, mit folgenden Änderungen:
 \begin{outline}[enumerate]
     \1 Verwende eine Startlösung $p^*$
@@ -26,11 +26,11 @@ Der \mbox{PISO} (\textbf{P}ressure \textbf{I}mplicit with \textbf{S}plit \textbf
     \1 Berechne eine Druckkorrektur $p^{'}$ durch das Lösen der Druckkorrekturgleichung $\nabla^2p=-\nabla \cdot \left( u^*\cdot\nabla \right)u^*$
     \1 Berechne ein neues Druckfeld $p^{**}=p^*+ p^{'}$
     \1 Korrigiere die Geschwindigkeit um $\nabla u=0$ zu erfüllen.
-    \1 Wiederhole die Schritte 3-5 Mehrmals pro Zeitschritt
+    \1 Die Schritte 3-5 werden pro Zeitschritt eine vom Anwender bestimmte Anzahl mal ausgeführt
 \end{outline}
 
-\subsection{DEVSS}
-Einer der Unterschiede zwischen zeitunabhängigen Fluiden und viskoelastischen Fluiden ist die Tatsache, dass der Spannungstensor nicht mehr nur eine Funktion des Geschwindigkeitsfeldes ist. Durch die Zeitabhängigkeit muss er als unabhängige Variable betrachtet werden, für die auch Anfangs- und Randbedingungen vorgegeben werden müssen. Dadurch wird das Lösen einer weiteren Gleichung notwendig.
+\subsection{Discrete Elastic Viscous Split Stress}
+Einer der Unterschiede zwischen zeitunabhängigen Fluiden und viskoelastischen Fluiden ist, dass der Spannungstensor nicht mehr nur eine Funktion des Geschwindigkeitsfeldes ist, sondern auch von der Zeit. Durch diese Zeitabhängigkeit muss er als unabhängige Variable betrachtet werden, für die auch Anfangs- und Randbedingungen vorgegeben werden müssen. Dadurch wird das Lösen einer weiteren Gleichung notwendig.
 
 Eine Möglichkeit für die stabile Diskretisierung dieser zusätzlichen Gleichung ist die \textbf{D}iscrete \textbf{E}lastic \textbf{V}iscous \textbf{S}plit \textbf{S}tress (DEVSS) Methode \cite{devss}.
 Dabei wird die Hilfsvariable \nom[num:Ud]{$\underline{\D}$}{Hilfstensor des DEVSS Verfahrens} eingeführt, so dass 
@@ -41,20 +41,20 @@ Dabei wird die Hilfsvariable \nom[num:Ud]{$\underline{\D}$}{Hilfstensor des DEVS
 gilt. Nimmt man von \eqref{eq:devss:d} die Divergenz und subtrahiert das Resultat von der Impulsgleichung \eqref{eq:Impulserhaltung}, erhält man
 \begin{equation}
     \label{eq:devss:impuls}
-    \rho \u _t + \rho \u \cdot \nabla\u = -\nabla p +\nabla \cdot \T - a \nabla \cdot \left( \underline{\D}-\D \right)
+    \rho \u _t + \rho \u \cdot \nabla\u = -\nabla p +\nabla \cdot \T - a \nabla \cdot \left( \underline{\D}-\D \right).
 \end{equation}
-wobei \nom[num:a]{$a$}{Parameter des DEVSS Verfahrens} ein positiver Parameter ist.\\
+Hierbei ist \nom[num:a]{$a$}{Parameter des DEVSS Verfahrens} ein positiver Parameter ist.\\
 Gleichung \eqref{eq:devss:impuls} kann umgeschrieben werden als
 \begin{equation}
     \label{eq:devss:impuls2}
-    \rho \u _t + \rho \u \cdot \nabla\u -a \nabla \cdot \D= -\nabla p +\nabla \cdot \T - a \nabla \cdot \left( \underline{\D} \right)
+    \rho \u _t + \rho \u \cdot \nabla\u -a \nabla \cdot \D= -\nabla p +\nabla \cdot \T - a \nabla \cdot \left( \underline{\D} \right).
 \end{equation}
 Diese Null-Operation hat keinen Einfluss auf die Lösung des Gleichungssystems, ermöglicht aber durch eine unterschiedliche Diskretisierung von $\D$ und $\underline{\D}$ eine Stabilisierung des numerischen Problems.
 
 Das iterative Verfahren zur Lösung der Gleichungen \eqref{eq:Massenerhaltung}, \eqref{eq:devss:impuls2} und \eqref{eq:Tviskoelastisch} lautet wie folgt:
-\begin{outline}
-    \1 Mit gegebenem Geschwindigkeitsfeld $U^*$, Druckfeld $p^*$ und Spannung $\tau^*$ wird die Impulsgleichung \eqref{eq:devss:impuls2} für ein neues Geschwindigkeitsfeld $U^{**}$ implizit gelöst
-    \1 Durch Verwendung von $U^{**}$ wird eine neue Approximation des Druckfeldes $p^{**}$ berechnet und anschliessend eine Korrektur der Geschwindigkeit mithilfe der Kontinuitätsgleichung durchgeführt um $U^{***}$ zu erhalten. Dazu wird der PISO Algorithmus verwendet.
-    \1 $U^{***}$ wird benützt um mit Hilfe eines Konstitutiven Gesetzes \eqref{eq:Tviskoelastisch} ein neues Spannungsfeld $\tau^{**}$ zu erhalten.
+\begin{outline}[enumerate]
+    \1 Mit gegebenem Geschwindigkeitsfeld $u^*$, Druckfeld $p^*$ und Spannung $\tau^*$ wird die Impulsgleichung \eqref{eq:devss:impuls2} für ein neues Geschwindigkeitsfeld $u^{**}$ implizit gelöst
+    \1 Durch Verwendung von $U^{**}$ wird eine neue Approximation des Druckfeldes $p^{**}$ berechnet und anschliessend eine Korrektur der Geschwindigkeit mithilfe der Kontinuitätsgleichung durchgeführt um $u^{***}$ zu erhalten. Dazu wird der PISO Algorithmus verwendet.
+    \1 $u^{***}$ wird benützt um mit Hilfe eines Konstitutiven Gesetzes \eqref{eq:Tviskoelastisch} ein neues Spannungsfeld $\tau^{**}$ zu erhalten.
     \1 Falls es sich um eine transiente Simulation handelt, können die Schritte 1-3 mehrmals pro Zeitschritt durchgeführt werden um eine genauere Lösung zu erhalten.
 \end{outline}
