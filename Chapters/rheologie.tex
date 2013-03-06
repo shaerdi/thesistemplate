@@ -202,7 +202,7 @@ Die Voraussetzung dafür ist, dass das Stoffverhalten als linear angenommen wird
 Wie schnell dieser Einfluss abnimmt, hängt dabei von der Relaxationszeit \nom[gv:lambda]{$\lambda$}{Relaxationszeit eines viskoelastischen Materials} ab.
 
 \paragraph{Oldroyd-B Modell}
-Eine Erweiterung dieses Modells ist das Oldroyd-B Modell, bei dem statt der partiellen die kontravariante Ableitung \nom[not:oldroyd]{$\overset{\nabla}{\T}$}{Oldroydsche Zeitableitung} verwendet wird:
+Eine Erweiterung des Maxwell Modells ist das Oldroyd-B Modell, bei dem statt der partiellen die kontravariante Ableitung \nom[not:oldroyd]{$\overset{\nabla}{\T}$}{Oldroydsche Zeitableitung} verwendet wird:
 \begin{equation}
     \label{eq:oldroydModell}
     \T + \lambda \overset{\nabla}{\T}=2\eta \D
@@ -210,7 +210,7 @@ Eine Erweiterung dieses Modells ist das Oldroyd-B Modell, bei dem statt der part
 wobei
 \begin{equation}
     \label{eq:upperconvectedDerivative}
-    \overset{\nabla}{\T} = \frac{D}{Dt}\T-\left[ \nabla u^T\cdot \T \right]-\left[ \T\cdot \nabla u \right].
+    \overset{\nabla}{\T} = \frac{D}{Dt}\T-\left[ \nabla \u^T\cdot \T \right]-\left[ \T\cdot \nabla \u \right].
 \end{equation}
 Diese Modifikation dient dazu, Drehungen und Verzerrungen des Fluides in der Differentialgleichung zu berücksichtigen.
 Die Herleitung dieser Ableitung stammt von J.G. Oldroyd \cite{oldroyd}, nach dem auch das Modell benannt ist.
@@ -224,9 +224,15 @@ Dazu in der Lage ist das White-Metzner Modell. Dieses ist eine Erweiterung des O
 \end{equation}
 Dabei können im Allgemeinen für die Funktionen $\lambda$ und $\eta$ die selben Modelle wie für die nicht zeitabhängigen Gesetze verwendet werden.
 In dieser Arbeit wurde für $\eta$ das schon bewährte modifizierte Herschel-Bulkley Modell \eqref{eq:modHB} implementiert.\\
-Die Relaxationszeit weist für die untersuchten Mörtel, abhängig von der Scherrate, zwei Plateaus auf; bei einer hinreichend kleiner und grosser Scherrate. Dazwischen verläuft der Übergang exponentiell.
-Als beschreibende Funktion für $\lambda$ wird daher auf Empfehlung des Rheologiespezialisten von Hilti das Carreau-Yasuda Modell \eqref{eq:fg:carreauyasuda} verwendet.\todo{Bild}
+Die Relaxationszeit weist für die untersuchten Mörtel, abhängig von der Scherrate, zwei Plateaus auf; bei einer hinreichend kleiner und grosser Scherrate. Dazwischen verläuft der Übergang exponentiell, wie in Abbildung~\ref{fig:carreauYasudaAnnotated} gezeigt.
+Als beschreibende Funktion für $\lambda$ wird daher auf Empfehlung des Rheologiespezialisten von Hilti das Carreau-Yasuda Modell \eqref{eq:fg:carreauyasuda} verwendet.
 %
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/CarreauYasudaAnnotated.png}
+    \caption{Beispielkurve des Carreau-Yasuda Modells.}
+    \label{fig:carreauYasudaAnnotated}
+\end{figure}
 %\begin{equation}
     %\label{eq:carreauYasuda}
     %\lambda \left( \gammap \right) = \eta_{\infty} +\left( \eta_0 - \eta_{\infty} \right) \left( 1+\left( L\gammap \right)^\alpha \right)^{\frac{n_{\lambda}-1}{\alpha}}.

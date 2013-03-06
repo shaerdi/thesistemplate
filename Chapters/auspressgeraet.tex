@@ -1,4 +1,4 @@
-\section{Validierung anhand des Hilti Auspressgerät}
+\section{Validierung anhand des Hilti Auspressgerätes}
 \label{Kapitel:Auspressgeraet}
 Die von Hilti hergestellten chemischen Dübel bestehen aus zwei Komponenten. Diese werden bei der Anwendung gemischt und in ein vorgebohrtes Loch gedrückt. Durch das Mischen der Komponenten beginnt der Mörtel auszuhärten und befestigt dadurch eine ebenfalls in das Loch eingeführte Gewindestange.
 
@@ -103,7 +103,7 @@ Dazu wurde die Geometrie der FEP und des Mischers virtuell nach gebaut und verne
 \end{figure}
 %
 
-Simuliert wurde mit den Lösern \codeemph{simpleFoam} und \codeemph{viscoelasticFluidFoam}. Dabei wurde stets eine steady state Lösung angestrebt bei der die Geschwindigkeit an den Einlässen vorgegeben wurde und dann gewartet wurde bis sich ein konstanter Gegendruck ausgebildet hatte. Das setzt voraus, dass der Einfluss des Kolbens mit einer konstanten Anströmung gleichgesetzt werden kann, was natürlich nur bei ausreichendem Abstand zwischen Kolben und Blende hinreichend genau stimmt.
+Simuliert wurde mit den Lösern \codeemph{simpleFoam} und \codeemph{viscoelasticFluidFoam}. Dabei wurde stets eine stationäre Lösung angestrebt, bei der die Geschwindigkeit an den Einlässen vorgegeben wurde und dann gewartet wurde bis sich ein konstanter Gegendruck ausgebildet hatte. Das setzt voraus, dass der Einfluss des Kolbens mit einer konstanten Anströmung gleichgesetzt werden kann, was natürlich nur bei ausreichendem Abstand zwischen Kolben und Blende hinreichend genau stimmt.
 
 Die berechneten Felder waren bei \codeemph{simpleFoam} die Geschwindigkeit $\u$ und der Druck $p$. Als Randbedingung wurde für $\u$ beim Einlass ein konstanter Wert, beim Auslass ein Null-Gradient und an den Wänden eine no-slip Bedingung vorgegeben. Der Druck $p$ wurde am Einlass auf Null (oder Umgebungsdruck) gesetzt und an allen anderen Boundaries ein Null-Gradient vorgegeben.\\
 Für die Startlösung wurde wann immer möglich die Werte einer früheren Rechnung genommen. Dadurch kann die Konvergenzzeit drastisch verringert werden. \\
@@ -121,7 +121,7 @@ In den Simulationen wurde der Mischer und die FEP separat behandelt, da dadurch 
 Bei der FEP wurden acht Messungen durchgeführt, mit je zwei Mörteln, zwei Kolbengeschwindigkeiten und zwei Blendenkonfigurationen.
 In Tabelle~\ref{fig:fepVergleich} sind die gemessenen und die simulierten Druckverluste über die Blende aufgeführt für die Simulationen mit den rein Scherratenabhängigen Modellen. Der Druckverlust wurde dabei jeweils auf der Seite gemessen, die der eingefüllten Mörtelkomponente entspricht.
 %
-\begin{table}[htb]
+\begin{table}[tb]
 \noindent\makebox[\textwidth]{%
     \begin{tabular}{l c c c r r r} 
         \textbf{Mörtel} & 
@@ -170,21 +170,22 @@ In Tabelle~\ref{fig:fepVergleich} sind die gemessenen und die simulierten Druckv
     \label{fig:fepVergleich}
 \end{table}
 
-
-%Die Teils deutlichen Unterschiede von Simulation und Messung ist einerseits auf ein nicht über d
+Die simulierten Widerstände sind in der Tendenz konsistent mit der Messung. Die absoluten Werte zeigen eine Abweichung von bis zu 50\%. Dies zeigt einerseits, dass die verwendeten Modelle und Parameter noch nicht vollständig in der Lage sind, die Realität zu simulieren. So liegen die Scherraten, die in der engen 2mm Blende auftreten, in einem Bereich der im Kapillarrheometer nicht mehr auftritt. Die Viskosität in diesem Bereich wird also vom Modell extrapoliert.\\
+Andererseits ist es möglich, dass ein Teil der Abweichung auf die Messungenauigkeit der Messgeräte zurückgeführt werden kann. Diese besitzen im gemessenen Bereich von 0.2 bis 0.6 Bar eine Unsicherheit von bis zu 30\%.
+%
 \subsubsection{Mischer}
 Da beim Mischer keine Blenden eingelegt werden, gibt es nur noch acht statt 16 verschiedene Konfigurationen. Diese bestehen aus je einem von vier Mörteln und einer von zwei Einlassgeschwindigkeiten.
 Die Einlassgeschwindigkeit bei der Messung wird bestimmt durch die Kolbengeschwindigkeit der FEP, da die Systeme gekoppelt sind. Für die Simulation wurde der entsprechende Volumenstrom bei der FEP genommen und daraus die Einlassgeschwindigkeit bestimmt, da der Mörtel als inkompressibel behandelt wird.
 In Tabelle~\ref{fig:mischerVergleich} sind die gemessenen und die simulierten Druckverluste über den Mischer aufgeführt.
 %
-\begin{table}[htb]
+\begin{table}[tb]
 \noindent\makebox[\textwidth]{%
     \begin{tabular}{l c r r r} 
         \textbf{Mörtel} & 
         \multicolumn{1}{c}{\textbf{Einlassgeschwindigkeit}} &
         \multicolumn{2}{c}{$\Delta p$ [Bar]} & 
         \multicolumn{1}{c}{\textbf{Fehler}} \\
-    &  v [mm/s] & Messung & Simulation & \\
+    &  v [mm/s] & Messung & Simulation &\\
     \hline\hline
     \multirow{2}{*}{\hit{} A}  & 2.1 & x & y & \\
                                \cline{2-5}
@@ -194,20 +195,22 @@ In Tabelle~\ref{fig:mischerVergleich} sind die gemessenen und die simulierten Dr
                                \cline{2-5}
                                & 4   & x & y  &\\
     \hline\hline
-    \multirow{2}{*}{\re{} A}   & 2.1 & 0.37 & 0.26 &31\%\\
+    \multirow{2}{*}{\re{} A}   & 2.1 & 2.26 & 2.98 &31.5\%\\
                                \cline{2-5}
                               
-                               & 4   & 0.48 & 0.35 &26\%\\
+                               & 4   & 3.62 & 4.49 &24.1\%\\
     \hline\hline
-    \multirow{2}{*}{\re{} B}   & 2.1 & 0.41 & 0.31 &25\%\\
+    \multirow{2}{*}{\re{} B}   & 2.1 & 1.24 & 1.49 &21.9\%\\
                                \cline{2-5}
-                               & 4   & 0.51 & 0.40 &22\%\\
-                              
+                               & 4   & 1.84 & 2.13 &15.6\%\\
     \hline\hline
 \end{tabular}}
     \caption{Die gemessenen und simulierten Konfigurationen des Mischers mit den rein scherratenabhängigen Modellen.}
     \label{fig:mischerVergleich}
 \end{table}
+
+%Die Abweichungen bei der Simulation des Mischers sind, relativ gesehen, deutlich geringer als beim Druckverlust über die Blenden in der FEP. Einer der Gründe dafür ist, dass die Scherraten nun in einem Bereich sind, der auch vermessen wurde. Zudem liegen die Drücke nun in einem Bereich, in dem die Messgeräte deutlich genauer messen konnten. 
+
 \begin{todocontent}
     \1 Resultat Simulation (Bilder)
     \1 Druckvergleich

@@ -1,26 +1,33 @@
 \section{Zusammenfassung und Ausblick}
 \label{Kapitel:Outlook}
 In dieser Arbeit wurden zwei von der Firma Hilti AG in der Befestigungstechnik verwendete Mörtel mittels numerischer Simulationen untersucht.
-Ziel der Arbeit war, die Fliessvorgänge dieser rheologisch komplexen Mörtel mithilfe der Simulationssoftware \openfoam{} zu modellieren. Dies soll das für die Produktentwicklung entscheidende Verständnis dieser Fliessvorgänge verbessern.
+Ziel der Arbeit war, die Fliess"-vorgänge dieser rheologisch komplexen Mörtel mithilfe der Simulationssoftware \openfoam{} zu modellieren. Dies soll das für die Produktentwicklung entscheidende Verständnis dieser Fliess"-vorgänge verbessern.
 
-Die untersuchten Mörteil zeigen dabei ein starkes nicht-Newtonsches Verhalten.
-Dies äussert sich sowohl in einer Scherverdünnung (Strukturviskosität), als auch in viskoelastischen Phänomenen. Die Modellierung dieser Eigenschaften geschah mit den empirischen Modellen Herschel-Bulkley, Carreau-Yasuda und White-Metzner.\\
+Die untersuchten Mörtel zeigen dabei ein starkes nicht-Newtonsches Verhalten.
+Dies äussert sich sowohl in einer Scherverdünnung (Struktur"-viskosität), als auch in viskoelastischen Phänomenen. Die Modellierung dieser Eigenschaften geschah mit den empirischen Modellen Herschel-Bulkley, Carreau-Yasuda und White-Metzner.\\
 Die grundlegenden Gleichungen, bestehend aus den Erhaltungssätzen für Masse und Impuls und den aus den Modellen resultierenden Schliessungsansätzen, wurden numerisch gelöst. Die benötigten numerischen Verfahren und Routinen wurden als Computercodes in \openfoam{} implementiert.
 
 Die für die Modelle notwendigen Materialparameter wurden mithilfe eines in Python implementierten Optimierungsverfahren an Messdaten angepasst. Diese Daten stammen von zwei verschiedenen Rheometern, einem Platte-Platte Rheometer und einem Kapillarrheometer.
 Die Verfälschung der Platte-Platte Rheometerdaten durch einen um den Scherspalt herum montierten Ring wurde durch eine entsprechende Korrektursimulation ausgeglichen.
 Die Verifizierung der verwendeten Modelle und der berechneten Parameter geschah mittels Simulationen des Kapillarrheometers, bei denen eine gute Übereinstimmung mit der Realität gefunden wurde.
 
-Die Validierung geschah anhand eines anwendungsnahen Strömungsversuches. Dabei wurde eine vereinfachte Nachbildung des realen Aupressgerätes für die Hilti Mörtel gebaut und vermessen, um Einflüsse die ihren Ursprung nicht in Eigenschaften des Fluids haben auszuschliessen.
-Die Geometrie dieser Funktionsersatzprüfung wurde im Computer nachgebildet und für die Strömungssimulation benützt.
 \begin{todocontent}
-        \1 Erfolgreiche Nachbildung FEP% (hoffentlich)
+    \1 Einfluss Viskoelastizität
 \end{todocontent}
+
+Die Validierung geschah anhand eines anwendungsnahen Strömungsversuches. Dabei wurde eine vereinfachte Nachbildung des realen Auspressgerätes für die Hilti Mörtel gebaut und vermessen, um Einflüsse die ihren Ursprung nicht in Eigenschaften des Fluids haben auszuschliessen.
+Die Geometrie dieser Funktionsersatzprüfung wurde im Computer nachgebildet und für die Strömungssimulation benützt.
+
+Die Resultate zeigen tendenziell ein richtiges Verhalten, eine genaue Nachbildung der Druckverluste in der Funktionsersatzprüfung schlug aber fehl. Die Gründe für die Abweichungen konnten im Rahmen dieser Arbeit aus Zeitgründen nicht abschliessend erklärt werden. Denkbar ist, dass der Mörtel eine in der Simulation nicht berücksichtigte Temperaturabhängigkeit besitzt, oder dass verschiedene Produktions-Chargen unterschiedliche Fliesseigenschaften haben. Auch eine eventuelle Thixotropie der Mörtel wurde nicht in die Berechnung mit einbezogen.
+
+Eine mögliche Erweiterung dieser Arbeit ist deshalb der Einbau von thixotropen Effekten.
+Die verwendeten Algorithmen für die viskoelastischen Berechnungen benötigen noch eine grosse Anzahl an Iterationsschritten um zu konvergieren, weshalb hier ebenfalls noch Verbesserungs"-bedarf besteht.
+
+\begin{todocontent}
+    \1 Einfluss Viskoelastizität
+\end{todocontent}
+
+Der Firma Hilti steht mit den programmierten Routinen ein Grundgerüst zur Verfügung, mit dem sie in Zukunft weitere Materialmodelle und -parameter verwenden kann um die Fliessvorgänge in ihrem Auspressgerät noch besser zu verstehen.
+
 %
 %Ein Aspekt der Mörtel, der in dieser Arbeit nicht berücksichtigt wurde, sind die thixotropen Eigenschaften. Da 
-\begin{todocontent}
-    \1 Ausblick
-        \2 Thixotropie
-        \2 Bessere Algorithmen
-        \2 Besseres Materialmodell
-\end{todocontent}

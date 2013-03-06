@@ -119,14 +119,14 @@ Beim Platte-Platte Rheometer handelt es sich um eine rotationssymmetrische Geome
 \begin{figure}
 \centering
 \subfloat[Ohne Ring]{
-\includegraphics[width=.45\textwidth]{figures/platteRheoSimOhneRing.png}
+\includegraphics[width=.45\textwidth]{figures/platteSimOhneRingMitKoord.png}
 \label{fig:platteRheoSim:subA}
 }
 \subfloat[Mit Ring]{
-\includegraphics[width=.45\textwidth]{figures/platteRheoSimMitRing.png}
+\includegraphics[width=.45\textwidth]{figures/platteSimMitRingMitKoord.png}
 \label{fig:platteRheoSim:subB}
 }
-\caption{Simulierter Teil des Platte-Platte Rheometers, in \subref{fig:platteRheoSim:subA} ohne Ring, in \subref{fig:platteRheoSim:subB} mit Ring.\\
+\caption{Simulierter Teil des Platte-Platte Rheometers, in \subref{fig:platteRheoSim:subA} ohne Ring, in \subref{fig:platteRheoSim:subB} mit Ring.
 Eingefärbt ist das Bild nach der resultierenden Geschwindigkeitsverteilung im Rheometer.}
 \label{fig:plattePlatteRheoSim}
 \end{figure}
@@ -147,20 +147,7 @@ Um den Prozess der Parameter-Optimierung zu beschleunigen, wurde aus"-serdem die
 
 Die gemessenen Daten des Kapillarrheometers werden bereits bei der Messung durch die Verwendung des Bagley-Druckes korrigiert. Hier muss also keine Korrektursimulation durchgeführt werden. Die Daten können direkt für die Optimierung verwendet werden. Dies wird im Python Code berücksichtigt indem der Unterschied zwischen gemessenen und aus den Modell-Parametern berechneten Druckunterschiede direkt an die Fehlerfunktion angehängt wird.
 
-Ein Beispiel für den Aufruf der Hauptfunktion \codeemph{runLeastSq}:
-\begin{lstlisting}[language=Python]
-plsq = runLeastSq(
-      initialParam,            % Anfangssch@ä@tzer
-      plateRheoTorque,         % Messdaten
-      plateRheoOmega,          % Messdaten
-      referenceCaseName,       % @\openfoam{}@ Case
-      numberOfCpus,            % Anzahl Prozessoren
-      kapRheoPressure,         % optionale Messdaten
-      kapRheoShearRate         % optionale Messdaten
-      ):  
-\end{lstlisting}
-%
-Die genaue Dokumentation des Moduls kann in Anhang (x) \todo{Anhang schreiben} gefunden werden.
+Die genaue Dokumentation des Moduls kann in Anhang \ref{Appendix:Python} gefunden werden.
 %
 %\begin{lstlisting}[language=Python]
 %plsq,res = leastsq(errFunc, initialParam, args=argList, maxfev=100)
@@ -176,37 +163,42 @@ Der Vergleich mit alten Daten zeigt eine gute Übereinstimmung, das berechnete D
 
 Die Qualität des Fits kann anhand des von der Funktion \codeemph{leastsq} angegebenen Residuums abgeschätzt werden. Dabei zeigt sich, dass das verwendete Herschel-Bulkley Modell nicht für alle von Hilti eingesetzten Mörtel gleich gut geeignet ist. Während für die \hit{} Reihe durchwegs kleine Residuuen erreicht wurden, konnte der Algorithmus für Mörtel des \re{} Typs keine gute Übereinstimmung gefunden werden.
 
-Dies liegt daran, dass das Herschel-Bulkley Modell die Eigenschaften des Mörtels nur entweder im Bereich kleiner Scherraten bis $800 s^{-1}$ oder aber im Bereich darüber nachbilden kann. Passende Parameter für alle Scherraten gibt es nicht.\todo{stimmt das noch?}
+Dies liegt daran, dass das Herschel-Bulkley Modell die Eigenschaften des Mörtels nur entweder im Bereich kleiner Scherraten bis $800 s^{-1}$ oder aber im Bereich darüber nachbilden kann. Passende Parameter für alle Scherraten gibt es nicht.
 %
 \subsubsection{Netze}
-Da die Rechenzeit einer einzelnen Simulation durch die grosse Anzahl an Simulationen sehr stark ins Gewicht fällt, wurde versucht ein möglichst grobes Netz zu verwenden. Natürlich wird dadurch der Diskretisierungsfehler immer grösser, weshalb ein Kompromiss zwischen benötigter Simulationszeit und gemachtem Fehler gefunden werden muss.
+Da die Rechenzeit einer einzelnen Simulation durch die grosse Anzahl an Simulationen sehr stark ins Gewicht fällt, wurde versucht ein möglichst grobes Netz zu verwenden. Natürlich wird dadurch der Diskretisierungsfehler immer grösser, weshalb ein Kompromiss zwischen benötigter Simulationszeit und gemachtem Fehler gefunden werden musste.
 
-Dazu wurde das resultierende Drehmoment bei der Verwendung verschiedener Netze verglichen. Simuliert wurde das Platte-Platte Rheometer mit Ring, mit einer \glqq{}no-slip\grqq{} Randbedingung an der unteren Wand und am Ring, einer konstanten Drehgeschwindigkeit von 10 rad/s und einem offenen Spalt zwischen oberer Platte und dem Ring. \todo{Bild}
+Dazu wurde das resultierende Drehmoment bei der Verwendung verschiedener Netze verglichen. Simuliert wurde das Platte-Platte Rheometer mit Ring, mit einer \glqq{}no-slip\grqq{} Randbedingung an der unteren Platte und am Ring, einer konstanten Drehgeschwindigkeit von $\omega=10$ rad/s und einem offenen Spalt zwischen oberer Platte und dem Ring (Abbildung~\ref{fig:plattenRheoFullcirc}). 
 
-Das verwendete Netz, dargestellt in Abbildung~\ref{fig:PlatteRheoGitter} ist ein hexaedrisches Gitter mit einer Zelle in tangentialer Richtung und einer Diskretisierungslänge von $2^{-h} \cdot 0.2\mbox{mm}$, wobei $h\in\left\{ 0,1,2,3,4 \right\}$.
+Das verwendete Netz, dargestellt in Abbildung~\ref{fig:PlatteRheoGitter} ist ein hexaedrisches Gitter mit einer Zelle in tangentialer Richtung und einer Diskretisierungslänge von $2^{-h} \cdot 0.2\mbox{mm}$, wobei $h\in\left\{ 0,1,2,3 \right\}$.
 %
 \begin{figure}[tb]
     \centering
     \includegraphics[width=\textwidth]{figures/PlatteRheoGitterAnnot.png}
-    \caption{Das verwendete Gitter für die Simulation des Platte-Platte Rheometers. Der Parameter $h$ wurde zwischen 0 und 4 variiert.}
+    \caption{Das verwendete Gitter für die Simulation des Platte-Platte Rheometers. Der Parameter $h$ wurde zwischen 0 und 3 variiert.}
     \label{fig:PlatteRheoGitter}
 \end{figure}
 %
+\begin{figure}[bt]
+    \centering
+    \includegraphics[width=\textwidth]{figures/plattenRheoFullCircAnnot.png}
+    \caption{Randbedingungen für die Simulation des Platte-Platte Rheometers. An der stationären Platte und der Wand gilt $\u=0$, die rotierende Platte besitzt die vorgegebene Geschwindigkeit $\u=r\cdot\omega$ und am Spalt wird ein Umgebungsdruck vorgegeben.}
+    \label{fig:plattenRheoFullcirc}
+\end{figure}
 
 Die resultierenden Werte für das Drehmoment sind in Tabelle \ref{fig:ResultingTorque} aufgeführt. Aufgrund der hohen Rechenzeit für feinere Auflösungen wurde entschieden, die Simulationen mit dem Netz $h=1$ durchzuführen.
 %
 \begin{table}
     \centering
-    \begin{tabular}{r r r r r r}
-        \textbf{h} \vline & 0 & 1 & 2 & 3 & 4\\
+    \begin{tabular}{r r r r r}
+        \textbf{h} \vline & 0 & 1 & 2 & 3\\
         \hline
-        \textbf{Quadr. Netz} \vline & 1.4178e-3 & 1.4353e-3 & 1.4443e-3 & 1.4479e-3 & ?.????e-3\\
+        \textbf{Quadr. Netz} \vline & 1.4178e-3 & 1.4353e-3 & 1.4443e-3 & 1.4479e-3\\
     \end{tabular}
     \caption{Resultierendes Drehmoment für verschiedene Netzauflösungen.
     In der ersten Zeile ist der die Auflösung bestimmende Parameter h aufgeführt, in der zweiten das resultierende Drehmoment bei der Simulation}
     \label{fig:ResultingTorque}
 \end{table}
-\todo{endgueltige Werte}
 %
 \subsubsection{Resultierende Parameter}
 Die in dieser Arbeit untersuchten Mörtel tragen die Bezeichnung \hit{} und \re{}, wobei bei beiden jeweils eine A und eine B Komponente existiert (Vergleiche Kapitel \ref{Kapitel:Auspressgeraet}).\\
@@ -223,36 +215,33 @@ Hier wurde die Viskositätsmessung durch den Ring verfälscht, was durch die Sim
         \multicolumn{1}{c}{$n$} \\
         \hline
         \hline
-        \multirow{2}{*}{\hit{}} & A & 199.98& 60.90& 0.62\\ 
-                                & B & 238.75& 34.45& 0.52\\ 
+        \multirow{2}{*}{\hit{}} & A & 199.983 & 60.89914 & 0.621 \\ 
+                                & B & 238.746 & 34.44884 & 0.525 \\ 
         \hline
-        \multirow{2}{*}{\re{}}  & A & 108.85& 35.22& 0.71\\ 
-        & B & 134.39& 37.83& 0.62
+        \multirow{2}{*}{\re{}}  & A & 148.407 & 25.15567 & 0.722 \\ 
+                                & B & 235.142 & 7.38446  & 0.76
     \end{tabular}
     \caption{Übersicht über die verwendeten Modellparameter für das Herschel-Bulkley Modell}
     \label{fig:resultParameter}
 \end{table}
 %
 \begin{figure}[tb]
-\noindent\makebox[\textwidth]{%
     %\centering
     \subfloat[\hit{} A]{
-        \includegraphics[width=0.6\textwidth]{figures/shearViscoMaxA.png}
+        \includegraphics[width=\textwidth]{figures/shearViscoMaxA.png}
         \label{fig:shearViscoHY:subA}
-    }
+    }\\
     \subfloat[\hit{} B]{
-        \includegraphics[width=0.6\textwidth]{figures/shearViscoMaxB.png}
+        \includegraphics[width=\textwidth]{figures/shearViscoMaxB.png}
         \label{fig:shearViscoHY:subB}
-        }} \\
-\noindent\makebox[\textwidth]{%
+   } \\
     \subfloat[\re{} A]{
-        \includegraphics[width=0.6\textwidth]{figures/shearViscoReA.png}
+        \includegraphics[width=\textwidth]{figures/shearViscoReA.png}
         \label{fig:shearViscoRE:subA}
-    }
+    }\\
     \subfloat[\re{} B]{
-        \includegraphics[width=0.6\textwidth]{figures/shearViscoReB.png}
+        \includegraphics[width=\textwidth]{figures/shearViscoReB.png}
         \label{fig:shearViscoRE:subB}
-    }
     }
     \caption{Viskosität abhängig von der Scherrate der Mörtel.\\Die Kreuze sind Messpunkte aus den beiden Rheometern, die rote Kurve der daran angepasste Fit.}
     \label{fig:shearVisco}
@@ -274,35 +263,33 @@ Dazu wurde ebenfalls die Python-Funktion \codeemph{leastsq} verwendet. Die resul
         \multicolumn{1}{c}{$\alpha$} \\
         \hline
         \hline
-        \multirow{2}{*}{\hit{}} & A & 0.01   & 3.81  & 15.97 & 0.05 & 3       \\ 
-                                & B & 0.002  & 0.18  & 40.12 & 0.65 & 1.8     \\ 
+        \multirow{2}{*}{\hit{}} & A & 0.018   & 6.81  & 3.597 & 0.015 & 2.1       \\ 
+                                & B & 0.01  & 0.18  & 46.12 & 0.612 & 1.8     \\ 
         \hline
-        \multirow{2}{*}{\re{}}  & A & 0.0012 & 9.43 & 26.37  & 0.13 & 1.64    \\ 
-                                & B & 0.01   & 7.8  & 70.12  & 0.04 & 2.3         
+        \multirow{2}{*}{\re{}}  & A & 0.012 & 9.43 & 40.372  & 0.0022 & 1.643    \\ 
+                                & B & 0.01   & 7.8  & 88.12  & 0.04 & 2.3         
     \end{tabular}
     \caption{Übersicht über die verwendeten Modellparameter für das Carreau-Yasuda Modell}
     \label{fig:relaxParameter}
 \end{table}
 %
 \begin{figure}[tb]
-\noindent\makebox[\textwidth]{%
     \subfloat[\hit{} A]{
-        \includegraphics[width=0.6\textwidth]{figures/shearLambdaMaxA.png}
+        \includegraphics[width=\textwidth]{figures/shearLambdaMaxA.png}
         \label{fig:shearLambdaHY:subA}
-    }
+    }\\
     \subfloat[\hit{} B]{
-        \includegraphics[width=0.6\textwidth]{figures/shearLambdaMaxB.png}
+        \includegraphics[width=\textwidth]{figures/shearLambdaMaxB.png}
         \label{fig:shearLambdaHY:subB}
-        }} \\
-\noindent\makebox[\textwidth]{%
+    }\\
     \subfloat[\re{} A]{
-        \includegraphics[width=0.6\textwidth]{figures/shearLambdaReA.png}
+        \includegraphics[width=\textwidth]{figures/shearLambdaReA.png}
         \label{fig:shearLambdaRE:subA}
-    }
+    }\\
     \subfloat[\re{} B]{
-        \includegraphics[width=0.6\textwidth]{figures/shearLambdaReB.png}
+        \includegraphics[width=\textwidth]{figures/shearLambdaReB.png}
         \label{fig:shearLambdaRE:subB}
-        }}
+    }
     \caption{Relaxationszeit abhängig von der Scherrate der Mörtel.\\Die Kreuze sind Messpunkte aus der Rheometermessung, die rote Kurve der daran angepasste Fit.}
     \label{fig:shearLambda}
 \end{figure}
@@ -328,20 +315,52 @@ Das verwendete Netz wurde so skaliert, dass die Auflösung nahe an der Einlassd�
     \includegraphics[height=10em]{figures/kapMeshZoomEckig.png}
     \label{fig:kapRheoSim:subB}
     }
-    \subfloat[Runde Ecke]{
-    %\includegraphics[width=0.35\textwidth]{figures/kapMeshZoomRund.png}
-    \includegraphics[height=10em]{figures/kapMeshZoomRund.png}
-    \label{fig:kapRheoSim:subC}
-    }
-    \caption{Der simulierte Teil des Kapillarrheometers. Die Einfärbung in \subref{fig:kapRheoSim:subA} ist nach der resultierenden Geschwindigkeit, in \subref{fig:kapRheoSim:subB} und \subref{fig:kapRheoSim:subB} kann man einen vergrösserten Ausschnitt des Netzes am Übergang zwischen Einlauf und kapillare sehen.}
+    \caption{Der simulierte Teil des Kapillarrheometers. Die Einfärbung in \subref{fig:kapRheoSim:subA} ist nach der resultierenden Geschwindigkeit, in \subref{fig:kapRheoSim:subB} kann man einen vergrösserten Ausschnitt des Netzes am Übergang zwischen Einlauf und Kapillare sehen.}
     \label{fig:kapRheoSim}
 \end{figure}
 
-Zur Untersuchung des Einfluss der harten Kante an der Einlassdüse wurde zusätzlich noch ein Netz mit einer abgerundeten Kante simuliert (Abbildung~\ref{fig:kapRheoSim:subC}).
-%
-Die Resultate sind in Tabelle \ref{fig:kapRheoResults} aufgefueh;rt.
+Die Resultate sind in Tabelle \ref{fig:kapRheoResults} aufgeführt.
+%Die Abweichungen liegen im Bereich von 0 bis 10\%, was für 
 
-\begin{todocontent}
-    \1 Einfluss visco
-\end{todocontent}
 %
+\begin{table}[bt]
+    \centering
+    \begin{tabular}{l c c c c r}
+        \multicolumn{1}{l}{\textbf{Mörtel}}& 
+        \multicolumn{1}{c}{\textbf{$v_\text{\tiny in}$}} & 
+        \multicolumn{3}{c}{$\Delta p$ [Bar]} & 
+        \multicolumn{1}{l}{\textbf{Fehler}} \\
+        & 
+        \multicolumn{1}{l}{[mm/s]} & 
+        \multicolumn{1}{l}{\textbf{Messung}} & 
+        \multicolumn{1}{l}{\textbf{Simulation}} &
+        \multicolumn{1}{l}{\textbf{Viskoelastisch}} &
+        \\
+        \hline
+        \multirow{5}{*}{\hit{} A} & 0.53 & 0.98 & 1.06 & & 6.98\%\\
+                                  & 1.07 & 1.46 & 1.53 & & 4.74\%\\
+                                  & 2.67 & 2.42 & 2.54 & & 4.53\%\\
+                                  & 6.02 & 4.22 & 4.09 & & 3.13\%\\
+                                  & 13.4 & 6.27 & 6.59 & & 4.76\%\\
+        \hline
+        \multirow{5}{*}{\hit{} B} & 0.13 & 0.55 & 0.64 & & 13.95\%\\
+                                  & 0.33 & 1.09 & 1.36 & & 19.68\%\\
+                                  & 0.75 & 1.33 & 1.36 & & 2.04\%\\
+                                  & 1.67 & 2.13 & 1.90 & & 11.82\%\\
+                                  & 3.34 & 3.12 & 2.65 & & 17.58\%\\
+        \hline
+        \multirow{5}{*}{\re{} A}  & 0.13 &  1.15 &  1.18 & & 2.16\%\\
+                                  & 0.33 &  2.35 &  2.37 & & 0.65\%\\
+                                  & 0.75 &  4.22 &  4.18 & & 1.01\%\\
+                                  & 1.67 &  6.56 &  8.66 & & 24.2\%\\
+                                  & 3.34 & 11.51 & 11.93 & & 3.49\%\\
+        \hline
+        \multirow{5}{*}{\re{} B}  & 0.13 & 1.04 & 0.95 & & 9.78\%\\
+                                  & 0.33 & 1.53 & 1.56 & & 1.92\%\\
+                                  & 0.75 & 2.62 & 2.56 & & 6.54\%\\
+                                  & 1.67 & 4.22 & 4.03 & & 4.77\%\\
+                                  & 3.34 & 6.19 & 6.42 & & 3.66\%\\
+    \end{tabular}
+    \caption{Die Messungen und Resultate der Kapillarrheometer-Simulation. Dabei wurde für den \hit{} A die 2mm Kapillare, für die anderen Mörtel die 1mm Kapillare verwendet.}
+    \label{fig:kapRheoResults}
+\end{table}
