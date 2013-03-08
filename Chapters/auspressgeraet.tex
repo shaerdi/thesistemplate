@@ -43,7 +43,7 @@ Das Mischen der beiden Komponenten geschieht in einem Mischer, der vorne am Ausp
 %
 Dieser Mischer kann jeweils nur einmal verwendet werden, weil der Mörtel ab dem Zeitpunkt des Mischens beginnt auszuhärten und so den Mischer verstopft, sobald das Auspressen gestoppt wird. Es ist deshalb im Interesse des Verbrauchers, dass der Mischer im Erwerb sehr preiswert ist. Trotzdem soll er die Komponenten möglichst gut mischen, da dies entscheidend für die maximale Zuglast der Dübel ist.
 
-Diese Ansprüche an das Gerät und den Mischer erfordern ein hohes Mass an Verständnis für die Vorgänge während dem Auspressen, weshalb sie in der Forschungsabteilung von Hilti ständig weiter vermessen, simuliert und verbessert werden.
+Diese Ansprüche an das Gerät und den Mischer erfordern ein hohes Mass an Verständnis für die Vorgänge wäh"-rend dem Auspressen, weshalb sie in der Forschungsabteilung von Hilti ständig weiter vermessen, simuliert und verbessert werden.
 %
 \subsection{Messaufbau}
 Das für die Mörtel verwendete Auspressgerät besteht zum grössten Teil aus Kunststoff. Da dieser selber elastische Eigenschaften besitzt, ist es sehr schwierig die viskoelastischen Eigenschaften eines Fluides zu bestimmen, das durch das Gerät fliesst.\\
@@ -84,7 +84,11 @@ Gemessen wird jeweils vor dem Durchströmen der Blende und vor dem Mischereingan
 %
 \subsection{Simulation}
 Durch den Vergleich der gemachten Messungen mit Simulationen sollen Aussagen über die Verlässlichkeit der verwendeten Modelle gemacht werden können.\\
-Dazu wurde die Geometrie der FEP und des Mischers virtuell nach gebaut und vernetzt. Dabei wurde darauf geachtet, dass die kritischen Regionen wie zum Beispiel die Blende in der FEP besonders fein vernetzt ist, während Regionen in denen erwartungsgemea;ss keine grosse Veränderung in den Variablen zu erwarten ist nur grob vernetzt sind. Ein Beispiel ist in Abbildung~\ref{fig:FEP_Gitter} und \ref{fig:Mischer_Gitter} zu sehen.
+Dazu wurde die Geometrie der FEP und des Mischers virtuell nach gebaut und vernetzt. Dabei wurde darauf geachtet, dass die kritischen Regionen wie zum Beispiel die Blende in der FEP besonders fein vernetzt sind, wäh"-rend Regionen in denen keine grosse Veränderung in den Variablen zu erwarten ist, nur grob vernetzt sind. Ein Beispiel ist in Abbildung~\ref{fig:FEP_Gitter} und \ref{fig:Mischer_Gitter} zu sehen.
+
+Aufgrund der variablen Viskosität mussten die viskoelastischen Simulationen mit sehr kleinen Zeitschritten gerechnet werden. Wegen der resultierenden langen Rechenzeit
+%und des kleinen Einflusses der Viskoelastizität \todo{Stimmt das?} 
+wurden für das Auspressgerät nur die scherratenabhängigen Modelle verwendet und keine viskoelastischen Simulationen durchgeführt.
 %
 \begin{figure}
     \centering
@@ -103,23 +107,22 @@ Dazu wurde die Geometrie der FEP und des Mischers virtuell nach gebaut und verne
 \end{figure}
 %
 
-Simuliert wurde mit den Lösern \codeemph{simpleFoam} und \codeemph{viscoelasticFluidFoam}. Dabei wurde stets eine stationäre Lösung angestrebt, bei der die Geschwindigkeit an den Einlässen vorgegeben wurde und dann gewartet wurde bis sich ein konstanter Gegendruck ausgebildet hatte. Das setzt voraus, dass der Einfluss des Kolbens mit einer konstanten Anströmung gleichgesetzt werden kann, was natürlich nur bei ausreichendem Abstand zwischen Kolben und Blende hinreichend genau stimmt.
+Simuliert wurde mit dem Löser \codeemph{simpleFoam}. Dabei wurde stets eine stationäre Lösung angestrebt, bei der die Geschwindigkeit an den Einlässen vorgegeben und dann gewartet wurde bis sich ein konstanter Gegendruck ausgebildet hatte. Das setzt voraus, dass der Einfluss des Kolbens mit einer konstanten Anströmung gleichgesetzt werden kann, was natürlich nur bei ausreichendem Abstand zwischen Kolben und Blende hinreichend genau stimmt.
 
-Die berechneten Felder waren bei \codeemph{simpleFoam} die Geschwindigkeit $\u$ und der Druck $p$. Als Randbedingung wurde für $\u$ beim Einlass ein konstanter Wert, beim Auslass ein Null-Gradient und an den Wänden eine no-slip Bedingung vorgegeben. Der Druck $p$ wurde am Einlass auf Null (oder Umgebungsdruck) gesetzt und an allen anderen Boundaries ein Null-Gradient vorgegeben.\\
+Die berechneten Felder waren die Geschwindigkeit $\u$ und der Druck $p$. Als Randbedingung wurde für $\u$ beim Einlass ein konstanter Wert, beim Auslass ein Null-Gradient und an den Wänden eine no-slip Bedingung vorgegeben. Der Druck $p$ wurde am Einlass auf Null (oder Umgebungsdruck) gesetzt und an allen anderen Boundaries ein Null-Gradient vorgegeben.\\
 Für die Startlösung wurde wann immer möglich die Werte einer früheren Rechnung genommen. Dadurch kann die Konvergenzzeit drastisch verringert werden. \\
 Falls für ein Netz keine alte Startwerte existierten, wurden alle Werte von $p$ und $\u$ im inneren auf Null gesetzt. Das ist vor allem für den Mischer eine eher schlechte Anfangsbedingung, weshalb hier nur Konvergenz erreicht werden konnte wenn die Relaxationsparameter hinreichend klein gewählt wurden.\\
 Die Viskosität $\eta$ ist direkt abhängig von $\u$ und musste deshalb bei Start- oder Randbedingungen nicht berücksichtigt werden.
-
-\codeemph{viscoelasticFluidFoam} arbeitet mit den drei Feldern Geschwindigkeit $\u$, Druck $\p$ und Schubspannungstensor $\tau$. Start- und Randbedingungen für $\u$ und $p$ wurden gleich wie beim Löser \codeemph{simpleFoam} behandelt, bei $\tau$ wurde am Einlass ein konstanter Wert von Null vorgegeben, an Wänden und beim Auslass wurde der Gradient auf Null gesetzt.
 %
 \subsection{Ergebnisse}
-Für die Validierung der Simulationen standen Messungen mit unterschiedlichen Mörteln, Kolbengeschwindigkeiten und Blendendurchmessern bei der FEP zur Verfügung. Da bei der Messung am Auslass der FEP ein Mischer montiert wurde, konnte mit einer Messung an den beiden Druckaufnehmern jeweils gleich der Druckverlust über die Blende und der Druckverlust im Mischer gemessen werden.
+Für die Validierung der Simulationen standen Messungen mit un"-ter"-schiedli"-chen Mörteln, Kolbengeschwindigkeiten und Blendendurchmessern bei der FEP zur Verfügung. Da bei der Messung am Auslass der FEP ein Mischer montiert wurde, konnte mit einer Messung an den beiden Druckaufnehmern jeweils gleich der Druckverlust über die Blende und der Druckverlust im Mischer gemessen werden.
 
 In den Simulationen wurde der Mischer und die FEP separat behandelt, da dadurch die Konvergenz beschleunigt werden konnte. Eine Kontrollsimulation mit einer kompletten Geometrie von FEP und Mischer hat ergeben, dass dadurch keine Einbussen bei der Genauigkeit entstehen.
 
+
 \subsubsection{FEP}
-Bei der FEP wurden acht Messungen durchgeführt, mit je zwei Mörteln, zwei Kolbengeschwindigkeiten und zwei Blendenkonfigurationen.
-In Tabelle~\ref{fig:fepVergleich} sind die gemessenen und die simulierten Druckverluste über die Blende aufgeführt für die Simulationen mit den rein Scherratenabhängigen Modellen. Der Druckverlust wurde dabei jeweils auf der Seite gemessen, die der eingefüllten Mörtelkomponente entspricht.
+Bei der FEP wurden acht Messungen durchgeführt, mit je zwei Mörteln, zwei Kolben"-ge"-schwindig"-kei"-ten und zwei Blendenkonfigurationen. Eine Bei"-spiel"-kon"-fi"-gura"-tion mit Blendendurchmesser $\emptyset_A=10mm$ und $\emptyset_B=4mm$ ist in Abbildung~\ref{fig:fepSimResult} zu sehen.\\
+In Tabelle~\ref{fig:fepVergleich} sind die gemessenen und die simulierten Druck"-verluste über die Blende aufgeführt für die Simulationen mit den rein Scherratenabhängigen Modellen. Der Druckverlust wurde dabei jeweils auf der Seite gemessen, die der eingefüllten Mörtelkomponente entspricht.
 %
 \begin{table}[tb]
 \noindent\makebox[\textwidth]{%
@@ -169,14 +172,23 @@ In Tabelle~\ref{fig:fepVergleich} sind die gemessenen und die simulierten Druckv
     \caption{Die gemessenen und simulierten Konfigurationen der FEP mit den rein Scherratenabhängigen Modellen. Der Druck wurde auf der Seite der entsprechenden Mörtelkomponente gemessen.}
     \label{fig:fepVergleich}
 \end{table}
+%
+\begin{figure}[htb]
+    \centering
+    \rotatebox{90}{
+    \includegraphics[width=0.5\textwidth]{figures/fepSim.PNG}
+    }
+    \caption{Eine Simulation der Funktionsersatzprüfung. Unten die Druckverteilung mit eingezeichneten Stromlinien, oben die variable Vikosität. Schön zu sehen ist das blockartige Strömen des Mörtels im Einlaufkolben anhand des grossen roten Gebietes hoher Viskosität und die abrupte Abnahme der Viskosität in den Blenden.}
+    \label{fig:fepSimResult}
+\end{figure}
 
 Die simulierten Widerstände sind in der Tendenz konsistent mit der Messung. Die absoluten Werte zeigen eine Abweichung von bis zu 50\%. Dies zeigt einerseits, dass die verwendeten Modelle und Parameter noch nicht vollständig in der Lage sind, die Realität zu simulieren. So liegen die Scherraten, die in der engen 2mm Blende auftreten, in einem Bereich der im Kapillarrheometer nicht mehr auftritt. Die Viskosität in diesem Bereich wird also vom Modell extrapoliert.\\
 Andererseits ist es möglich, dass ein Teil der Abweichung auf die Messungenauigkeit der Messgeräte zurückgeführt werden kann. Diese besitzen im gemessenen Bereich von 0.2 bis 0.6 Bar eine Unsicherheit von bis zu 30\%.
 %
 \subsubsection{Mischer}
 Da beim Mischer keine Blenden eingelegt werden, gibt es nur noch acht statt 16 verschiedene Konfigurationen. Diese bestehen aus je einem von vier Mörteln und einer von zwei Einlassgeschwindigkeiten.
-Die Einlassgeschwindigkeit bei der Messung wird bestimmt durch die Kolbengeschwindigkeit der FEP, da die Systeme gekoppelt sind. Für die Simulation wurde der entsprechende Volumenstrom bei der FEP genommen und daraus die Einlassgeschwindigkeit bestimmt, da der Mörtel als inkompressibel behandelt wird.
-In Tabelle~\ref{fig:mischerVergleich} sind die gemessenen und die simulierten Druckverluste über den Mischer aufgeführt.
+Die Einlassgeschwindigkeit bei der Messung wird bestimmt durch die Kolben"-gesch"-windig"-keit der FEP, da die Systeme gekoppelt sind. Für die Simulation wurde der entsprechende Volumenstrom bei der FEP genommen und daraus die Einlassgeschwindigkeit bestimmt, da der Mörtel als inkompressibel behandelt wird.
+In Tabelle~\ref{fig:mischerVergleich} sind die gemessenen und die simulierten Druckverluste über den Mischer aufgeführt, in Abbildung~\ref{fig:mischerSimResult} ist eine Beispielsimulation zu sehen.
 %
 \begin{table}[tb]
 \noindent\makebox[\textwidth]{%
@@ -208,11 +220,12 @@ In Tabelle~\ref{fig:mischerVergleich} sind die gemessenen und die simulierten Dr
     \caption{Die gemessenen und simulierten Konfigurationen des Mischers mit den rein scherratenabhängigen Modellen.}
     \label{fig:mischerVergleich}
 \end{table}
-
+%
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/MischerSimResult.png}
+    \caption{Eine Simulation des statischen Mischers des Hilti Auspressgerätes. Die Viskosität in den schwach gescherten Gebieten ist deutlich höher (rot) ist als in den stark gescherten (blau). Die weissen und schwarzen Stromlinien sollen den Mischvorgang der beiden Mörtel-Komponenten verdeutlichen.}
+    \label{fig:mischerSimResult}
+\end{figure}
+%
 %Die Abweichungen bei der Simulation des Mischers sind, relativ gesehen, deutlich geringer als beim Druckverlust über die Blenden in der FEP. Einer der Gründe dafür ist, dass die Scherraten nun in einem Bereich sind, der auch vermessen wurde. Zudem liegen die Drücke nun in einem Bereich, in dem die Messgeräte deutlich genauer messen konnten. 
-
-\begin{todocontent}
-    \1 Resultat Simulation (Bilder)
-    \1 Druckvergleich
-    \1 Einfluss Viskoelastizitaet
-\end{todocontent}

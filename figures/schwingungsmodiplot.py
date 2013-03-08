@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 fig = plt.figure()
 ax = fig.add_subplot(111)
 
+plt.rcParams.update({'font.size':22})
+
 # gamma und gammap
 t = np.arange(0.0, 2.0, 0.01)
 n = np.size(t)
@@ -31,7 +33,7 @@ plt.xlabel('t')
 plt.ylabel('Auslenkung und Scherung')
 fig.show()
 fig.set_size_inches((15,5),forward=True)
-fig.savefig("SchwingungsmodiA")
+fig.savefig("/home/simon/Documents/ETH/Master-Thesis/Thesis/figures/SchwingungsmodiA")
 
 # Antwort
 fig = plt.figure()
@@ -70,4 +72,4 @@ plt.xlabel('t')
 plt.ylabel('Widerstand')
 plt.show()
 fig.set_size_inches((15,5),forward=True)
-fig.savefig("SchwingungsmodiB")
+fig.savefig("/home/simon/Documents/ETH/Master-Thesis/Thesis/figures/SchwingungsmodiB")

@@ -1,14 +1,16 @@
 \section{Bestimmung und Verifikation der Materialparameter}
 \label{Kapitel:Parameter}
-Um eine realistische Simulation zu ermöglichen, ist es notwendig die verwendeten Modelle möglichst genau an Rheometer-Messdaten der realen Mörtel anzupassen. Dazu können die materialabhängigen Parameter in den Modellen variiert werden.\\
-Für einige der Mörtel wurden die Parameter, die im verwendeten Modell~\eqref{eq:modHB} vorkommen, schon in früheren Arbeiten bestimmt. \\
-Einerseits wurden aber in der Zwischenzeit neue Mörtel entwickelt und andererseits ist es wünschenswert, ein Tool zur automatischen Bestimmung dieser Parameter zu haben das unabhängig von Drittanbietern in Form von Lizenzen und Support ist. \\
+Um eine realistische Simulation zu ermöglichen, ist es notwendig die verwendeten Mo\-delle möglichst genau an Rheometer-Messdaten der realen Mörtel anzupassen. Dazu können die materialabhängigen Parameter in den Modellen variiert werden.\\
+Für einige der Mörtel wurden die Parameter, die im verwendeten Herschel-Bulkley Modell~\eqref{eq:modHB} vorkommen, schon in früheren Arbeiten bestimmt. \\
+Einerseits wurden aber in der Zwischenzeit neue Mörtel entwickelt und andererseits ist es wünschenswert, ein Tool zur automatischen Bestimmung dieser Parameter zu haben, das unabhängig von Drittanbietern in Form von Lizenzen und Support ist. \\
 Dies wurde mithilfe einer Kombination aus \openfoam{} und der Programmiersprache Python umgesetzt.
 %
 \subsection{Rheometer}
 Rheometer sind Messgeräte, mit denen man die Fliesskurve von nicht-Newtonschen Fluiden experimentell bestimmen kann.
-Dabei wird das Fluid in eine stationäre, laminare Schichtenströmung versetzt, die es erlaubt anhand einer vom Gerät abhängigen Messgrösse die Viskosität abhängig von der Scherrate zu bestimmen.
-Die Messungen wurden von einem Hilti-internen Rheologen durchgeführt. Verwendet wurden zwei Messgeräte, ein Platte-Platte Rheometer und ein Kapillarrheometer.
+Dabei wird das Fluid in eine stationäre, laminare Schichtenströmung versetzt. Dadurch ist es möglich, anhand einer
+%vom Gerät abhängigen 
+Messgrösse die Viskosität abhängig von der Scherrate zu bestimmen.
+Die Messungen wurden von einem Hilti-internen Rheo\-logen durchgeführt. Verwendet wurden zwei Messgeräte, ein Platte-Platte Rheometer und ein Kapillarrheometer.
 %
 \subsubsection{Platte-Platte Rheometer}
 \label{Kapitel:Parameter:PlattePlatteRheo}
@@ -30,12 +32,12 @@ Das Platte-Platte Rheometer besteht aus zwei zylindrischen Platten, die so monti
 Die Flüssigkeit wird in diesem Scherspalt platziert, der in radialer Richtung von einem Ring abgeschlossen werden kann. Beim Messvorgang wird die eine Platte fixiert, die andere mit einer vorgegebenen Geschwindigkeit $\omega$ gedreht.
 Dabei wird das benötigte Drehmoment gemessen, das für die Drehgeschwindigkeit aufgewendet werden muss.
 
-Die zur Auswertung der Viskosität aus dem Drehmoment verwendete Formel lautet:
+Die zur Auswertung der Viskosität aus dem Drehmoment verwendete Formel lautet
 \begin{equation}
     \label{eq:platterheovisko}
-    \eta\left( \gammap \right) = \frac{2M}{\pi R^3 \gammap}\left( \frac{3+n}{4} \right) \text{ mit } n=\frac{d\ln M}{d\ln\gammap}
+    \eta\left( \gammap \right) = \frac{2M}{\pi R^3 \gammap}\left( \frac{3+n}{4} \right) \text{ mit } n=\frac{d\ln M}{d\ln\gammap}.
 \end{equation}
-Wobei \nom[rv:M]{$M$}{Drehmoment} das notwendige Drehmoment ist und \nom[rv:R]{$R$}{Plattenradius des Platte-Platte Rheometers} der Radius der verwendeten Platten.
+Dabei ist \nom[rv:M]{$M$}{Drehmoment} das notwendige Drehmoment und \nom[rv:R]{$R$}{Plattenradius des Platte-Platte Rheometers} der Radius der verwendeten Platten.
 Für eine Herleitung dieser Formel wird auf \cite{introtorheo} verwiesen.
 
 Das Platte-Platte Rheometer eignet sich ebenfalls dazu, zeitabhängige Effekte wie die Relaxationszeit eines viskoelastischen Fluids zu messen.
@@ -45,7 +47,7 @@ Bei diesem Vorgang, der Oszillationsmessung genannt wird, kann anhand der result
 Die sinusförmige Deformation \nom[gv:gamma]{$\gamma$}{Scherung} des Fluides verursacht dabei einen ebenfalls sinusförmigen Widerstand, der durch eine Schubspannung \nom[gv:tau]{$\tau$}{Schubspannung} im Fluid zustandekommt.\\
 Bei einem ideal viskosem Fluid ist dieser mit der Deformation um 90$^\circ$ phasenverschoben, da der Widerstand proportional zur Schergeschwindigkeit $\gammap$ der Flüssigkeit ist.\\
 Bei einem ideal elastischen Material ist der Widerstand in Phase mit der Deformation, da er direkt proportional zur Verzerrung $\gamma$ des Materials ist.\\
-Ein viskoelastisches Fluid besitzt die Eigenschaften beider Materialien und hat deshalb einen Antwort-Widerstand, der um einen Winkel zwischen 0 und 90$^\circ$ phasenverschoben ist. Dieser Zusammenhang ist in Abbildung~\ref{fig:schwingungsmodi} dargestellt.
+Ein viskoelastisches Fluid besitzt die Eigenschaften beider Materialien und hat deshalb einen Antwort-Widerstand, der um einen Winkel zwischen 0$^\circ$ und 90$^\circ$ phasenverschoben ist. Dieser Zusammenhang ist in Abbildung~\ref{fig:schwingungsmodi} dargestellt.
 
 Diese Beziehungen können als Zusammenhang zwischen Schubspannung $\tau$ und Zeit $t$ ausgedrückt werden:
 \begin{align}
@@ -56,7 +58,7 @@ Diese Beziehungen können als Zusammenhang zwischen Schubspannung $\tau$ und Zei
 \end{align}
 Dabei ist \nom[gv:omega]{$\omega$}{Kreisfrequenz} die Kreisfrequenz und \nom[rv:gammah]{$\hat\gamma$}{Scherungsamplitude beim Platte-Platte Rheometer} die Amplitude der am Rheometer angelegten Schwingung, $\eta$ die Viskosität des Fluids und \nom[rv:Gs]{$G'$}{Elastizitätsmodul} das Elastizitätsmodul des elastischen Materials. Der Term $\eta\cdot\omega$ wird auch als Verlustmodul \nom[rv:Gss]{$G''$}{Verlustmodul} bezeichnet.
 
-Anhand von $G'$ und $G''$ können die viskoelastischen Eigenschaften wie z.B. die Relaxationszeit eines Fluids bestimmt werden.
+Anhand der aus den Messungen resultierenden Grössen $G'$ und $G''$ können die viskoelastischen Eigenschaften wie z.B. die Relaxationszeit eines Fluids bestimmt werden.
 
 \begin{figure}[tb]
     \centering
@@ -76,12 +78,12 @@ Anhand von $G'$ und $G''$ können die viskoelastischen Eigenschaften wie z.B. di
 \end{figure}
 %
 \subsubsection{Kapillarrheometer}
-Das Kapillarrheometer kann wie das Platte-Platte Rheometer zur Bestimmung der scherratenabhängigen Viskosität verwendet werden. Das Fluid wird dabei aber nicht gedreht, sondern durch eine zylinderförmige Kapillare gepresst. Als Messgrösse dient dabei der Druckunterschied.\\
+Das Kapillarrheometer kann wie das Platte-Platte Rheometer zur Bestimmung der scherratenabhängigen Viskosität verwendet werden. Das Fluid wird dabei aber nicht gedreht, sondern durch eine zylinderförmige Ka\-pil\-la\-re gepresst. Als Messgrösse dient dabei der Druckunterschied.\\
 Um dabei den durch das Mitmessen des Einlaufdruckverlustes (Bagley-Druck) gemachten systematischen Fehler zu korrigieren, wird meistens parallel zum eigentlichen Kapillarrheomter auch noch der Druckverlust in einer Nullblende gemessen, wie in Abbildung~\ref{fig:kapRheo} dargestellt.
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{figures/KapRheo.png}
-    \caption{Eine schematische Darstellung des Kapillarrheometers. Links ist der Einlaufkolben mit anschliessender Kapillare zu sehen, rechts ist der Einlaufkolben ohne Kapillare zur Messung des Bagley-Druckes.\\
+    \caption{Eine schematische Darstellung des Kapillarrheometers. Links ist der Einlaufkolben mit anschliessender Kapillare zu sehen, rechts ist der Einlaufkolben ohne Ka\-pil\-la\-re zur Messung des Bagley-Druckes.\\
     Bildquelle: Marco Lüchinger.}
     \label{fig:kapRheo}
 \end{figure}
@@ -105,12 +107,12 @@ Mit Hilfe von \eqref{eq:KapRheoTau} und \eqref{eq:KapRheoScherrate} lässt sich 
 \begin{equation}
     \eta(\gammap) = \frac{\tau}{\gammap}
 \end{equation}
-mit dem gemessenen Druckunterschied bei einem vorgegebenen Volumenstrom bestimmen.
+mit dem gemessenen Druckunterschied bei einem vor"-ge"-ge"-be"-nen Volumenstrom bestimmen.
 %
 %
 \subsection{Korrektursimulation}
 \label{Kapitel:Korrektursimulation}
-Die in Kapitel \ref{Kapitel:Parameter:PlattePlatteRheo} beschriebenen Rheometer messen das für eine vorgegebene Geschwindigkeit benötigte Drehmoment. Daraus kann die Viskosität des Fluides berechnet werden.\\
+Die in Kapitel \ref{Kapitel:Parameter:PlattePlatteRheo} beschriebenen Rheometer messen das für eine vor"-ge"-ge"-be"-ne Geschwindigkeit benötigte Drehmoment. Daraus kann die Viskosität des Fluides berechnet werden.\\
 Um zu verhindern, dass der Mörtel während der Messung in radialer Richtung aus dem Gerät fliesst, wurde um den Scherspalt ein Ring montiert (Abbildung~\ref{fig:platteRheoSchema:subB}). Dadurch wird zwar ein Herausfliessen verhindert, gleichzeitig wird aber die Messung verfälscht. Der Ring ist eine zusätzliche Wand an der das Fluid entlangströmen muss. Die Wandhaftung hat ein erhöhtes Drehmoment und damit eine höhere gemessene Viskosität zur Folge.
 
 Um trotzdem eine zuverlässige Bestimmung der Modell-Parameter zu ermöglichen, ist es notwendig diesen Ring im Parameterfit zu berücksichtigen. Dazu wird nicht die gemessene Viskosität verwendet, sondern versucht die Modell-Parameter so anzupassen, dass eine Simulation des Platte-Platte Rheometers eine möglichst genaue Approximation des Drehmoments ergibt.
@@ -134,9 +136,9 @@ Eingefärbt ist das Bild nach der resultierenden Geschwindigkeitsverteilung im R
 \subsection{Parameterfit}
 Die in Kapitel \ref{Kapitel:Korrektursimulation} beschriebene Wahl der Parameter ist ein nichtlineares Ausgleichsproblem. Dabei soll die Gleichung \eqref{eq:modHB} möglichst gut an Mess- und Simulationsdaten gefittet werden, indem die Parameter $\tau_0$, $K$ und $n$ variiert werden.
 
-Für die Lösung dieses Ausgleichproblemes wurde die Programmiersprache Python verwendet. Die Tatsache dass sie, ebenso wie \openfoam{}, frei verfügbar ist und dass es eine grosse Anzahl schon implementierte numerische Algorithmen gibt machen Python zur idealen Wahl dafür.
+Für die Lösung dieses Ausgleichproblemes wurde die Programmiersprache Python verwendet. Die Tatsache dass sie, ebenso wie \openfoam{}, frei verfügbar ist und dass es eine grosse Anzahl schon implementierter numerische Algorithmen gibt machen Python zur idealen Wahl dafür.
 
-Die Optimierung wurde als Python Modul \codeemph{MaT\_Optimizer} implementiert. Dabei wurde auf die Bibliotheken \codeemph{Numpy} und \codeemph{Scipy} \cite{scipy} zurückgegriffen um verschiedene Standardfunktionen zur Verfügung zu haben.\\
+Die Optimierung wurde als Python Modul \codeemph{MaT\_Optimizer} implementiert. Dabei wurde auf die Bibliotheken \codeemph{Numpy} und \codeemph{Scipy} \cite{scipy} zurückgegriffen, um verschiedene Standardfunktionen zur Verfügung zu haben.\\
 Das Ausgleichsproblem wird dabei mittels der Funktion \codeemph{leastsq} aus dem Modul \codeemph{optimize} von \codeemph{Scipy} gelöst.
 Diese Funktion ist eine Implementierung des Levenberg-Marquardt Algorithmus, der das Problem auf eine iterative Weise löst.\\
 Dazu wird eine eine enge Kopplung von Python und \openfoam{} nötig, da die Auswertung der Funktion, an die gefittet werden soll, eine Reihe von Simulationen ist.
@@ -145,16 +147,16 @@ Diese Kopplung wurde dabei mit Hilfe von \codeemph{PyFoam} \cite{pyfoam} realisi
 
 Um den Prozess der Parameter-Optimierung zu beschleunigen, wurde aus"-serdem die Bibliothek \codeemph{Parallel Python} \cite{parallelpython} verwendet. Da eine Funktions"-auswertung eine ganze Reihe Simulationen beinhaltet, wird dazu viel Zeit benötigt. Diese Simulationen sind aber unabhängig voneinander und können deshalb sehr einfach parallelisiert werden. Mit \codeemph{Parallel Python} können beliebig viele Prozessoren für den Parameterfit verwendet werden.
 
-Die gemessenen Daten des Kapillarrheometers werden bereits bei der Messung durch die Verwendung des Bagley-Druckes korrigiert. Hier muss also keine Korrektursimulation durchgeführt werden. Die Daten können direkt für die Optimierung verwendet werden. Dies wird im Python Code berücksichtigt indem der Unterschied zwischen gemessenen und aus den Modell-Parametern berechneten Druckunterschiede direkt an die Fehlerfunktion angehängt wird.
+Die gemessenen Daten des Kapillarrheometers werden bereits bei der Messung durch die Verwendung des Bagley-Druckes korrigiert. Hier muss also keine Korrektursimulation durchgeführt werden; die Daten können direkt für die Optimierung verwendet werden. Dies wird im Python Code berücksichtigt indem der Unterschied zwischen gemessenen und aus den Modell-Parametern berechneten Druckunterschiede direkt an die Fehlerfunktion angehängt wird.
 
-Die genaue Dokumentation des Moduls kann in Anhang \ref{Appendix:Python} gefunden werden.
+Die genaue Dokumentation des \codeemph{MaT\_Optimizer} Moduls kann in Anhang~\ref{Appendix:Python} gefunden werden.
 %
 %\begin{lstlisting}[language=Python]
 %plsq,res = leastsq(errFunc, initialParam, args=argList, maxfev=100)
 %\end{lstlisting}
 \subsection{Ergebnisse}
 Die Anpassung der Parameter an gegebene Messdaten geschieht dank der Verwendung des \codeemph{MaT\_Optimizer} Moduls komplett automatisch. 
-Die benötigte Zeit hängt stark von der Anzahl verwendeter Prozessoren und dem Anfangsschätzer ab.
+Die be"-nö"-tig"-te Zeit hängt stark von der Anzahl verwendeter Prozessoren und dem Anfangsschätzer ab.
 %
 \subsubsection{Methoden Verifikation}
 Zur Verifikation des Verfahrens wurde einerseits die Qualität des Parameterfits anhand der vorgegebenen Messdaten beurteilt und andererseits die resultierenden Parameter für schon vermessene Mörtel mit alten Resultaten verglichen.
@@ -170,7 +172,7 @@ Da die Rechenzeit einer einzelnen Simulation durch die grosse Anzahl an Simulati
 
 Dazu wurde das resultierende Drehmoment bei der Verwendung verschiedener Netze verglichen. Simuliert wurde das Platte-Platte Rheometer mit Ring, mit einer \glqq{}no-slip\grqq{} Randbedingung an der unteren Platte und am Ring, einer konstanten Drehgeschwindigkeit von $\omega=10$ rad/s und einem offenen Spalt zwischen oberer Platte und dem Ring (Abbildung~\ref{fig:plattenRheoFullcirc}). 
 
-Das verwendete Netz, dargestellt in Abbildung~\ref{fig:PlatteRheoGitter} ist ein hexaedrisches Gitter mit einer Zelle in tangentialer Richtung und einer Diskretisierungslänge von $2^{-h} \cdot 0.2\mbox{mm}$, wobei $h\in\left\{ 0,1,2,3 \right\}$.
+Das verwendete Netz, dargestellt in Abbildung~\ref{fig:PlatteRheoGitter}, ist ein hexaedrisches Gitter mit einer Zelle in tangentialer Richtung und einer Diskretisierungslänge von $2^{-h} \cdot 0.2\mbox{mm}$, wobei $h\in\left\{ 0,1,2,3 \right\}$.
 %
 \begin{figure}[tb]
     \centering
@@ -181,8 +183,37 @@ Das verwendete Netz, dargestellt in Abbildung~\ref{fig:PlatteRheoGitter} ist ein
 %
 \begin{figure}[bt]
     \centering
-    \includegraphics[width=\textwidth]{figures/plattenRheoFullCircAnnot.png}
-    \caption{Randbedingungen für die Simulation des Platte-Platte Rheometers. An der stationären Platte und der Wand gilt $\u=0$, die rotierende Platte besitzt die vorgegebene Geschwindigkeit $\u=r\cdot\omega$ und am Spalt wird ein Umgebungsdruck vorgegeben.}
+    %\includegraphics[width=\textwidth]{figures/plattenRheoFullCircAnnot.png}
+    \subfloat[Ohne Ring]{
+    \begin{tikzpicture}[scale=0.7]
+        \draw[fill=lightgray] (0,0) -- ++ (5,0) -- ++ (0,2) -- ++ (-5,0) -- ++ (0,-2);
+        \draw[ultra thick,<->] (1,0) -- (0,0) -- (0,1);
+        \node[left] at (0,1) {z};
+        \node[below] at (1,0) {r};
+        \node[below] at (3,0) {$\u=0$};
+        \node[below] at (5,0) {R};
+        \node[right] at (5,1) {$\frac{\partial\u}{\partial r}=0$};
+        \node[above] at (3,2) {$\u=r\cdot\omega$};
+    \end{tikzpicture}
+    }
+    \subfloat[Mit Ring]{
+    \begin{tikzpicture}[scale=0.7]
+        \path[fill=lightgray] (0,0) -- ++ (5,0) -- ++ (0,2) -- ++ (-5,0) -- ++ (0,-2);
+        \draw[fill=lightgray] (5,0) -- ++ (1,0) -- ++ (0,2) -- ++ (-1,0) ;
+        \draw (0,0) -- ++ (5,0) -- ++ (0,2) -- ++ (-5,0) -- ++ (0,-2);
+        %\draw (6,0) -- (6,2);
+        \draw[ultra thick,<->] (1,0) -- (0,0) -- (0,1);
+        \node[left] at (0,1) {z};
+        \node[below] at (1,0) {r};
+        \node[below] at (3,0) {$\u=0$};
+        \node[below] at (5,0) {R};
+        \node[below right] at (6,0) {R+S};
+        \node[right] at (6,1) {$\u=0$};
+        \node[above] at (3,2) {$\u=r\cdot\omega$};
+        \node[above] at (5.5,2) {$\frac{\partial\u}{\partial r}=0$};
+    \end{tikzpicture}
+    }
+    \caption{Randbedingungen für die Simulation des Platte-Platte Rheometers. An der stationären Platte und der Wand gilt $\u=0$, die rotierende Platte besitzt die vorgegebene Geschwindigkeit $\u=r\cdot\omega$ und den freien Oberflächen wird Umgebungsdruck vorgegeben.}
     \label{fig:plattenRheoFullcirc}
 \end{figure}
 
@@ -249,7 +280,7 @@ Hier wurde die Viskositätsmessung durch den Ring verfälscht, was durch die Sim
 %
 \subsubsection{Relaxationszeit}
 Bei den Simulationen mit dem viskoelastischen White-Metzner Materialmodell \eqref{eq:whiteMetznerModell} wird zusätzlich zu der scherratenabhängigen Viskosität auch ein Modell für die Relaxationszeit benötigt.\\
-Das dazu verwendete Carreau-Yassuda Modell \eqref{eq:fg:carreauyasuda} benötigt die fünf Parameter $\eta_{\inf}$, $\eta_0$, $L$, $\alpha$ und $n_{\lambda}$. Da die Messung der Relaxationszeit keine Korrektursimulation benötigt, kann das Modell direkt an die Messdaten gefittet werden.
+Das dazu verwendete Carreau-Yassuda Modell \eqref{eq:fg:carreauyasuda} besitzt die fünf Parameter $\eta_{\inf}$, $\eta_0$, $L$, $\alpha$ und $n_{\lambda}$. Da die Messung der Relaxationszeit keine Kor"-rek"-tur"-si"-mu"-la"-ti"-on benötigt, kann das Modell direkt an die Messdaten gefittet werden.
 Dazu wurde ebenfalls die Python-Funktion \codeemph{leastsq} verwendet. Die resultierenden Werte sind in Tabelle \ref{fig:relaxParameter} dargestellt, in Abbildung~\ref{fig:shearLambda} sind die Messpunkte und der entsprechende Fit in einem Relaxationszeit - Scherraten Diagramm gezeigt.
 \begin{table}
     \centering
@@ -295,7 +326,7 @@ Dazu wurde ebenfalls die Python-Funktion \codeemph{leastsq} verwendet. Die resul
 \end{figure}
 %
 \subsubsection{Simulation Kapillarrheometer}
-Das Kapillarrheometer musste für die Anpassung der Parameter nicht simuliert werden. Um eine weitere Kontrollmöglichkeit über die Verlässlichkeit der Parameter zu haben wurden deshalb Simulationen des Kapillarrheometers mit Messwerten verglichen.
+Das Kapillarrheometer musste für die Anpassung der Parameter nicht si"-mu"-liert werden. Um eine weitere Kontrollmöglichkeit über die Verlässlichkeit der Parameter zu haben wurden deshalb Simulationen des Kapillarrheometers mit Messwerten verglichen.
 
 Zur Vermessung des Mörtels wurden zwei Kapillarrheometer mit verschiedenen Kapillaren verwendet. Die Eine hat eine Länge von $L_\text{\tiny Kap}=32\mbox{mm}$ und einen Durchmesser von $R_\text{\tiny Kap}=1\mbox{mm}$, während die andere mit $L_\text{\tiny Kap}=16\mbox{mm}$ und $R_\text{\tiny Kap}=0.5\mbox{mm}$ nur halb so gross ist.\\
 Dabei wurden sowohl Simulationen mit dem rein scherratenabhängigen Modell als auch mit dem viskoelastischen Materialmodell durchgeführt.
@@ -352,7 +383,7 @@ Die Resultate sind in Tabelle \ref{fig:kapRheoResults} aufgeführt.
         \multirow{5}{*}{\re{} A}  & 0.13 &  1.15 &  1.18 & & 2.16\%\\
                                   & 0.33 &  2.35 &  2.37 & & 0.65\%\\
                                   & 0.75 &  4.22 &  4.18 & & 1.01\%\\
-                                  & 1.67 &  6.56 &  8.66 & & 24.2\%\\
+                                  & 1.67 &  6.56 &  7.21 & & 8.95\%\\
                                   & 3.34 & 11.51 & 11.93 & & 3.49\%\\
         \hline
         \multirow{5}{*}{\re{} B}  & 0.13 & 1.04 & 0.95 & & 9.78\%\\

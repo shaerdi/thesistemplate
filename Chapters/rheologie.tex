@@ -17,7 +17,7 @@ Um die Impulsgleichung zu schliessen, ist eine Relation zwischen wirkender Kraft
 
 %Rheologie ist die Wissenschaft über das Verhalten von Stoffen unter Einfluss äusserer Kräfte. Es wird untersucht wie Festkörper, Flüssigkeiten und Gase reagieren wenn sie deformiert werden.
 Rheologie ist die Wissenschaft über die Verformung und das Fliessen von Stoffen.
-Ein idealer hookscher Festkörper reagiert auf eine Verformung mit einer zur Deformation proportionalen Spannung. Wird keine Kraft mehr auf den Festkörper ausgeübt, führt diese Spannung zu einer Rückkehr zum Anfangszustand. Ein ideales Fluid hingegen setzt einer Verformung zwar einen Widerstand entgegen, baut aber keine Spannung auf. Der Betrag dieses Widerstands ist abhängig von der \glqq{}Flüssigkeit\grqq{} des Fluids, der Viskosität.\\
+Ein idealer hookscher Festkörper reagiert auf eine Verformung mit einer zur Deformation proportionalen Spannung. Wird keine Kraft mehr auf den Festkörper ausgeübt, führt diese Spannung zu einer Rückkehr zum Anfangszustand. Ein ideales Fluid hingegen setzt einer Verformung zwar einen Widerstand entgegen, baut aber keine Spannung auf. Der Betrag dieses Widerstands ist abhängig von der \glqq{}Flüssigkeit\grqq{} des Fluids, die \linebreak Viskosität genannt wird.\\
 In der Realität können viele Materialien nicht in eine der Kategorien Flüssigkeit oder Festkörper eingeteilt werden, weil sie Eigenschaften von beiden besitzen. Die Untersuchung von solchen viskoelastischen Stoffen und ihrem Verhalten unter Einfluss von äusseren Kräften ist einer der Inhalte der Rheologie.
 %Dabei wird versucht, die verschiedenen Eigenschaften dieser Stoffe mithilfe von Modellen zu verstehen und nachzubilden.
 %, um mit ihnen die Erhaltungssätze zu schliessen.
@@ -37,8 +37,7 @@ und
 \end{equation}
 %
 geschrieben werden. Dabei ist \nom[gv:u]{$\u$}{Geschwindigkeitsvektor} die Geschwindigkeit, \nom[gv:u]{$p$}{Druck} der Druck, \nom[gv:T]{$\T$}{Spannungstensor} der Spannungstensor, \nom[gv:rho]{$\rho$}{Dichte} die Dichte und $\g$ eine auf das Fluid wirkende, volumetrische Kraft.
-Der Einfachheit halber wird im Folgenden angenommen, dass $\g=0$ gilt.
-
+Der Einfachheit halber wird im Folgenden angenommen, dass $\g=0$ gilt.\\
 Eine ausführliche Herleitung dieser Bilanzgleichungen ist in \cite{boehme} zu finden.
 
 Im allgemeinsten Fall kann der Spannungstensor $\T=f\left( \r,t \right)$\nomenclature[fv:f]{$f$}{Konstitutives Gesetz}\nomenclature[gv:t]{$t$}{Zeit} eine beliebig komplexe Funktion des Ortes und der Zeit sein.
@@ -75,7 +74,7 @@ verwendet. Diese Darstellung ermöglicht es, von einem generalisiertem Newtonsch
 Wird angenommen, dass $\eta$ nur von der Summe aller Dehngeschwindigkeiten abhängt (isotrope Viskosität), kann man $\D$ mit der Scherrate \nom[gv:gamma]{$\gammap$}{Scherrate} ersetzen:
 \begin{equation}
     \label{eq:Scherrate}
-    \gammap := \sqrt{2 \cdot \D\dipr\D}
+    \gammap := \sqrt{2 \cdot \D\dipr\D},
 \end{equation}
 wobei
 \begin{equation}
@@ -87,7 +86,7 @@ das doppelte innere Produkt ist.
 Die Funktion $\eta\left( \gammap \right)$ wird auch Fliesskurve genannt. Sie beschreibt die Änderung der Viskosität von Fluiden bei einer Scherung.\\
 Dabei kann man die Fluide in verschiedene Kategorien unterteilen. Dilatante Fluide werden zähflüssiger, wenn sie geschert werden; strukturviskose Fluide haben eine sinkende Viskosität für steigende Scherraten.
 Ein Spezialfall der Strukturviskosität ist die Viskoplastizität, bei der erst nach dem Überschreiten einer Fliessgrenze ein Fliessvorgang möglich ist. Unterhalb dieser Grenze verhält sich ein viskoplastisches Material wie ein Fest"-körper.\\
-In Abbildung~\ref{fig:fliessKurven} sind die Fliesskurven der verschiedenen Fluid-Typen dargestellt. Im Folgenden werden einige Modelle für Fliessfunktionen vorgestellt. 
+In Abbildung~\ref{fig:fliessKurven} sind die Fliesskurven der verschiedenen Fluid-Typen dar\-ge\-stellt. Im Folgenden werden einige Modelle für Fliessfunktionen vorgestellt. 
 %
 %Mit Hilfe von \eqref{eq:Scherrate} lassen sich diese in zwei Kategorien unterteilen. Dilatante Fluide werden zähflüssiger wenn sie geschert werden, strukturviskose Fluide haben eine sinkende Viskosität für steigende Scherraten. 
 %Die konstante Viskosität eines Newtonschen Fluids kann ebenfalls als Fliessfunktion geschrieben werden, wobei $\eta\left( \gammap \right)=\mu$.
@@ -117,7 +116,7 @@ In Abbildung~\ref{fig:fliessKurven} sind die Fliesskurven der verschiedenen Flui
 %\end{table}
 %
 \paragraph{Empirische Fliessgesetze}~\\*~\\*
-Eine Approximation der Fliesskurven durch analytische Funktionen ermöglicht eine geschlossene Behandlung der Gleichungen, ohne dass auf Tabellendaten oder andere Hilfsmittel zurückgegriffen werden muss.\\
+Eine Approximation der Fliesskurven durch analytische Funktionen er\-mög\-licht eine geschlossene Behandlung der Gleichungen, ohne dass auf Tabellendaten oder andere Hilfsmittel zurückgegriffen werden muss.\\
 Solche Modelle enthalten eine bestimme Anzahl freier Parameter, die an das jeweilige Material angepasst werden müssen.
 \subparagraph{Newton}
 Das Newtonsche Fliessgesetz kann ebenfalls als analytisches Modell mit dem Parameter $\mu$ aufgefasst werden.
@@ -155,7 +154,7 @@ Ein Bingham Fluid ist ein Material, der erst ab einer Fliessgrenze zu fliessen b
 Dabei ist \nom[pv:xb:tau0]{$\tau_0$}{Fliessgrenze von viskoplastischen Materialien} die Fliessgrenze und $\mu$ die Viskosität im Newtonschen Bereich.
 %
 \subparagraph{Herschel-Bulkley Modell}
-Ein Modell mit einer Fliessgrenze und einem nicht-Newtonschen Verhalten oberhalb dieser Grenze ist das Herschel-Bulkley-Modell.
+Ein Modell mit einer Fliessgrenze und einem nicht-Newtonschen Verhalten oberhalb dieser Grenze ist das Herschel"=Bulkley"=Modell.
 \begin{equation}
     \eta=  \frac{\tau_0}{\gammap}+K\gammap^{n-1}.
     \label{eq:fg:herschelbulkley}
@@ -179,10 +178,10 @@ Für viele Flüssigkeiten spielt nicht nur der aktuelle Zustand des Fluids eine 
 \end{equation}
 
 \paragraph{Maxwell Modell}
-Ein Modell um das Verhalten solch eines Stoffes zu beschreiben, ist das Maxwell Modell.
+Ein Modell um das Verhalten solch eines Stoffes zu be"-schrei"-ben, ist das Maxwell Modell.
 Dabei wird das Material als eine Mischung aus einer viskosen Newtonschen Flüssigkeit und einem oder mehreren elastischen Festkörper beschrieben. Das geschieht durch eine Kombination aus einem Dämpfer und einer Feder, deren Eigenschaften in Reihe geschalten sind. 
 Eine schematische Darstellung ist in Abbildung~\ref{fig:Maxwell-Material} zu sehen.\\
-Wird nun auf dieses Material eine Kraft in Form einer Spannung ausgeübt, nehmen beide Komponenten einen Teil davon auf, wobei der viskose Dämpfer sich unter der Spannung verformt und die Energie als Wärme dissipiert. Die elastische Komponente speichert die Spannung hingegen als elastische Energie und kann diese zu einem späteren Zeitpunkt wieder zurückgeben.
+Wird nun auf dieses Material eine Kraft in Form einer Spannung ausgeübt, nehmen beide Komponenten einen Teil davon auf, wobei der viskose Dämp"-fer sich unter der Spannung verformt und die Energie als Wärme dissipiert. Die elastische Komponente speichert die Spannung hingegen als elastische Energie und kann diese zu einem späteren Zeitpunkt wieder zurückgeben.
 %
 \begin{figure}
     \centering
@@ -202,7 +201,7 @@ Die Voraussetzung dafür ist, dass das Stoffverhalten als linear angenommen wird
 Wie schnell dieser Einfluss abnimmt, hängt dabei von der Relaxationszeit \nom[gv:lambda]{$\lambda$}{Relaxationszeit eines viskoelastischen Materials} ab.
 
 \paragraph{Oldroyd-B Modell}
-Eine Erweiterung des Maxwell Modells ist das Oldroyd-B Modell, bei dem statt der partiellen die kontravariante Ableitung \nom[not:oldroyd]{$\overset{\nabla}{\T}$}{Oldroydsche Zeitableitung} verwendet wird:
+Eine Erweiterung des Maxwell Modells ist das Oldroyd"~B Modell, bei dem statt der partiellen die kontravariante Ableitung \nom[not:oldroyd]{$\overset{\nabla}{\T}$}{Oldroydsche Zeitableitung} verwendet wird:
 \begin{equation}
     \label{eq:oldroydModell}
     \T + \lambda \overset{\nabla}{\T}=2\eta \D
@@ -213,10 +212,10 @@ wobei
     \overset{\nabla}{\T} = \frac{D}{Dt}\T-\left[ \nabla \u^T\cdot \T \right]-\left[ \T\cdot \nabla \u \right].
 \end{equation}
 Diese Modifikation dient dazu, Drehungen und Verzerrungen des Fluides in der Differentialgleichung zu berücksichtigen.
-Die Herleitung dieser Ableitung stammt von J.G. Oldroyd \cite{oldroyd}, nach dem auch das Modell benannt ist.
+Die Herleitung dieser Ab"-lei"-tung stammt von J.G. Oldroyd \cite{oldroyd}, nach dem auch das Modell benannt ist.
 
 \paragraph{White-Metzner Modell}
-Das in dieser Arbeit verwendete Modell für viskoelastische Fluide muss zusätzlich zu der Zeitabhängigkeit auch die stark Scherratenabhängigkeit berücksichtigen können.\\
+Das in dieser Arbeit verwendete Modell für visko"-elastische Fluide muss zusätzlich zu der Zeitabhängigkeit auch die stark Scherratenabhängigkeit berücksichtigen können.\\
 Dazu in der Lage ist das White-Metzner Modell. Dieses ist eine Erweiterung des Oldroyd-B Modelles, bei dem zusätzlich $\lambda$ und $\eta$ eine Funktion von $\gammap$ sind:
 \begin{equation}
     \label{eq:whiteMetznerModell}
@@ -225,7 +224,7 @@ Dazu in der Lage ist das White-Metzner Modell. Dieses ist eine Erweiterung des O
 Dabei können im Allgemeinen für die Funktionen $\lambda$ und $\eta$ die selben Modelle wie für die nicht zeitabhängigen Gesetze verwendet werden.
 In dieser Arbeit wurde für $\eta$ das schon bewährte modifizierte Herschel-Bulkley Modell \eqref{eq:modHB} implementiert.\\
 Die Relaxationszeit weist für die untersuchten Mörtel, abhängig von der Scherrate, zwei Plateaus auf; bei einer hinreichend kleiner und grosser Scherrate. Dazwischen verläuft der Übergang exponentiell, wie in Abbildung~\ref{fig:carreauYasudaAnnotated} gezeigt.
-Als beschreibende Funktion für $\lambda$ wird daher auf Empfehlung des Rheologiespezialisten von Hilti das Carreau-Yasuda Modell \eqref{eq:fg:carreauyasuda} verwendet.
+Als beschreibende Funktion für $\lambda$ wird daher auf Emp\-feh\-lung des Rheologiespezialisten von Hilti das Carreau-Yasuda Modell \eqref{eq:fg:carreauyasuda} verwendet.
 %
 \begin{figure}[h]
     \centering
