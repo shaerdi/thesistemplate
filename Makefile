@@ -7,11 +7,11 @@ all: build
 build:
 	sed -i 's/oe;/ö/g; s/ae;/ä/g; s/ue;/ü/g' Chapters/*
 	sed -i 's/Oe;/Ö/g; s/Ae;/Ä/g; s/Ue;/Ü/g' Chapters/*
-	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex
+	pdflatex -jobname=$(OUTPUTNAME) -draftmode -interaction=batchmode $(FILE).tex
 	bibtex $(OUTPUTNAME)
 	makeindex $(OUTPUTNAME).nlo -s nomencl.ist -o $(OUTPUTNAME).nls
-	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex
-	pdflatex -jobname=$(OUTPUTNAME) $(FILE).tex 
+	pdflatex -jobname=$(OUTPUTNAME) -draftmode -interaction=batchmode $(FILE).tex
+	pdflatex -jobname=$(OUTPUTNAME) -interaction=batchmode $(FILE).tex 
 
 clean:
 	@echo -e "\033[1mCleaning up...\033[0m"
