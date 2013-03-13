@@ -1,26 +1,28 @@
 \section{Zusammenfassung und Ausblick}
 \label{Kapitel:Outlook}
-In dieser Arbeit wurden zwei von der Firma Hilti AG in der Befestigungstechnik verwendete Mörtel mittels numerischer Simulationen untersucht.
-Ziel der Arbeit war, die Fliess"-vorgänge dieser rheologisch komplexen Mörtel mithilfe der Simulationssoftware \openfoam{} zu modellieren. Dies soll das für die Produktentwicklung entscheidende Verständnis dieser Fliess"-vorgänge verbessern.
+In dieser Arbeit wurden zwei von der Firma Hilti AG in der Befestigungs"-technik verwendete Mörtel mittels numerischer Simulationen untersucht.
+Ziel der Arbeit war, die Fliess"-vorgänge dieser rheologisch komplexen Mörtel mithilfe der Simulationssoftware \openfoam{} zu modellieren. Die Ergebnisse sollen das für die Produktentwicklung entscheidende Verständnis dieser Fliess"-vorgänge verbessern.
 
 Die untersuchten Mörtel zeigen dabei ein starkes nicht-Newtonsches Verhalten.
-Dies äussert sich sowohl in einer Scherverdünnung (Struktur"-viskosität), als auch in viskoelastischen Phänomenen. Die Modellierung dieser Eigenschaften geschah mit den empirischen Modellen Herschel-Bulkley, Carreau-Yasuda und White-Metzner.\\
-Die grundlegenden Gleichungen, bestehend aus den Erhaltungssätzen für Masse und Impuls und den aus den Modellen resultierenden Schliessungsansätzen, wurden numerisch gelöst. Die benötigten numerischen Verfahren und Routinen wurden als Computercodes in \openfoam{} implementiert.
+Dies äussert sich sowohl in einer Scherverdünnung (Struktur"-vis"-ko"-si"-tät), als auch in viskoelastischen Phänomenen. Zur Modellierung dieser Eigenschaften wurden die empirischen Modelle Herschel-Bulkley, Carreau-Yasuda und White-Metzner verwendet.
+Die grundlegenden Gleichungen, bestehend aus den Erhaltungssätzen für Masse und Impuls und den aus den Modellen resultierenden Schliessungsansätzen, wurden numerisch gelöst. Die benötigten Ergänzungen sowie die speziellen rheologischen Schliessungsansätze wurden  in \openfoam{} implementiert.
 
-Die für die Modelle notwendigen Materialparameter wurden mithilfe eines in Python implementierten Optimierungsverfahren an Messdaten angepasst. Diese Daten stammen von zwei verschiedenen Rheometern, einem Platte-Platte Rheometer und einem Kapillarrheometer.
-Die Verfälschung der Platte-Platte Rheometerdaten durch einen um den Scherspalt herum montierten Ring wurde durch eine entsprechende Korrektursimulation ausgeglichen.
-Die Verifizierung der verwendeten Modelle und der berechneten Parameter geschah mittels Simulationen des Kapillarrheometers, bei denen eine gute Übereinstimmung mit der Realität gefunden wurde.
-
-\begin{todocontent}
-    \1 Einfluss Viskoelastizität
-\end{todocontent}
+Die für die Modelle notwendigen Materialparameter wurden mithilfe eines in Python implementierten Optimierungsverfahren an Messdaten angepasst. Diese Daten stammen aus zwei verschiedenen Rheometern: Einem Platte-Platte Rheometer und einem Kapillarrheometer.
+Ein systematischer Fehler in den Platte-Platte Rheometerdaten durch einen um den Scherspalt herum montierten Ring wurde durch eine entsprechende Korrektursimulation ausgeglichen.
+Die Verifizierung der verwendeten Modelle und der berechneten Parameter geschah mittels Simulationen des Kapillarrheometers, bei denen eine gute Übereinstimmung mit der Messung gefunden wurde.
+Dabei wurde auch festgestellt, dass der Einfluss der Viskoelastizität minimal ist und andere Faktoren wie Alter und Produktionscharge die viskosen Eigenschaften des Mörtels weit stärker beeinflussen. Aufgrund des starken Anstieges der Rechenzeit bei der Verwendung des viskoelastischen Modells wurde dieses deshalb bei der Validierung in Kapitel~\ref{Kapitel:Auspressgeraet} nicht mehr verwendet.
 
 Die Validierung geschah anhand eines anwendungsnahen Strömungsversuches. Dabei wurde eine vereinfachte Nachbildung des realen Auspressgerätes für die Hilti Mörtel gebaut und vermessen, um Einflüsse die ihren Ursprung nicht in Eigenschaften des Fluids haben auszuschliessen.
-Die Geometrie dieser Funktionsersatzprüfung wurde im Computer nachgebildet und für die Strömungssimulation benützt.
+Die Geometrie dieser Funktionsersatzprüfung wurde im CAD nachgebildet und für die Strömungssimulation mit ICEM Tetra vernetzt.
 
-Die Resultate zeigen tendenziell ein richtiges Verhalten, eine genaue Nachbildung der Druckverluste in der Funktionsersatzprüfung schlug aber fehl. Die Gründe für die Abweichungen konnten im Rahmen dieser Arbeit aus Zeitgründen nicht abschliessend erklärt werden. Denkbar ist, dass der Mörtel eine in der Simulation nicht berücksichtigte Temperaturabhängigkeit besitzt, oder dass verschiedene Produktions-Chargen unterschiedliche Fliesseigenschaften haben. Auch eine eventuelle Thixotropie der Mörtel wurde nicht in die Berechnung mit einbezogen.
+Die Resultate zeigen tendenziell ein richtiges Verhalten, eine genaue Nachbildung der Druckverluste der Funktionsersatzprüfung konnte aber nicht erreicht werden. 
+Ein möglicher Grund für die festgestellten Abweichungen zwischen Simulation und Messung ist die hohe Unsicherheit in der Druckverlustmessung über die Blende. Dafür spricht auch die deutlich kleinere Abweichung bei der Simulation des Mischers.
 
+Die vermessenen Mörtel besitzen zusätzlich noch thixotrope Eigenschaften, die in dieser Arbeit nicht weiter untersucht wurde. 
+%Weiter wurde im Laufe der Messungen festgestellt, dass die viskosen Eigenschaften der vermessenen Mörtel stark beinflusst werden von Alter, Temperatur und Produktionscharge.
+%ine genaue Abklärung dieser Einflüsse
 Eine mögliche Erweiterung dieser Arbeit ist deshalb der Einbau von thixotropen Effekten.
+
 Die verwendeten Algorithmen für die viskoelastischen Berechnungen benötigen noch eine grosse Anzahl an Iterationsschritten um zu konvergieren, weshalb hier ebenfalls noch Verbesserungs"-bedarf besteht.
 
-Der Firma Hilti steht mit den programmierten Routinen ein Grundgerüst zur Verfügung, mit dem sie in Zukunft weitere Materialmodelle und -parameter verwenden kann um die Fliessvorgänge in ihrem Auspressgerät noch besser zu verstehen.
+Der Firma Hilti steht mit den programmierten Routinen ein Grundgerüst zur Verfügung, mit dem sie in Zukunft weitere Materialmodelle und -para"-me"-ter verwenden kann, um die Fliessvorgänge in ihrem Auspressgerät noch besser zu verstehen.

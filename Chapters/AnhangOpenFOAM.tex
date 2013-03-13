@@ -4,7 +4,7 @@ Dieses Kapitel soll eine Übersicht über \openfoam{} und die darin eingebauten 
 Die Notation verwendet \fileemph{Kursivschrift} für Computer"-datei-Namen und \openfoam{}-spezifische Begriffe. Für für Computercodes wie Programme oder Teile davon wird \codeemph{Schreibmaschinenschrift} verwendet.
 
 Ein Simulationslauf in \openfoam{} wird \fileemph{case} genannt, der durch ein Verzeichnis auf dem Computer repräsentiert wird. Da \openfoam{} keine gra\-phi\-sche Benutzeroberfläche besitzt, werden alle Informationen und Resultate in Textdateien gespeichert, die in diesem \fileemph{case} abgelegt werden.\\
-Die Informationen sind aufgeteilt in die Unterverzeichnisse \fileemph{0}, \fileemph{constant} und \fileemph{system}, sowie Zeitschrittverzeichnisse die nach der jeweiligen Zeit benannt sind. Abbildung~\ref{fig:ofCaseSchema} zeigt die schematische Darstellung.\\ %In den darin gespeicherten Dateien stehen alle Informationen über die Simulation und deren Resultate.\\
+Die Informationen sind aufgeteilt in die Unterverzeichnisse \fileemph{0}, \fileemph{constant} und \fileemph{system}, sowie Zeitschrittverzeichnisse die nach der jeweiligen Zeit benannt sind. Abbildung~\ref{fig:ofCaseSchema} zeigt die schematische Darstellung.\\
 Im Verzeichnis \fileemph{0} sind die Anfangs- und Randbedingungen der Simulation definiert. Die darin enthaltenen Dateien sind nach den entsprechenden Variablen genannt wie z.B. \fileemph{p} für den Druck oder \fileemph{U} für die Geschwindigkeit.
 In \fileemph{constant} stehen die Simulationsparameter wie zum Beispiel das verwendete Viskositätsmodell und dessen Parameter. Ausserdem ist im Unterverzeichnis \fileemph{polymesh} die Geometrie definiert.
 In \fileemph{system} sind schliesslich die Simulationskontrollgrössen enthalten. Dazu gehören in der Datei \fileemph{controlDict} die Anzahl der Zeitschritte und deren Länge, in \fileemph{fvSchemes} die verwendeten Diskretisierungsschemen und in \fileemph{fvSolution} welche Lösungsmethoden für die linearen Gleichungssystem verwendet werden.
@@ -31,6 +31,7 @@ Um trotzdem in der Lage zu sein nicht-Newtonsche, transiente Probleme zu lösen,
 
 Analog zum Löser \codeemph{simpleFoam} wird zu Beginn der Simulation eine Instanz der Klasse \codeemph{transportModel} initialisiert, die dann in jedem Zeitschritt die kinematische Viskosität aktualisiert und zur Verfügung stellt:
 %
+\newpage
 \begin{lstlisting}
 ...
 singlePhaseTransportModel fluid(U, phi);
@@ -122,8 +123,7 @@ divTau(volVectorField& U) const {
         fvc::div(tau_/rho_, "div(tau)")
       - fvc::laplacian(etaPEff/rho_, U, "laplacian(etaPEff,U)")
       + fvm::laplacian( (etaPEff + etaS_)/rho_, U, "laplacian(etaPEff+etaS,U)")
-    );
-}
+    );}
 \end{lstlisting}
 
 In der Methode \codeemph{correct} wird bestimmt, wie sich der Schubspannungstensor von einem Zeitschritt zum nächsten ändert.\\

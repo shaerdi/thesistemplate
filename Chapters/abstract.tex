@@ -1,23 +1,34 @@
 \thispagestyle{empty}
 \selectlanguage{ngerman}
 \begin{abstr}
-Bei der Firma Hilti AG kommen in der Befestigungstechnik Epoxy- und Harzbasierte Mörtel zum Einsatz.
-Diese Mörtel zeigen ein rheologisch komplexes Fliessverhalten und besitzen sowohl ein scherverdünnendes als auch ein viskoelastisches Verhalten. Im Rahmen der Produktentwicklung ist ein gutes Verständnis der Mörtel von entscheidender Bedeutung, daher soll in dieser Arbeit das Fliessverhalten mittels numerischen Simulationen untersucht werden.
-Die Modellierung der rheologischen Eigenschaften erfordert die Wahl eines konstitutiven Gesetzes, mit dem ein Zusammenhang zwischen der am Fluid anliegenden Spannung und der resultierenden Verformung hergestellt werden kann. Dazu wurde für die Scherverdünnung ein Herschel-Bulkley und für die Viskoelastizität ein White-Metzner Modell verwendet.
-Um diese Modelle in einen Computercode einzubauen, wird ein flexibles Simulationsprogramm benötigt.
+Bei der Firma Hilti AG kommen in der Befestigungstechnik harzbasierte Mörtel zum Einsatz.
+Diese Mörtel zeigen ein rheologisch komplexes Fliessverhalten welches sowohl scherverdünnendes als auch viskoelastisches Verhalten beinhaltet. Im Rahmen der Produktentwicklung ist ein solides Verständnis der Mörtel von entscheidender Bedeutung, daher soll in dieser Arbeit das Fliessverhalten mittels numerischer Simulation untersucht werden.
+Die Modellierung der rheologischen Eigenschaften erfordert die Wahl eines konstitutiven Gesetzes, das einen Zusammenhang zwischen der am Fluid anliegenden Spannung und der resultierenden Verformung herstellt. Dazu wurde für die Scherverdünnung ein Herschel-Bulkley und für die Viskoelastizität ein White-Metzner Modell verwendet.
+Zur Simulation des Fliessverhaltens wurde die Navier-Stokes Gleichung numerisch gelöst. Die Rheologie geht über die nichtlineare Gleichung in den Code ein. Nicht jeder Strömungslöser erlaubt den Einbau spezieller rheologischer Gesetze.
+%Um diese Modelle in einen Computercode einzubauen, wird ein flexibles Simulationsprogramm benötigt.
 Aus diesem Grund wird in dieser Arbeit die Bibliothek \openfoam{} verwendet, die das Einbauen von eigenen numerischen Verfahren ermöglicht.
 
-Die für die Anpassung der Modelle an die jeweiligen Materialien erforderlichen Parameter werden mithilfe einer Optimierungsmethode an Messergebnisse angepasst. Die dafür notwendigen Messdaten stammen von zwei verschiedenen Rheometern, einem Platte-Platte Rheometer und einem Kapillarrheometer. Da die Messungen des Platte-Platte Rheometers durch einen in der internen Berechnung nicht berücksichtigten Ring verfälscht werden, müssen diese durch eine Simulation korrigiert werden. Die dazu notwendige Kopplung zwischen \openfoam{} sowie der Optimierungscode wurde in Python realisiert.
+Die für die Anpassung der Modelle an die jeweiligen Materialien erforderlichen Parameter werden mithilfe einer Optimierungsmethode an Messergebnisse angepasst. Die dafür notwendigen Messdaten stammen von zwei verschiedenen Rheometern, einem Platte-Platte Rheometer und einem Kapillarrheometer. Die Messungen des Platte-Platte Rheometers weisen durch einen in der internen Berechnung nicht berücksichtigten Ring einen systematischen Messfehler auf. Mittels einer Korrektursimulation wird dieser Einfluss herausgerechnet. Die dazu notwendige Kopplung mit \openfoam{} sowie der Optimierungscode wurde in Python realisiert.
 
-Die berechneten Materialdaten werden mittels Simulation des Kapillarrheometers verifiziert. Anschliessend wird eine Validierung anhand eines eines anwendungsnahen Strömungsversuches durchgeführt. Dieser besteht aus einer Funktionsersatzprüfung des realen Hilti Auspressgerätes und einem statischen Mischer.
+Die berechneten Materialdaten werden mittels Simulation des Kapillarrheometers verifiziert. Anschliessend wird eine Validierung anhand eines anwendungsnahen Strömungsversuches durchgeführt. Dieser besteht aus einer Funktionsersatzprüfung des realen Hilti Auspressgerätes und einem daran angeschlossenen statischen Mischer.
 \end{abstr}
 %
+\newpage
 \selectlanguage{english}
 %
 \begin{abstr}
-    \begin{todocontent}
-        \1 Übersetzung
-    \end{todocontent}
+The Hilti AG company produces resin based mortars for adhesive anchoring systems.
+These mortars show a complex rheological flowing behaviour and have pseudoplastic as well as viscoelastic properties.
+In manufacturing there is a great need for an exact understanding of the mortars. Hence the aim of this thesis is the investigation of the flowing behaviour by means of numerical simulations.
+The modeling of the rheological properties requires the selection of a constitutive law which relates the stress acting on a fluid and the resulting strain. Therefore, the Herschel-Bulkley and the White-Metzner model were used for the pseudoplastic and the viscoelastic behaviour, respectively.
+To use these models in a computer code, a flexibel simulation program is needed. Thus, the open source library \openfoam{} has been used in this thesis because it allows the implementation of own code.
+
+The adaptation of the used models was made by a choice of parameters, which was done using an optimization method to fit them to measured data.
+These data was produced by two different rheometers, a plate-plate rheometer and a capillary rheometer. As the measurements of the plate-plate rheometer are disturbed by an additional ring which is not taken into account in the internal calculation, they had to be corrected by simulations.
+Therefore, the solver had to be coupled with an optimization code. This was done in Python.
+%For this the necessary coupling to \openfoam{} and the optimization code was implemented in python.
+
+The calculated material parameters were verified by simulations of the capillary rheometer. Subsequently, they were validated based on a realistic flow test rig, which consits of a functional replacement of the real Hilti dispenser and a static mixer.
 \end{abstr}
 %
 \selectlanguage{ngerman}

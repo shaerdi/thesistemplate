@@ -1,19 +1,20 @@
 \section{Einleitung}
 \label{Kapitel:Einleitung}
-Die Firma Hilti AG stellt im Bereich der Dübel-Befestigungstechnik neben Kunststoff- und Metalldübeln auch chemische Dübel her, bei denen die Haltekraft durch das Aushärten eines Mörtels um eine Anker- oder Gewinde"-stange zustande kommt. \\
-Dazu kommen unter anderem Zwei-Komponenten Mörtel auf Epoxy- und auf Harzbasis zum Einsatz. Die Aushärtung geschieht dabei aufgrund einer chemischen Reaktion, die startet sobald die beiden Komponenten in Kontakt kommen.\\
-Die Mörtel sind rheologisch komplex und zeigen sowohl strukturviskoses als auch viskoelastisches Verhalten.% Diese Eigenschaften sind teilweise gewünscht, da sie ein Arbeiten auf der Baustelle erleichtern. Teilweise sind sie aber auch Nebeneffekte der Inhaltsstoffe, die für die chemische Reaktion des Mörtels gebraucht werden.
+Die Firma Hilti AG stellt im Bereich der Dübel-Befestigungstechnik neben Kunststoff- und Metalldübeln auch chemische Dübel her. Bei diesen wird die Haltekraft durch das Aushärten eines Mörtels um eine Anker- oder Gewinde"-stange erzielt.
+Dazu kommen unter anderem Zwei-Komponenten Mörtel auf Harzbasis zum Einsatz. Die Aushärtung geschieht dabei aufgrund einer chemischen Reaktion, die startet, sobald die beiden Komponenten in Kontakt kommen.
+Die Mörtel sind rheologisch komplex und zeigen sowohl strukturviskoses als auch viskoelastisches Verhalten.
 
-Die Hilti AG ist bekannt für zuverlässige und innovative Produkte, die jederzeit auf dem neusten Stand sind. Um diesen Standard auch weiterhin aufrecht zu erhalten, werden in der Forschungsabteilung auch numerische Simulationen verwendet.\\
-Zur Simulation von Fluiden wurde bei Hilti AG bisher \cfx{} verwendet. Dieses Programm ist aber nicht in der Lage, viskoelastische Stoffe zu simulieren.% Deshalb wurde beschlossen, auf eine Alternative umzusteigen.
+Die Hilti AG ist bekannt für zuverlässige und innovative Produkte, die je\-der\-zeit auf dem neusten Stand sind. Um diesen Standard auch weiterhin aufrecht zu erhalten, wird in der Forschungsabteilung die numerische Simulation eingesetzt.
+Zur Simulation von Fluiden wurde bei der Hilti AG bisher \cfx{} verwendet. Dieses Programm ist aber nicht in der Lage, viskoelastisches Stoffverhalten abzubilden.
 
 In dieser Arbeit soll als Alternative die freie Bibliothek \openfoam{} verwendet werden, um das Fliessverhalten der verwendeten Mörtel zu simulieren.
-
 Dazu sollen passende konstitutive Gesetze ausgewählt werden, um die nicht-Newtonschen Eigenschaften der Mörtel abzubilden. Diese und die dazu notwendigen physikalischen Grundlagen sind in Kapitel \ref{Kapitel:Rheologie} beschrieben.\\
 Die resultierenden Gleichungssysteme werden numerisch gelöst. Die dazu verwendeten iterativen Verfahren sind in Kapitel \ref{Kapitel:Numerik} aufgeführt.
-Die notwendigen Tools und deren Implementation sollen dabei, sofern nicht schon darin enthalten, in \openfoam{} implementiert werden. In Kapitel \ref{Kapitel:Implementierung} wird die Vorgehensweise veranschaulicht.
+Die notwendigen Methoden und deren Implementierung sollen dabei, sofern nicht schon darin enthalten, in \openfoam{} ergänzt werden. In Kapitel \ref{Kapitel:Implementierung} wird die Vorgehensweise veranschaulicht.
 
-In Kapitel \ref{Kapitel:Parameter} werden die variablen Parameter der konstitutiven Gesetze anhand von Messdaten eruiert und mit Simulationen verifiziert.\\
-Dazu wird eine durch den Messaufbau verursachte Resultatverfälschung durch eine Simulation korrigiert.
+In Kapitel \ref{Kapitel:Parameter} werden die Parameter der konstitutiven Gesetze an Messdaten angepasst. Diese Daten enthalten aufgrund des Messaufbaus einen systematischen Fehler, der bei einer Korrektursimulation herausgerechnet wird.
+%anhand von Messdaten eruiert und mit Simulationen verifiziert.
+%Dazu wird eine durch den Messaufbau verursachte Resultatverfälschung durch eine Simulation korrigiert.
+%Die Messungen des Platte-Platte Rheometers weisen durch einen in der internen Berechnung nicht berücksichtigten Ring einen systematischen Messfehler auf. Mittels einer Korrektursimulation wird dieser Einfluss herausgerechnet.
 
-Zum Abschluss sollen in Kapitel \ref{Kapitel:Auspressgeraet} die Modelle durch die Simulation eines anwendungsnahen Versuchaufbaus validiert werden.
+Zum Abschluss sollen in Kapitel \ref{Kapitel:Auspressgeraet} die Modelle durch die Simulation eines anwendungsnahen Versuchsaufbaus validiert werden.
