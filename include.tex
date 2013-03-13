@@ -22,15 +22,15 @@
 \renewcommand*{\backref}[1]{}
 \renewcommand*{\backrefalt}[4]{%
 \ifcase #1 %
-(Not cited.)%
+(Nicht zitiert.)%
 \or
-(Cited on page~#2.)%
+(Zitiert auf Seite~#2.)%
 \else
-(Cited on pages~#2.)%
+(Zitiert auf Seiten~#2.)%
 \fi}
 \renewcommand*{\backrefsep}{, }
-\renewcommand*{\backreftwosep}{ and~}
-\renewcommand*{\backreflastsep}{ and~}
+\renewcommand*{\backreftwosep}{ und~}
+\renewcommand*{\backreflastsep}{ und~}
 
 %% Language
 \usepackage[ngerman,english]{babel}
@@ -95,7 +95,7 @@
 \begin{center}%
 {\bfseries \abstractname}%
 \end{center}%
-%\quote}%
+%\quotation}%
 }%
 {\vfill}%
 
@@ -140,7 +140,15 @@ Todo content:
 \usepackage{outlines}
 
 %% Zeichnen
-\usepackage{tikz}
+\usepackage{tikz, pgfplots}
+%\usetikzlibrary{patterns}
+\tikzstyle{every picture}+=[remember picture]
+
+\usepackage{placeins}
+
+\usepackage{booktabs}
+
+\usepackage{units}
 
 %% Include macros
 \input{macros}

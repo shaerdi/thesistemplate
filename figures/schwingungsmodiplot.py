@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-fig = plt.figure()
+fig = plt.figure(figsize=(15,3))
 ax = fig.add_subplot(111)
 
 plt.rcParams.update({'font.size':22})
@@ -15,13 +15,13 @@ s2 = np.cos(2*np.pi*t)
 line, = ax.plot(t, s, lw=1, color='k')
 line2, = ax.plot(t, s2, lw=1, color='k', linestyle='--')
 
-plotn=3*n/5
-ax.annotate('$\gamma$', xy=(t[plotn], s[plotn]), xytext=(t[plotn]+0.2, s[plotn]+0.5),
+plotn=int(3.3*n/5)
+ax.annotate('$\gamma$', xy=(t[plotn], s[plotn]), xytext=(t[plotn]+0.2, s[plotn]+0.3),
             arrowprops=dict(arrowstyle="->",
                             connectionstyle="arc3"),
             )
 plotn=n/2
-ax.annotate('$\dot{\gamma}$', xy=(t[plotn], s2[plotn]), xytext=(t[plotn]-0.2, s2[plotn]+0.5),
+ax.annotate('$\dot{\gamma}$', xy=(t[plotn], s2[plotn]), xytext=(t[plotn]-0.2, s2[plotn]+0.3),
             arrowprops=dict(arrowstyle="->",
                             connectionstyle="arc3"),
             )
@@ -30,13 +30,13 @@ frame = plt.gca()
 frame.axes.get_xaxis().set_ticks([])
 frame.axes.get_yaxis().set_ticks([])
 plt.xlabel('t')
-plt.ylabel('Auslenkung und Scherung')
+#plt.ylabel('Auslenkung\nund Scherung')
+fig.tight_layout()
 fig.show()
-fig.set_size_inches((15,5),forward=True)
 fig.savefig("/home/simon/Documents/ETH/Master-Thesis/Thesis/figures/SchwingungsmodiA")
 
 # Antwort
-fig = plt.figure()
+fig = plt.figure(figsize=(15,3))
 ax = fig.add_subplot(111)
 
 s = np.sin(2*np.pi*t)
@@ -47,7 +47,7 @@ line, = ax.plot(t, s, lw=1, color='k')
 line2, = ax.plot(t, s2, lw=1, color='k', linestyle='--')
 line3, = ax.plot(t, s3, lw=1, color='b')
 
-plotn=3*n/5
+plotn=int(3.3*n/5)
 ax.annotate('Elastisch', xy=(t[plotn], s[plotn]), xytext=(t[plotn]+0.2, s[plotn]+0.5),
             arrowprops=dict(arrowstyle="->",
                             connectionstyle="arc3"),
@@ -69,7 +69,7 @@ frame = plt.gca()
 frame.axes.get_xaxis().set_ticks([])
 frame.axes.get_yaxis().set_ticks([])
 plt.xlabel('t')
-plt.ylabel('Widerstand')
+#plt.ylabel('Widerstand')
+fig.tight_layout()
 plt.show()
-fig.set_size_inches((15,5),forward=True)
 fig.savefig("/home/simon/Documents/ETH/Master-Thesis/Thesis/figures/SchwingungsmodiB")
