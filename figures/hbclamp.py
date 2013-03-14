@@ -9,13 +9,13 @@ fontSizeLabel=17
 fontSizeLegend=16
 
 parMaxA = [199.983, 60.89914, 0.621]
-x=logspace(-7,7,100)
+x=logspace(-6,8,100)
 
 fig = pylab.figure(figsize=(12,4))
 ax= fig.add_subplot(111)
 
 pylab.loglog(x,HBclassic(parMaxA,x),'r--',label='Herschel-Bulkley Modell')
-pylab.loglog(x,HBclamp(1e7,1e0),label='limitiertes Herschel-Bulkley Modell')
+pylab.loglog(x,HBclamp(1.5e6,2.5e-1),label='Limitiertes Herschel-Bulkley Modell')
 
 pylab.rcParams['mathtext.default']='regular'
 

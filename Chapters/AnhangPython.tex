@@ -19,17 +19,17 @@ runLeastSq(
       ):  
 \end{lstlisting}
 \paragraph{Anfangschätzer, notwendig}
-Das Finden der Parameter geschieht mithilfe der Levenberg-Marquardt Methode, die eine nichtlineare Optimierung mit einem iterativen Vorgehen löst. Diese Iterationsvorschrift benötigt einen Startwert, der der Funktion \codeemph{runLeastSq} hier als \codeemph{numpy}-Array übergeben wird. Die Startwerte sollten nicht Null sein.\\
+Das Finden der Parameter geschieht mithilfe der Levenberg-Marquardt Methode, die eine nichtlineare Optimierung mittels iterativen Vorgehen löst. Diese Iterationsvorschrift benötigt einen Startwert, der der Funktion \codeemph{runLeastSq} als \codeemph{Numpy}-Array übergeben wird. Die Startwerte sollten nicht Null sein.
 Ein guter Startschätzer kann die Anzahl nötiger Iteration und damit die Rechenzeit entscheidend verkürzen!
 %
 \paragraph{platRheoTorque, notwendig}
-\codeemph{platRheoTorque} ist ein \codeemph{numpy}-Array, das die gemessenen Drehmomente des Platte-Platte Rheometers enthält.
+\codeemph{platRheoTorque} ist ein \codeemph{Numpy}-Array, das die gemessenen Drehmomente des Platte-Platte Rheometers enthält.
 %
 \paragraph{plateRheoOmega, notwendig}
-\codeemph{platRheoOmega} ist ein \codeemph{numpy}-Array, das die Drehgeschwindigkeiten des Platte-Platte Rheometers enthält. Die Werte müssen sowohl in Anzahl als auch in der Sortierung den Werten in \codeemph{platRheoTorque} entsprechen!
+\codeemph{platRheoOmega} ist ein \codeemph{Numpy}-Array, das die Drehgeschwindigkeiten des Platte-Platte Rheometers enthält. Die Werte müssen sowohl in Anzahl als auch in der Sortierung den Werten in \codeemph{platRheo"-Torque} entsprechen!
 \paragraph{referenceCaseName, optional}
 Der \codeemph{referenceCaseName} ist der Name des Referenzfalles. Dieser muss ein kompletter \openfoam{} case des Platte-Platte Rheometers sein. Der Standardwert ist \codeemph{ref}\\
-Wichtig ist, dass der rotierende Deckel die Randbedingung rotatinWallVelocity hat und 'movingLid' heisst:
+Wichtig ist, dass der rotierende Deckel die Randbedingung rotatingWall"-Velocity hat und 'movingLid' heisst:
 \begin{lstlisting}
     type        rotatingWallVelocity;
     origin      (0 0 0);
@@ -37,7 +37,7 @@ Wichtig ist, dass der rotierende Deckel die Randbedingung rotatinWallVelocity ha
     omega       10;
 \end{lstlisting}
 Der Code wird dann den case für jede Simulation kopieren und den Wert von \codeemph{omega} entsprechend abändern.\\
-Die Koeffizienten müssen in der Datei \fileemph{transportProperties} abgespeichert sein, das verwendete Modell ist das \codeemph{modifiedHerschelBulkley}. Falls das geändert wird, muss auch der Code des Moduls in \codeemph{adjustParameterToParamInCase} entsprechend geändert werden.\\
+Die Koeffizienten müssen in der Datei \fileemph{transportProperties} abgespeichert sein, das verwendete Modell ist das \codeemph{modifiedHerschelBulkley}. Falls das geändert wird, muss auch der Code des Moduls in \codeemph{adjustParameter"-ToParamInCase} entsprechend geändert werden.\\
 Das \fileemph{controlDict} muss die 'Runtime Function' \codeemph{torqueCalc} verwenden um das Drehmoment zu berechnen:
 \begin{lstlisting}
 functions (
@@ -58,11 +58,11 @@ Ausserdem wird der im \codeemph{controlDict} angegebene Löser für die Simulati
 Die Anzahl verwendeter Prozessoren. Die Parallelisierung ist mit \codeemph{parallel python} implementiert. Dieses wird automatisch die angegebene Anzahl Prozessoren verwenden, auch wenn diese eigentlich nicht diesem Prozess zur Verfügung stehen. Das kann auf Rechenclustern zu Verzögerungen führen, weshalb darauf geachtet werden sollte, dass auch tatsächlich diese Anzahl Prozessoren zur Verfügung gestellt wird.
 %
 \paragraph{kapRheoPressure, optional}
-Ein \codeemph{numpy}-Array mit den gemessenen Drücken des Kapillarrheometers. Falls dieses Argument angegeben wird, muss auch \codeemph{kapRheoShearRate} angegeben werden.\\
-Achtung, falls mit dem Löser \codeemph{simpleFoam} oder einem anderem \openfoam{}-Löser der normierte Drücke verwendet simuliert wird, müssen diese Drücke ebenfalls mit der Dichte normiert übergeben werden.
+Ein \codeemph{Numpy}-Array mit den gemessenen Drücken des Kapillarrheometers. Falls dieses Argument angegeben wird, muss auch \codeemph{kapRheoShearRate} angegeben werden.\\
+Achtung, falls mit dem Löser \codeemph{simpleFoam} oder einem anderem \openfoam{}-Löser, der normierte Drücke verwendet, simuliert wird, müssen diese Drücke ebenfalls mit der Dichte normiert übergeben werden.
 %
 \paragraph{kapRheoShearRate, optional}
-Ein \codeemph{numpy}-Array mit den zu den \codeemph{kapRheoPressure} gehörenden gemessenen Scherraten.
+Ein \codeemph{Numpy}-Array mit den zu den \codeemph{kapRheo"-Pressure} gehörenden gemessenen Scherraten.
 \subsection{Code}
 \label{Appendix:Python:Code}
 Der Code des MaT\_Optimizer Moduls
@@ -71,9 +71,10 @@ Der Code des MaT\_Optimizer Moduls
 \subsection{Anleitung}
 \label{Appendix:Python:Anleitung}
 Für die Anwendung des Optimierers muss ein Verzeichnis angelegt werden, in dem der Referenzcase für \openfoam{}, das Unterverzeichnis \fileemph{Mfiles} und das Python Modul des Optimierers liegt.
-Ausserdem muss auf dem System Python und die Python Bibliothek \codeemph{numpy} installiert sein.\\
+Ausserdem muss auf dem System Python und die Python Bibliothek \codeemph{Numpy} installiert sein.\\
 Danach kann in Python die Funktion \codeemph{runLeastSq} mit den entsprechenden Parametern aufgerufen werden.
 Ein Beispiel für so einen Aufruf:
 \lstinputlisting[language=Python]{../HPC_scripts/pyRun.py}
 Falls mit einem den Druck normierenden Löser gearbeitet wird, werden die Parameter ebenfalls normiert ausgegeben. Im Beispielskript kann man das am Faktor 1700 sehen, durch den sowohl der Druck als auch die Startlösung dividiert wird.
 Falls keine Kapillarrheometer Messdaten verwendet werden sollen, können die entsprechenden Argumente einfach weggelassen werden.
+Das Skript kann mit \emph{script}.py~\emph{nCpus} aufgerufen werden.

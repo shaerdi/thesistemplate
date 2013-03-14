@@ -3,10 +3,10 @@
 Dieses Kapitel soll eine Übersicht über \openfoam{} und die darin eingebauten Computercodes geben.
 Die Notation verwendet \fileemph{Kursivschrift} für Computer"-datei-Namen und \openfoam{}-spezifische Begriffe. Für für Computercodes wie Programme oder Teile davon wird \codeemph{Schreibmaschinenschrift} verwendet.
 
-Ein Simulationslauf in \openfoam{} wird \fileemph{case} genannt, der durch ein Verzeichnis auf dem Computer repräsentiert wird. Da \openfoam{} keine gra\-phi\-sche Benutzeroberfläche besitzt, werden alle Informationen und Resultate in Textdateien gespeichert, die in diesem \fileemph{case} abgelegt werden.\\
-Die Informationen sind aufgeteilt in die Unterverzeichnisse \fileemph{0}, \fileemph{constant} und \fileemph{system}, sowie Zeitschrittverzeichnisse die nach der jeweiligen Zeit benannt sind. Abbildung~\ref{fig:ofCaseSchema} zeigt die schematische Darstellung.\\
-Im Verzeichnis \fileemph{0} sind die Anfangs- und Randbedingungen der Simulation definiert. Die darin enthaltenen Dateien sind nach den entsprechenden Variablen genannt wie z.B. \fileemph{p} für den Druck oder \fileemph{U} für die Geschwindigkeit.
-In \fileemph{constant} stehen die Simulationsparameter wie zum Beispiel das verwendete Viskositätsmodell und dessen Parameter. Ausserdem ist im Unterverzeichnis \fileemph{polymesh} die Geometrie definiert.
+Ein Simulationslauf in \openfoam{} wird \fileemph{case} genannt, der durch ein Verzei"-chnis auf dem Computer repräsentiert wird. Da \openfoam{} keine gra\-phi\-sche Benutzeroberfläche besitzt, werden alle Informationen und Resultate in Textdateien gespeichert, die in diesem \fileemph{case} abgelegt werden.
+Die Informationen sind aufgeteilt in die Unterverzeichnisse \fileemph{0}, \fileemph{constant} und \fileemph{system}, sowie Zeitschrittverzeichnisse die nach der jeweiligen Zeit benannt sind. Abbildung~\ref{fig:ofCaseSchema} zeigt die schematische Darstellung.
+Im Verzei"-chnis \fileemph{0} sind die Anfangs- und Randbedingungen der Simulation definiert. Die darin enthaltenen Dateien sind nach den entsprechenden Variablen genannt wie z.B. \fileemph{p} für den Druck oder \fileemph{U} für die Geschwindigkeit.
+In \fileemph{constant} stehen die Simulationsparameter wie zum Beispiel das verwendete Viskositätsmodell und dessen Parameter. Ausserdem ist im Unterver"-zei"-chnis \fileemph{polymesh} die Geometrie definiert.
 In \fileemph{system} sind schliesslich die Simulationskontrollgrössen enthalten. Dazu gehören in der Datei \fileemph{controlDict} die Anzahl der Zeitschritte und deren Länge, in \fileemph{fvSchemes} die verwendeten Diskretisierungsschemen und in \fileemph{fvSolution} welche Lösungsmethoden für die linearen Gleichungssystem verwendet werden.
 
 \begin{figure}
@@ -21,12 +21,12 @@ Ein Löser in \openfoam{} ist ein \cpp{} Programm, das in einem \fileemph{case} 
 
 \subsubsection{simpleFoam}
 Für die scherratenabhängigen Viskositätsmodelle wurde als Basislöser die schon in \openfoam{} eingebaute Version \codeemph{simpleFoam} des SIMPLE Algorithmus verwendet.
-Diese erlaubt es unter verschiedenen schon implementierten Viskositätsmodellen zu wählen, oder diese zu modifizieren um ein eigenes Modell zu implementieren.\\
-Dabei wird in der Datei \fileemph{transportProperties} als Transportmodell das gewünschte konstitutive Modell mit seinen Parametern hinterlegt:
+Diese erlaubt es unter verschiedenen schon implementierten Viskositätsmodellen zu wählen, oder diese zu modifizieren um ein eigenes Modell zu implementieren.
+Dabei wird in der Datei \fileemph{transportProperties} als Transportmodell das ge\-wünsch\-te konstitutive Modell mit seinen Parametern hinterlegt:
 %
 \subsubsection{timeAdjustNonNewtIcoFoam}
 Der Löser zu der in \openfoam{} implementierten Version des PISO Algorithmus heisst \codeemph{icoFoam}.
-Diese Version unterstützt aber keine nicht-Newtonsche Modelle und ist nicht in der Lage, den Zeitschritt an die maximal auftretende Geschwindigkeit anzupassen.\\
+Diese Version unterstützt aber keine nicht-Newtonsche Modelle und ist nicht in der Lage, den Zeit\-schritt an die maximal auftretende Geschwindigkeit anzupassen.
 Um trotzdem in der Lage zu sein nicht-Newtonsche, transiente Probleme zu lösen, wurde im Rahmen dieser Arbeit der Löser \codeemph{icoFoam} erweitert.
 
 Analog zum Löser \codeemph{simpleFoam} wird zu Beginn der Simulation eine Instanz der Klasse \codeemph{transportModel} initialisiert, die dann in jedem Zeitschritt die kinematische Viskosität aktualisiert und zur Verfügung stellt:
@@ -43,7 +43,7 @@ nu_ = fluid.nu();
 ...
 \end{lstlisting}
 %
-Zusätzlich wurde in der Zeitschleife die von \openfoam{} zur Verfügung gestellte Routine \codeemph{setDeltaT.H} eingefügt, um $\Delta t$ in jedem Zeitschritt zu überprüfen und gegebenenfalls anzupassen.\\
+Zusätzlich wurde in der Zeitschleife die von \openfoam{} zur Verfügung gestellte Routine \codeemph{setDeltaT.H} eingefügt, um $\Delta t$ in jedem Zeitschritt zu überprüfen und gegebenenfalls anzupassen.
 Mit dieser Änderung können im \fileemph{controlDict} die Zeilen
 %
 \begin{lstlisting}
@@ -54,23 +54,23 @@ maxDeltaT 1;
 %
 eingefügt werden, um den Zeitschritt variabel zu machen.
 
-Der resultierende Code \codeemph{timeAdjustNonNewtIcoFoam} ist in der Lage, sowohl mit nicht konstanten Viskositäten zu rechnen, als auch den Zeitschritt so zu wählen dass eine vom Nutzer bestimmte Courant Zahl nicht überschritten wird.\\
-Die Courant oder auch CFL Zahl ist dabei definiert als Verhältnis zwischen Zeitschritt und räumlicher Auflösung und ist massgeblich für die Stabilität der Simulation
+Der resultierende Code \codeemph{timeAdjustNonNewtIcoFoam} ist in der Lage, sowohl mit nicht konstanten Viskositäten zu rechnen, als auch den Zeitschritt so zu wählen, dass eine vom Nutzer bestimmte Courant Zahl nicht überschritten wird.
+Die Courant oder auch CFL Zahl ist dabei definiert als das Verhältnis zwischen Zeitschritt und räumlicher Auflösung und ist massgeblich für die Stabilität der Simulation:
 %
 \begin{equation}
     c := \frac{\u\cdot \Delta t}{\Delta x} \overset{!}{<} 1.
 \end{equation}
 %
 \subsubsection{viscoelasticFluidFoam}
-Der Löser für die viskoelastischen Simulationen wurde von J.~Favero implementiert. Der Code ist eine Implementation des DEVSS Algorithmus, der aber für die Berechnung der Schubspannungsterme auf eine separat implementierte Klasse zurückgreift.\\
+Der Löser für die viskoelastischen Simulationen wurde von J.~Favero implementiert. Der Code ist eine Implementation des DEVSS Algorithmus, der aber für die Berechnung der Schubspannungsterme auf eine separat implementierte Klasse zurückgreift.
 Dieser Code wurde unverändert übernommen und ist hier nur der Komplettheit halber aufgeführt.
 %
 \subsection{Rheologische Modelle}
-Die rheologischen Modelle können in \openfoam{} als Bibliotheken eingebaut werden. Dazu wird ihr Code kompiliert und im \fileemph{controlDict} angegeben, welche Bibliotheken verwendet werden sollen. Sie sind keine eigenständigen Programme, sondern werden von den Lösern benutzt um Teile der Berechnung auszuführen.
+Die rheologischen Modelle können in \openfoam{} als Bibliotheken eingebaut werden. Dazu wird ihr Code kompiliert und im \fileemph{controlDict} angegeben, welche Bibliotheken verwendet werden sollen. Sie sind keine eigenständigen Programme, sondern werden von den Lösern benutzt, um Teile der Berechnung auszuführen.
 %
 \subsubsection{Scherratenabhängige Modelle}
-Die Implementation eigener Modelle wurde realisiert indem eine neue \cpp{} Klasse implementiert wurde, die von der in \openfoam{} vorhandenen Klasse \codeemph{viscosityModel} abgeleitet ist.
-Diese neue Klasse muss die Funktionen \codeemph{nu} und \codeemph{correct} zur Verfügung stellen. \codeemph{nu} gibt die die kinematische Viskosität zurück, \codeemph{correct} berechnet diese neu.
+Die Implementation eigener Modelle wurde realisiert, indem eine neue \cpp{} Klasse implementiert wurde, die von der in \openfoam{} vorhandenen Klasse \codeemph{viscosityModel} abgeleitet ist.
+Diese neue Klasse muss die Funktionen \codeemph{nu} und \codeemph{correct} zur Verfügung stellen. \codeemph{nu} gibt die kinematische Viskosi"-tät zurück, \codeemph{correct} berechnet diese neu.
 Dabei kann durch die von der Basisklasse zur Verfügung gestellte Funktion \codeemph{strainRate} auf die Scherrate $\gammap$ zurückgegriffen werden. Das Einlesen von zusätzlichen Parametern geschieht dabei in der Funktion \codeemph{read}.
 
 Der schematische Aufbau solch einer Klasse:
@@ -89,30 +89,30 @@ class limitedHerschelBulkley : public viscosityModel {
 };
 \end{lstlisting}
 %
-In der Funktion \codeemph{correct} wird hier eine private Funktion \codeemph{calcNu} aufgerufen, die die Viskosität neu berechnet.
-Das modifizierte Herschel-Bulkley Modell \eqref{eq:modHB} kann dabei, dank der sehr mächtigen Operatorüberladung von \openfoam{}, in einer sehr kompakten Schreibweise implementiert werden:
+In der Funktion \codeemph{correct} wird hier eine private Funktion \codeemph{calcNu} auf\-ge\-ru\-fen, die die Viskosität neu berechnet.
+Das modifizierte Herschel-Bulkley Modell \eqref{eq:modHB} kann dabei, dank der exzellenten Operatorüberladung von \openfoam{}, in einer sehr kompakten Schreibweise implementiert werden:
 %
 \begin{lstlisting}
 Foam::tmp<Foam::volScalarField>
 calcNu() {    
     return
-    (
+    (max(nuMin_,
      min(
-         nu0_,
+         nuMax_,
          ( tau0_ * (1.001-exp(-1*m_*sr()))  + k_ *rtone* pow( tone*sr(),n_ ) )
          /(max(sr(), dimensionedScalar ("VSMALL", dimless/dimTime, VSMALL)))
         )
-    );
+      ));
 }
 \end{lstlisting}
 %
-wobei \codeemph{sr()} die Scherrate ist und \codeemph{tau0\_}, \codeemph{k\_} und \codeemph{n\_} die Modellparameter sind.\\
-Durch die Division durch das Maximum der Scherrate und \codeemph{VSMALL}, einer sehr kleinen Konstante, wird die Division durch Null vermieden.\\
-Da das Herschel-Bulkley Modell eine unendliche Viskosität vorsieht wenn das Fluide nicht geschert wird, dies aber zu numerischen Problem führen kann, wird ausserdem die Viskosität nach oben hin durch die Nullviskosität \codeemph{nu0\_} beschränkt.
+wobei \codeemph{sr()} die Scherrate ist und \codeemph{tau0\_}, \codeemph{k\_} und \codeemph{n\_} die Modellparameter sind.
+Durch die Division durch das Maximum der Scherrate und \codeemph{VSMALL}, einer sehr kleinen Konstante, wird die Division durch Null vermieden.
+Da das Herschel-Bulkley Modell eine unendliche Viskosität vorsieht wenn das Fluide nicht geschert wird, dies aber zu numerischen Problem führen kann, wird ausserdem die Viskosität nach oben hin durch die Nullviskosität \linebreak\codeemph{nuMax\_} beschränkt.
 %
 \subsubsection{Viskoelastische Modelle}
-Der Löser \codeemph{viscoelasticFluidFoam} greift für die Berechnung des Schubspannungtensors auf eine separate Klasse \codeemph{viscoelasticModel} zurück, die ähnlich der \codeemph{transportModel} Klasse in \codeemph{simpleFoam} die Methoden \codeemph{divTau} und \codeemph{correct} zur Verfügung stellt.\\
-Die Methode \codeemph{divTau} berechnet dabei die Divergenz der Schubspannung $\T$ und implementiert gleichzeitig noch einen Teil der DEVSS Methodik indem sie die Split Stress Terme dazu addiert:
+Der Löser \codeemph{viscoelasticFluidFoam} greift für die Berechnung des Schubspannungtensors auf eine separate Klasse \codeemph{viscoelasticModel} zurück, die ähnlich der \codeemph{transportModel} Klasse in \codeemph{simpleFoam} die Methoden \codeemph{divTau} und \codeemph{correct} zur Verfügung stellt.
+Die Methode \codeemph{divTau} berechnet dabei die Divergenz der Schubspannung $\T$ und implementiert gleich\-zei\-tig noch einen Teil der DEVSS Methodik indem sie die Split Stress Terme dazu addiert:
 %
 \begin{lstlisting}
 Foam::tmp<Foam::fvVectorMatrix>
@@ -126,8 +126,8 @@ divTau(volVectorField& U) const {
     );}
 \end{lstlisting}
 
-In der Methode \codeemph{correct} wird bestimmt, wie sich der Schubspannungstensor von einem Zeitschritt zum nächsten ändert.\\
-Diese Methode ist der Teil der Klasse, der an das gewünschte viskoelastische Modell angepasst werden muss. Das in dieser Arbeit verwendete White-Metzner Modell \eqref{eq:whiteMetznerModell} benötigt für das Update des Schubspannungstensors drei Schritte.
+In der Methode \codeemph{correct} wird bestimmt, wie sich der Schubspannungstensor von einem Zeitschritt zum nächsten ändert.
+Diese Methode ist der Teil der Klasse, der an das gewünschte viskoelastische Modell angepasst werden muss. Das in dieser Arbeit verwendete White-Metzner Modell \eqref{eq:whiteMetznerModell} benötigt für das Update des Schubspannungs"-tensors drei Schritte.
 In einem ersten Schritt müssen die direkt von $\u$ abhängigen Variablen berechnet werden
 \begin{lstlisting}
 volTensorField L = fvc::grad(U());
@@ -174,13 +174,13 @@ tauEqn.solve();
 \end{lstlisting}
 %
 \subsection{Nachbearbeitung}
-Für die Auswertung der Simulationen gibt es mit ParaView \cite{paraview} und diversen \openfoam{} Utilities schon eine ganze Anzahl von Möglichkeiten.\\
+Für die Auswertung der Simulationen gibt es mit ParaView \cite{paraview} und diversen \openfoam{} Utilities schon eine ganze Anzahl von Möglichkeiten.
 In dieser Arbeit wurde zusätzlich noch die Möglichkeit genutzt eigene Runtime Functions zu schreiben, also Funktionen die schon während der Simulation bestimme Werte berechnen und damit Einblick in die laufende Simulation ermöglichen.
 %
 \subsubsection{patchAverage}
-Die Funktion \codeemph{patchAverage} ist eine vereinfachte Version der schon in \openfoam{} implementierten Runtime Function \codeemph{fieldValue}.\\
-Sie dient dazu, in vom Nutzer bestimmten Zeitabständen ein bestimmtes Feld über eine oder mehrere Randflächen der simulierten Geometrie zu mitteln und das Resultat in eine separate Datei zu speichern.\\
-Ein Beispiel für die Anwendung ist das Beobachten des mittleren Einlassdruckes bei festgelegter Einlassgeschwindigkeit in einer Strömung.\\
+Die Funktion \codeemph{patchAverage} ist eine vereinfachte Version der schon in \openfoam{} implementierten Runtime Function \codeemph{fieldValue}.
+Sie dient dazu, in vom Nutzer bestimmten Zeitabständen ein bestimmtes Feld über eine oder mehrere Randflächen der simulierten Geometrie zu mitteln und das Resultat in eine separate Datei zu speichern.
+Ein Beispiel für die Anwendung ist das Beobachten des mittleren Einlassdruckes bei festgelegter Einlassgeschwindigkeit in einer Strömung.
 Dazu müssen im \fileemph{controlDict} folgende Zeilen hinzugefügt werden:
 %
 \begin{lstlisting}
@@ -214,12 +214,12 @@ return avgVals;
 \end{lstlisting}
 %
 \subsubsection{torqueCalc}
-Im Kapitel \ref{Kapitel:Korrektursimulation} wird beschrieben, wie die Viskosität des Mörtels anhand des Drehmomentes in einem Platte-Platte Rheometer bestimmt wird.\\
-Die Berechnung dieses Drehmomentes kann zwar mit den schon vorhandenen Utilities in \openfoam{} durchgeführt werden, allerdings ist das eher umständlich und es müssen mehrere Funktionen aufgerufen werden.\\
+Im Kapitel \ref{Kapitel:Korrektursimulation} wird beschrieben, wie die Viskosität des Mörtels anhand des Drehmomentes in einem Platte-Platte Rheometer bestimmt wird.
+Die Berechnung dieses Drehmomentes kann zwar mit den schon vorhandenen Utilities in \openfoam{} durchgeführt werden, allerdings ist das eher umständlich und es müssen mehrere Funktionen aufgerufen werden.
 Um das zu vermeiden, wurde die Funktion \codeemph{torqueCalc} geschrieben, die das Drehmoment in jedem Zeitschritt berechnet.
-Dadurch ist nicht nur die Auswertung der Simulation einfacher, es kann durch eine Überprüfung der Änderung des Drehmoments auch eine Konvergenzbedingung angegeben und die Simulation in jedem Zeitschritt beendet werden.
+Dadurch ist nicht nur die Aus"-wertung der Simulation einfacher, es kann durch eine Überprüfung der Änderung des Drehmoments auch eine Konvergenzbedingung angegeben und die Simulation in jedem Zeitschritt beendet werden.
 
-Die Implementierung wurde ebenfalls als runtime function umgesetzt. In der Funktion \codeemph{calcTorque} wird das Drehmoment $M$ an den vom Nutzer bestimmten Randflächen $A_i$ berechnet.
+Die Implementierung wurde ebenfalls als runtime function umgesetzt. In der Funktion \codeemph{calcTorque} wird das Drehmoment $M$ an den vom Nutzer bestimmten Randflächen berechnet.
 
 In \openfoam{} kann die Schubspannung mithilfe der schon implementierten Funktion \codeemph{snGrad} sehr einfach berechnet werden, wobei die Viskosität erst später dazu multipliziert wird:
 %
@@ -227,7 +227,7 @@ In \openfoam{} kann die Schubspannung mithilfe der schon implementierten Funktio
 wallShearStress = vel.boundaryField()[patchi].snGrad();
 \end{lstlisting}
 
-Der Abstand $r$ ist die X-Komponente eines lokalen Zylinder-Koordinatensystems
+Der Abstand $r$ ist die X-Komponente eines lokalen Zylinder-Koordinaten"-systems
 \begin{lstlisting}
 cylindricalCS ccs
 (
@@ -237,14 +237,13 @@ cylindricalCS ccs
  vector(1,0,0)  // Vector with zero angle
 );
 \end{lstlisting}
-
+%
 Die Summe und das Integral über die vorgegebenen Flächen kann dann mittels einer for-Schleife implementiert werden:
 \begin{lstlisting}
 forAllConstIter(labelHashSet,patchSet_, iter)
 {
  label patchi = iter.key();
- torque+= sum
- (
+ torque+= sum (
   ccs.localVector(wallShearStress)().
        component(vector::X) *
   transportModel.nu()().
@@ -255,7 +254,7 @@ forAllConstIter(labelHashSet,patchSet_, iter)
  );
 }
 \end{lstlisting}
-
+%
 Die Konvergenzbedingung ist in der Funktion \codeemph{checkConvergence} eingebaut.
 %
 Die Werte $m[t]$ wurden dabei in einer \codeemph{fixedList} der Grösse drei gespeichert, in die jeweils periodisch die neuen Werte geschrieben werden

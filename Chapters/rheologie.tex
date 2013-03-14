@@ -31,7 +31,7 @@ Eine ausführliche Herleitung dieser Bilanzgleichungen ist in \cite{boehme} zu f
 
 Im allgemeinsten Fall kann der Spannungstensor $\T=f\left( \r,t \right)$\nomenclature[fv:f]{$f(\cdot)$}{Konstitutives Gesetz}\nomenclature[gv:t]{$t$}{Zeit} eine beliebig komplexe Funktion des Ortes und der Zeit sein.
 $f$ ist die konstitutive Glei"-chung, die die Spannungen mit den resultierenden Verzerrungen verknüpft.
-In dieser Arbeit wird diese Abhängigkeit eingegrenzt, indem $\T$ auf eine Funktion des Dehngeschwindigkeitstensors \nom[gv:D]{$\D$}{Dehngeschwindigkeitstensor} und der Zeit beschränkt wird.
+In dieser Arbeit wird diese Abhängigkeit eingegrenzt, indem $\T$ auf eine Funktion des Dehngeschwindigkeitstensors \nom[gv:D]{$\D$}{Dehngeschwindigkeitstensor} und der Zeit beschränkt wird:
 %
 \begin{equation}
     \label{eq:Spannungstensor}
@@ -44,7 +44,7 @@ Dabei ist
     \D =\frac{1}{2} \left( \nabla \u + \nabla \u^T \right).
 \end{equation}
 %
-Die Diagonalelemente von $\D$ enthalten die Dehngeschwindigkeiten von Linienelementen die in Richtung der Basisvektoren orientiert sind. 
+Die Diagonalelemente von $\D$ enthalten die Dehngeschwindigkeiten von Linienelementen, die in Richtung der Basisvektoren orientiert sind. 
 Die Ne"-bendiagonalelemente sind die halbe Geschwindigkeit, mit der sich die Winkel zwischen zwei momentan zu den Basisvektoren parallelen Linienelemente ändern.
 Für eine einfache Schichtenströmung, so wie in Abbildung~\ref{fig:schichtenstroemung} dar"-ge"-stellt, ergibt sich zum Beispiel der besonders einfache Zusammenhang 
 %
@@ -78,22 +78,22 @@ Für eine einfache Schichtenströmung, so wie in Abbildung~\ref{fig:schichtenstr
 \subsection{Konstitutive Gesetze}
 Ein konstitutives Gesetz beschreibt die materialspezifische Beziehung zwischen zwei physikalischen Grössen.
 Im vorliegenden Fall ist das der Zusammenhang zwischen einer wirkenden Kraft und der resultierenden Dehnung.
-Diese Relation wird auch durch die Viskosität \nom[gv:eta]{$\eta$}{Viskosität} beschrieben, kann aber auch andere Eigenschaften wie Viskoelastizität beinhalten.
+Diese Relation wird im Newtonschen Fall durch die Viskosität \nom[gv:eta]{$\eta$}{Viskosität} beschrieben, kann aber auch andere Eigenschaften wie Viskoelastizität beinhalten.
 
 Die Anforderungen an diese Gesetze sind vielfältig. Sie sollen die realen Stoffeigenschaften möglichst gut beschreiben um eine realitätsnahe Modellierung zu ermöglichen. Zusätzlich sollen sie die Lösung der Gleichungssysteme nicht oder nur wenig erschweren, auch im Hinblick auf eine numerische Diskretisierung.
 %Andererseits sollen sie die zu lösenden Glei"-chungen nicht unnötig komplizieren und deshalb mit einfachen Zusammenhängen und wenig Parametern auskommen.\\
-Aus diesen Anforderungen ist eine Vielzahl von Modellen für Fliessgesetze entstanden, von denen einige nachfolgend aufgeführt werden. Weitere Modelle werden in \cite{boehme}, \cite{introtorheo} und \cite{comprheo} beschrieben.
+Aus diesen Anforderungen ist eine Vielzahl von Modellen für Fliessgesetze entstanden, von denen einige nachfolgend aufgeführt werden. Weitere Modelle werden in \cite{introtorheo}, \cite{boehme} und \cite{comprheo} beschrieben.
 %
 \subsubsection{Zeitunabhängige Spannungen}
 Ist $\T$ keine Funktion der Zeit, gilt $\T=f\left( \D \right)$.
-Ein Spezialfall dieses Modells ist die Newtonsche Flüssigkeit, für die $\T=2\eta\D$ gilt. In diesem Fall wird meist auch die Variable \nom[pv:mu]{$\mu$}{Konstante Viskosität eines Newtonschen Fluides} statt $\eta$ verwendet.
+Ein Spezialfall dieses Modells ist die Newtonsche Flüssigkeit, für die $\T=2\eta\D$ gilt. In diesem Fall wird meist die Variable \nom[pv:mu]{$\mu$}{Konstante Viskosität eines Newtonschen Fluides} statt $\eta$ verwendet.
 
-Statt $\T=f\left( \D \right)$ wird häufig auch der Ausdruck
+Die Funktion $\T=f\left( \D \right)$ wird häufig auch zu
 \begin{equation}
     \label{eq:TgeneralNewton}
     \T=\eta\left( \D \right)\cdot \D
 \end{equation}
-verwendet. Diese Darstellung ermöglicht es, von einem generalisierten Newtonschen Fluid zu sprechen, bei dem die effektive Viskosität $\eta$ abhängig von der Dehngeschwindigkeit $\D$ ist.
+umgeformt. Diese Darstellung ermöglicht es, von einem generalisierten Newtonschen Fluid zu sprechen, bei dem die effektive Viskosität $\eta$ abhängig von der Dehngeschwindigkeit $\D$ ist.
 
 Wird angenommen, dass $\eta$ nur von der Summe aller Dehngeschwindigkei"-ten abhängt (isotrope Viskosität), kann man $\D$ mit der Scherrate \nom[gv:gamma]{$\gammap$}{Scherrate} ersetzen:
 \begin{equation}
@@ -115,7 +115,7 @@ In Abbildung~\ref{fig:fliessKurven} sind die Fliesskurven der verschiedenen Flui
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{figures/Fliesskurven.png}
-    \caption{Fliesskurven von verschiedenen Typen von Fluiden, dargestellt im doppelt logarithmischen Plot}
+    \caption{Fliesskurven von verschiedenen Fluid-Typen, dargestellt im doppelt logarithmischen Plot.}
     \label{fig:fliessKurven}
 \end{figure}
 %
@@ -136,10 +136,10 @@ Das einfachste nicht-Newtonsche Fliessgesetz ist das Potenzgesetz nach Ostwald u
     \eta=K\gammap^{n-1}.
     \label{eq:fg:potenz}
 \end{equation}
-Es besitzt zwei Parameter, den Fliessindex \nom[pv:n]{$n$}{Fliessindex in Fliessgesetzen} und den Konsistenzparameter \nom[pv:K]{$K$}{Konsistenzparameter in Fliessgesetzen}. Der Fliessindex entscheidet dabei über das Verhalten des Fluids bei sich ändernder Scherrate (dilatant für $n>1$, struktuviskos für $n<1$ oder Newtonsch für $n=1$). Der Konsistenzparameter ähnelt der Viskosität bei Newtonschen Flüssigkeiten.
+Es besitzt zwei Parameter, den Fliessindex \nom[pv:n]{$n$}{Fliessindex in Fliessgesetzen} und den Konsistenzparameter \nom[pv:K]{$K$}{Konsistenzparameter in Fliessgesetzen}. Der Fliessindex entscheidet dabei über das Verhalten des Fluids bei sich ändernder Scherrate (dilatant für $n>1$, strukturviskos für $n<1$ oder Newtonsch für $n=1$). Der Konsistenzparameter ähnelt der Viskosität bei Newtonschen Flüssigkeiten.
 %
 \subparagraph{Carreau-Yasuda}
-Ein Mangel des Ostwald-de-Waele-Modells ist das unrealistische Verhalten bei verschwindenden Scherraten $\gammap\rightarrow 0$. Abhängig von $n$ strebt die Viskosität gegen Unendlich oder gegen Null.
+Ein Mangel des Ostwald-de-Waele Modells ist das unrealistische Verhalten bei verschwindenden Scherraten, $\gammap\rightarrow 0$. Abhängig von $n$ strebt die Viskosität gegen Unendlich oder gegen Null.
 Eine Möglichkeit dies zu beheben, bietet das Carreau-Yasuda-Modell,
 \begin{equation}
     \eta=\eta_\infty+\left( \eta_0-\eta_\infty \right)\left[ 1+\left( L\gammap \right)^\alpha \right] ^{\frac{n-1}{\alpha}},
@@ -153,16 +153,16 @@ Ein Bingham Fluid ist ein Material, das erst ab einer Fliessgrenze zu fliessen b
     \eta=
     \begin{cases}
         \infty                           &; \tau<\tau_{0}    \quad \text{(Festkörper)}\\
-        \frac{\tau-\tau_{0}}{\mu\cdot\gammap} &; \tau\geq\tau_{0}
+        \frac{\tau-\tau_{0}}{\mu\gammap} &; \tau\geq\tau_{0}
     \end{cases}\quad.
     \label{eq:fg:bingham}
 \end{equation}
 Dabei ist \nom[pv:xb:tau0]{$\tau_0$}{Fliessgrenze von viskoplastischen Materialien} die Fliessgrenze und $\mu$ die Viskosität im Newtonschen Bereich.
 %
 \subparagraph{Herschel-Bulkley Modell}
-Ein Modell mit einer Fliessgrenze und einem nicht-Newtonschen Verhalten oberhalb dieser Grenze ist das Herschel"=Bulkley"=Modell.
+Ein Modell mit einer Fliessgrenze und einem nicht-Newtonschen Verhalten oberhalb dieser Grenze ist das Herschel"=Bulkley"=Modell,
 \begin{equation}
-    \eta=  \frac{\tau_0}{\gammap}+K\gammap^{n-1},
+    \eta=  \frac{\tau_0}{\gammap}+K\gammap^{n-1}.
     \label{eq:fg:herschelbulkley}
 \end{equation}
 
@@ -179,11 +179,11 @@ Die materialabhängigen Parameter sind dabei die Fliessgrenze $\tau_0$, die Kons
 Für viele Flüssigkeiten spielt nicht nur der aktuelle Zustand des Fluids eine Rolle, sondern auch die Geschichte der früheren Deformationen. Die konstitutive Gleichung \eqref{eq:Spannungstensor} ist also nicht mehr nur von $\D$ abhängig, sondern auch von der Zeit $t$ und der Verzerrungsgeschichte:
 \begin{equation}
     \label{eq:Tviskoelastisch}
-    \T\left( \D,t \right) = \underset{s\leq t}{f}\left[ \T\left( s \right),\D\left( t \right) \right].
+    \T\left( \D,t \right) = \underset{s\leq t}{f}\left[ \T\left(\D, s \right),\D\left( s \right) \right].
 \end{equation}
 %
 \paragraph{Maxwell Modell}
-Ein Modell, um das Verhalten solch eines Stoffes zu beschreiben, ist das Maxwell Modell.
+Ein Modell, um das Verhalten eines solchen Stoffes zu beschreiben, ist das Maxwell Modell.
 Dabei wird das Material als eine Mischung aus einer viskosen Newtonschen Flüssigkeit und einem oder mehreren elastischen Festkörpern beschrieben. Dies geschieht durch eine Kombination aus einem Dämpfer und einer Feder, deren Eigenschaften in Reihe geschaltet sind. 
 Eine schematische Darstellung ist in Abbildung~\ref{fig:Maxwell-Material} zu sehen.
 Wird nun auf dieses Material eine Kraft in Form einer Spannung ausgeübt, nehmen beide Komponenten einen Teil davon auf, wobei der viskose Dämp"-fer sich unter der Spannung verformt und die Energie als Wärme dissipiert. Die elastische Komponente speichert die Spannung hingegen als elastische Energie und kann diese zu einem späteren Zeitpunkt wieder zurückgeben.
@@ -192,7 +192,7 @@ Wird nun auf dieses Material eine Kraft in Form einer Spannung ausgeübt, nehmen
     \centering
     \includegraphics[width=0.5\textwidth]{figures/Maxwell-material.png}
     \caption{Schematische Darstellung eines Maxwell Materialmodells.
-    Links der viskose Dämpfer, rechts die elastische Feder.}
+    Links der viskose Dämpfer, rechts die elastische Feder. Bildquelle: Wikipedia.}
     \label{fig:Maxwell-Material}
 \end{figure}
 
@@ -217,7 +217,7 @@ Die Voraussetzung dafür ist, dass das Stoffverhalten als linear angenommen wird
 \end{figure}
 %
 \paragraph{Oldroyd-B Modell}
-Eine Erweiterung des Maxwell Modells ist das \linebreak Oldroyd"~B Modell, bei dem statt der partiellen die kontravariante Ableitung \nom[not:oldroyd]{$\overset{\nabla}{\T}$}{Kontravariante (Oldroydsche) Zeitableitung} verwendet wird:
+Eine Erweiterung des Maxwell Modells ist das \linebreak Oldroyd"~B Modell, bei dem statt der partiellen die kontravariante Ableitung verwendet wird:\nomenclature[not:oldroyd]{$\overset{\nabla}{\T}$}{Kontravariante (Oldroydsche) Zeitableitung} 
 \begin{equation}
     \label{eq:oldroydModell}
     \T + \lambda \overset{\nabla}{\T}=2\eta \D,
@@ -231,8 +231,8 @@ Diese Modifikation dient dazu, Drehungen und Verzerrungen des Fluides in der Dif
 Die Herleitung dieser Ab"-lei"-tung stammt von J.G. Oldroyd \cite{oldroyd}, nach dem auch das Modell benannt ist.
 
 \paragraph{White-Metzner Modell}
-Das in dieser Arbeit verwendete Modell für viskoelastische Fluide muss zusätzlich zu der Zeitabhängigkeit auch die starke Scherratenabhängigkeit berücksichtigen können.
-Dies bietet das White-Metz"-ner Modell. Dieses ist eine Erweiterung des Oldroyd-B Modelles, bei dem zusätzlich $\lambda$ und $\eta$ Funktionen von $\gammap$ sind:
+Das in dieser Arbeit verwendete Modell für viskoelastische Fluide muss zusätzlich zu der Zeitabhängigkeit auch die starke Scherratenabhängigkeit der Mörtel berücksichtigen können.
+Dies bietet das White-Metz"-ner Modell. Dieses ist eine Erweiterung des Oldroyd-B Mo\-del\-les, bei dem zusätzlich $\lambda$ und $\eta$ Funktionen von $\gammap$ sind:
 \begin{equation}
     \label{eq:whiteMetznerModell}
     \T + \lambda\left( \gammap \right) \overset{\nabla}{\T}=2\eta\left( \gammap \right) \D.

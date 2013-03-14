@@ -2,15 +2,15 @@
 \selectlanguage{ngerman}
 \begin{abstr}
 Bei der Firma Hilti AG kommen in der Befestigungstechnik harzbasierte Mörtel zum Einsatz.
-Diese Mörtel zeigen ein rheologisch komplexes Fliessverhalten welches sowohl scherverdünnendes als auch viskoelastisches Verhalten beinhaltet. Im Rahmen der Produktentwicklung ist ein solides Verständnis der Mörtel von entscheidender Bedeutung, daher soll in dieser Arbeit das Fliessverhalten mittels numerischer Simulation untersucht werden.
-Die Modellierung der rheologischen Eigenschaften erfordert die Wahl eines konstitutiven Gesetzes, das einen Zusammenhang zwischen der am Fluid anliegenden Spannung und der resultierenden Verformung herstellt. Dazu wurde für die Scherverdünnung ein Herschel-Bulkley und für die Viskoelastizität ein White-Metzner Modell verwendet.
-Zur Simulation des Fliessverhaltens wurde die Navier-Stokes Gleichung numerisch gelöst. Die Rheologie geht über die nichtlineare Gleichung in den Code ein. Nicht jeder Strömungslöser erlaubt den Einbau spezieller rheologischer Gesetze.
+Diese Mörtel zeigen ein rheologisch komplexes Fliessverhalten welches sowohl scherverdünnendes als auch viskoelastisches Verhalten beinhaltet. Im Rahmen der Produktentwicklung ist ein solides Verständnis der Mörtel von entscheidender Bedeutung, daher war das Ziel dieser Arbeit das Fliessverhalten mittels numerischer Simulation zu untersuchen.
+Die Modellierung der rheo"-lo"-gi"-schen Eigenschaften erforderte die Wahl eines konstitutiven Gesetzes, das einen Zusammenhang zwischen der am Fluid anliegenden Spannung und der resultierenden Verformung herstellt. Dazu wurde für die Scherverdünnung ein Herschel-Bulkley und für die Viskoelastizität ein White-Metzner Modell verwendet.
+Zur Simulation des Fliessverhaltens wurden die Navier-Stokes Gleichungen numerisch gelöst. Die Rheologie geht über die nichtlinearen Schliessungsansätze der Gleichungen in den Code ein. Nicht jeder Strömungslöser erlaubt den Einbau spezieller rheologischer Gesetze.
 %Um diese Modelle in einen Computercode einzubauen, wird ein flexibles Simulationsprogramm benötigt.
-Aus diesem Grund wird in dieser Arbeit die Bibliothek \openfoam{} verwendet, die das Einbauen von eigenen numerischen Verfahren ermöglicht.
+Aus diesem Grund wurde in dieser Arbeit die Bibliothek \openfoam{} verwendet, die das Einbauen von eigenen numerischen Verfahren ermöglicht.
 
-Die für die Anpassung der Modelle an die jeweiligen Materialien erforderlichen Parameter werden mithilfe einer Optimierungsmethode an Messergebnisse angepasst. Die dafür notwendigen Messdaten stammen von zwei verschiedenen Rheometern, einem Platte-Platte Rheometer und einem Kapillarrheometer. Die Messungen des Platte-Platte Rheometers weisen durch einen in der internen Berechnung nicht berücksichtigten Ring einen systematischen Messfehler auf. Mittels einer Korrektursimulation wird dieser Einfluss herausgerechnet. Die dazu notwendige Kopplung mit \openfoam{} sowie der Optimierungscode wurde in Python realisiert.
+Die für die Anpassung der Modelle an die jeweiligen Materialien erforderlichen Parameter wurden mithilfe einer Optimierungsmethode an Messergebnisse angepasst. Die dafür notwendigen Messdaten stammten von zwei verschiedenen Rheometern, einem Platte-Platte Rheometer und einem Kapillarrheometer. Die Messungen des Platte-Platte Rheometers weisen durch einen in der internen Berechnung nicht berücksichtigten Ring einen systematischen Messfehler auf. Mittels einer Korrektursimulation wurde dieser Einfluss herausgerechnet. Die dazu notwendige Kopplung mit \openfoam{} sowie der Optimierungscode wurde in Python realisiert.
 
-Die berechneten Materialdaten werden mittels Simulation des Kapillarrheometers verifiziert. Anschliessend wird eine Validierung anhand eines anwendungsnahen Strömungsversuches durchgeführt. Dieser besteht aus einer Funktionsersatzprüfung des realen Hilti Auspressgerätes und einem daran angeschlossenen statischen Mischer.
+Die berechneten Materialdaten wurden mittels Simulation des Kapillarrheometers verifiziert. Anschliessend wurde eine Validierung anhand eines anwendungsnahen Strömungsversuches durchgeführt. Dieser bestand aus einer Funktionsersatzprüfung des realen Hilti Auspressgerätes und einem daran angeschlossenen statischen Mischer.
 \end{abstr}
 %
 \newpage

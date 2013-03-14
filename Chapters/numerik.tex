@@ -8,11 +8,11 @@ Dabei wird abwechselnd eine Aktualisierung des Druck- und des Ge\-schwin\-dig\-k
 Ein Iterationsschritt des SIMPLE Algorithmus kann dabei wie folgt zusammengefasst werden:
 %
 \begin{outline}[enumerate]
-    \1 Verwende eine Startlösung $p^*$.
-    \1 Berechne ausgehend von $p^*$ ein Geschwindigkeitsfeld $u^*$ mit Hilfe der (stationären) Impulsgleichung.
-    \1 Berechne eine Druckkorrektur $p^{'}$ durch das Lösen der Druckkorrekturgleichung $\nabla^2p=-\nabla \cdot \left( u^*\cdot\nabla \right)u^*$.
-    \1 Berechne ein neues Druckfeld $p^{**}=p^*+\alpha p^{'}$, wobei $\alpha \in (0,1]$ ein Unterrelaxationsparameter \footnote{Unterrelaxation bezeichnet die bei der Lösung von nichtlinearen Problemen verwendete Dämpfung der Korrekturschritte.} ist.
-    \1 Korrigiere die Geschwindigkeit um $\nabla u=0$ zu erfüllen.
+    \1 Schätze ein Druckfeld $p^*$ mithilfe von $\u$.
+    \1 Berechne ausgehend von $p^*$ ein Geschwindigkeitsfeld $\u^*$ mit Hilfe der (stationären) Impulsgleichung.
+    \1 Berechne eine Druckkorrektur $p'$ durch das Lösen der Druckkorrekturgleichung $\nabla^2p=-\nabla \cdot \left( \u^*\cdot\nabla \right)\u^*$.
+    \1 Berechne ein neues Druckfeld $p^{**}=p^*+\alpha p'$, wobei $\alpha \in (0,1]$ ein Unterrelaxationsparameter \footnote{Unterrelaxation bezeichnet die bei der iterativen Lösung von nichtlinearen Problemen verwendete Dämpfung der Korrekturschritte.} ist.
+    \1 Korrigiere die Geschwindigkeit um $\nabla \u=0$ zu erfüllen.
 \end{outline}
 
 Der SIMPLE Algorithmus wurde in dieser Arbeit für die Simulation zeitunabhängiger nicht-Newtonscher Fluide verwendet. Dabei wurde der Ab\-hän\-gig\-keit der Viskosität $\eta$ von der Schergeschwindigkeit $\gammap$ Rechnung getragen, indem diese in jedem Iterationsschritt ausgewertet wurde. Dadurch ent\-steht im Vergleich zu den normalen Navier-Stokes Gleichungen eine zu\-sätz\-liche Nichtlinearität. Dies beeinflusst das Konvergenzverhalten und muss bei der Wahl der Simulationsparameter, wie z.B. Relaxationsfaktoren, mit einbezogen werden.
@@ -22,11 +22,11 @@ Der \textbf{P}ressure \textbf{I}mplicit with \textbf{S}plit \textbf{O}perator (P
 Ähnlich wie der \mbox{SIMPLE} Algorithmus wird dabei zwischen Druck und Ge\-schwin\-dig\-keit iteriert. Die Hauptunterschiede sind, dass keine Unterrelaxation angewendet wird, und dass die Impulsgleichung mehrfach gelöst wird:
 %
 \begin{outline}[enumerate]
-    \1 Verwende eine Startlösung $p^*$.
-    \1 Ausgehend von $p^*$ berechne ein Geschwindigkeitsfeld $u^*$ mit Hilfe der instationären Impulsgleichung.
-    \1 Berechne eine Druckkorrektur $p^{'}$ durch das Lösen der Druckkorrekturgleichung $\nabla^2p=-\nabla \cdot \left( u^*\cdot\nabla \right)u^*$.
-    \1 Berechne ein neues Druckfeld $p^{**}=p^*+ p^{'}$.
-    \1 Korrigiere die Geschwindigkeit um $\nabla u=0$ zu erfüllen..
+    \1 Schätze ein Druckfeld $p^*$ mithilfe von $\u$.
+    \1 Ausgehend von $p^*$ berechne ein Geschwindigkeitsfeld $\u^*$ mit Hilfe der instationären Impulsgleichung.
+    \1 Berechne eine Druckkorrektur $p'$ durch das Lösen der Druckkorrekturgleichung $\nabla^2p=-\nabla \cdot \left( \u^*\cdot\nabla \right)\u^*$.
+    \1 Berechne ein neues Druckfeld $p^{**}=p^*+ p'$.
+    \1 Korrigiere die Geschwindigkeit um $\nabla \u=0$ zu erfüllen..
     \1 Die Schritte 3-5 werden pro Zeitschritt eine vom Anwender bestimmte Anzahl mal ausgeführt.
 \end{outline}
 %
@@ -48,7 +48,7 @@ gilt. Nimmt man von \eqref{eq:devss:d} die Divergenz und subtrahiert das Resulta
     \rho \u _t + \rho \u \cdot \nabla\u = -\nabla p +\nabla \cdot \T - a \nabla \cdot \left( \underline{\D}-\D \right).
 \end{equation}
 %
-Hierbei ist \nom[num:a]{$a$}{Parameter des DEVSS Verfahrens} ein positiver Parameter.
+Dabei ist \nom[num:a]{$a$}{Parameter des DEVSS Verfahrens} ein positiver Parameter.
 Gleichung \eqref{eq:devss:impuls} kann umgeschrieben werden als
 %
 \begin{equation}
@@ -58,11 +58,11 @@ Gleichung \eqref{eq:devss:impuls} kann umgeschrieben werden als
 %
 Diese Null-Operation hat keinen Einfluss auf die Lösung des Gleichungssystems, ermöglicht aber durch eine unterschiedliche Diskretisierung von $\D$ und $\underline{\D}$ eine Stabilisierung des numerischen Problems.
 
-Das iterative Verfahren zur Lösung der Gleichungen \eqref{eq:Massenerhaltung}, \eqref{eq:devss:impuls2} und \eqref{eq:Tviskoelastisch} lautet wie folgt:
+Das iterative Verfahren zur Lösung der Gleichungen \eqref{eq:Massenerhaltung}, \eqref{eq:Tviskoelastisch} und \eqref{eq:devss:impuls2} lautet wie folgt:
 %
 \begin{outline}[enumerate]
-    \1 Mit gegebenem Geschwindigkeitsfeld $u^*$, Druckfeld $p^*$ und Spannung $\tau^*$ wird die Impulsgleichung \eqref{eq:devss:impuls2} für ein neues Geschwindigkeitsfeld $u^{**}$ implizit gelöst.
-    \1 Durch Verwendung von $U^{**}$ wird eine neue Approximation des Druckfeldes $p^{**}$ berechnet und anschliessend eine Korrektur der Ge\-schwin\-dig\-keit mithilfe der Kontinuitätsgleichung durchgeführt um $u^{***}$ zu erhalten. Dazu wird der PISO Algorithmus verwendet.
-    \1 $u^{***}$ wird benützt, um mit Hilfe eines konstitutiven Gesetzes \eqref{eq:Tviskoelastisch} ein neues Spannungsfeld $\tau^{**}$ zu erhalten.
+    \1 Mit gegebenem Geschwindigkeitsfeld $\u$, Druckfeld $p$ und Spannung $\tau$ wird die Impulsgleichung \eqref{eq:devss:impuls2} für ein neues Geschwindigkeitsfeld $\u^{*}$ implizit gelöst.
+    \1 Durch Verwendung von $\u^{*}$ wird eine neue Approximation des Druckfeldes $p^{*}$ berechnet und anschliessend eine Korrektur der Ge\-schwin\-dig\-keit mithilfe der Kontinuitätsgleichung durchgeführt um $\u^{**}$ zu erhalten. Dazu wird der PISO Algorithmus verwendet.
+    \1 $\u^{**}$ wird benützt, um mit Hilfe eines konstitutiven Gesetzes \eqref{eq:Tviskoelastisch} ein neues Spannungsfeld $\tau^{*}$ zu erhalten.
     \1 Falls es sich um eine transiente Simulation handelt, können die Schritte 1-3 mehrmals pro Zeitschritt durchgeführt werden um eine genauere Lösung zu erhalten.
 \end{outline}
