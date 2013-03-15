@@ -59,19 +59,18 @@ In transienten Simulationen kann keine Relaxation angewendet werden. Um die Stab
 %
 \subsection{Konvergenzkriterien}
 Die für Simulationen normalerweise verwendeten Residuen des Druck- und Geschwindigkeitsfeldes können in Berechnungen mit variabler Viskosität nicht ohne weiteres als Konvergenzkriterium verwendet werden.
-Die Kopp\-lung von Geschwindigkeit und Viskosität führt dazu, dass die Lösung sich teilweise nur noch in kleinen Regionen um kleine Beträge ändert, diese Änderung sich aber durchaus noch über eine grosse Anzahl von Schritten fortsetzen kann
-(Abbildung~\ref{fig:platRheoNu}).
+Die Kopp\-lung von Geschwindigkeit und Viskosität führt dazu, dass die Lösung sich teilweise nur noch in kleinen Regionen um kleine Beträge ändert, diese Änderung sich aber durchaus noch über eine grosse Anzahl von Schritten fortsetzen kann. Dieser Effekt ist in Abbildung~\ref{fig:platRheoNu} verdeutlicht.
 \begin{figure}
     \centering
-    \subfloat[Die Viskosität nach 600 Schritten]{
+    \subfloat[Viskosität nach 600 Schritten]{
     \includegraphics[width=0.45\textwidth]{figures/platRheoNu1.PNG}
     \label{fig:platRheoNu:subA}
     }
-    \subfloat[Die Viskosität nach 10000 Schritten]{
+    \subfloat[Viskosität nach 10000 Schritten]{
     \includegraphics[width=0.45\textwidth]{figures/platRheoNu2.PNG}
     \label{fig:platRheoNu:subB}
     }
-    \caption{Die Viskositätsverteilung im Platte-Platte Rheometer (Kapitel~\ref{Kapitel:Rheometer}) zu unterschiedlichen Zeitpunkten. Bereits nach 600 Schritten ist die Änderung zwischen zwei Schritten sehr klein, da die Viskosität sich nur noch unmittelbar an der in \subref{fig:platRheoNu:subA} zu sehenden Grenze ändert. Trotzdem unterscheidet sich das konvergierte Resultat in \subref{fig:platRheoNu:subB} deutlich von der noch nicht konvergierten Lösung.}
+    \caption{Die Viskositätsverteilung (blau: niedrig, rot: hoch) im Platte-Platte Rheometer (Kapitel~\ref{Kapitel:Rheometer}) mit $\omega=\SI{10}{rad.s^{-1}}$ zu unterschiedlichen Zeitpunkten. Bereits nach 600 Schritten ist die Änderung zwischen zwei Schritten sehr klein, da die Viskosität sich nur noch unmittelbar an der in \subref{fig:platRheoNu:subA} zu sehenden Grenze ändert. Trotzdem unterscheidet sich das konvergierte Resultat in \subref{fig:platRheoNu:subB} deutlich von der noch nicht konvergierten Lösung.}
     \label{fig:platRheoNu}
 \end{figure}
 Daher wurde in der vorliegenden Arbeit statt der Residuen das Verhalten der aus den verwendeten Randbedingungen resultierenden Be"-ob"-ach"-tungs"-grös"-sen als Konvergenzkriterium verwendet.
@@ -83,7 +82,7 @@ Bei Simulationen mit einem am Einlass vorgegebenen Volumenstrom, wie beim Kapill
 \end{equation}
 %
 
-In Kapitel \ref{Kapitel:Korrektursimulation} wird beschrieben wie die Viskosität des Mörtels anhand des Drehmomentes in einem Platte-Platte Rheometer bestimmt wird. In diesen Simulationen ist die beobachtete Grösse nicht der Druck, sondern das resultierende Drehmoment.
+Für das Platte-Platte Rheometer ist die beobachtete Grösse nicht der Druck, sondern das resultierende Drehmoment.
 Um dieses aus den berechneten Grössen zu ermitteln wird an den vom Nutzer bestimmten Flächen $A_i$ über die Schubspannung integriert:
 %
 \begin{equation}
@@ -95,6 +94,8 @@ Dabei ist
 \end{equation}
 die Schubspannung an der Wand und $r$ der Abstand zum Rotationszentrum.
 Die Auswertung dieser Werte erfolgt in jedem Iterationsschritt. Die Änderung zwischen zwei Iterationsschritten kann dann als Konvergenzkriterium verwendet werden.
+In Kapitel \ref{Kapitel:Parameter:PlattePlatteRheo} wird beschrieben wie die Viskosität des Mörtels anhand des Drehmomentes in einem Platte-Platte Rheometer bestimmt wird. 
+
 
 Werden die Änderungen von Beobachtungsgrössen als Konvergenzkriterium verwendet, muss darauf geachtet werden, dass nicht nur die erste, sondern auch die zweite Ableitung mit einbezogen wird. Andernfalls ist es möglich, dass die Simulation zu früh gestoppt wird. Falls die beobachteten Werte zu Beginn der Simulation hin und her schwingen, nimmt die erste Ableitung in den Maxima und Minima ebenfalls sehr kleine Werte an, obwohl noch keine Konvergenz erreicht ist.
 Die Ableitungen der beobachteten Werte wurden in dieser Arbeit mittels Finiten Differenzen berechnet:

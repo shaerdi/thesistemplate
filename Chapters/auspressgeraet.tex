@@ -125,14 +125,14 @@ In den Simulationen wurden der Mischer und die FEP separat behandelt, da dadurch
 
 \subsubsection{Funktionsersatzprüfung}
 Bei der FEP wurden acht Messungen, mit je zwei Mörteln, zwei Kolben"-ge"-schwindig"-kei"-ten und zwei Blendenkonfigurationen durchgeführt. 
-Eine Bei"-spiel"-kon"-fi"-gura"-tion mit Blendendurchmesser $\emptyset_A=10$ mm und $\emptyset_B=4$ mm ist in Abbildung~\ref{fig:fepSimResult} zu sehen.
+Eine Bei"-spiel"-kon"-fi"-gura"-tion mit Blendendurchmesser $\emptyset_A=\SI{10}{mm}$ und $\emptyset_B=\SI{4}{mm}$ ist in Abbildung~\ref{fig:fepSimResult} zu sehen.
 In Tabelle~\ref{fig:fepVergleich} sind die gemessenen und die simulierten Druck"-verluste über die Blende aufgeführt. Simulationen wurden mit den rein scherratenabhängigen Modellen durchgeführt. 
 Der Druckverlust wurde dabei jeweils auf der Seite gemessen, die der eingefüllten Mörtelkomponente entspricht.
 Das bedeutet, dass für die A Komponente die Messstelle auf der A Seite in Abbildung~\ref{fig:FEP_schema} verwendet wurde.
 %
 \begin{table}[tb]
 \noindent\makebox[\textwidth]{%
-    \begin{tabular}{l c c c r r r} 
+    \begin{tabular}{l c c c S S S} 
         \toprule[1.5pt]
         \multicolumn{4}{c}{\textbf{Messaufbau}} &
         \multicolumn{2}{c}{\textbf{Druckverlust}} &
@@ -144,47 +144,47 @@ Das bedeutet, dass für die A Komponente die Messstelle auf der A Seite in Abbil
      \cmidrule(lr){1-4}
      \cmidrule(lr){5-6}
      \cmidrule(lr){7-7}
-    \multirow{4}{*}{\moertelA{} A} &  \multirow{2}{*}{4} & \multirow{2}{*}{2} & 2.1 & 0.3 & 0.38  & 28\\
+     \multirow{4}{*}{\moertelA{} A} &  \multirow{2}{*}{\num{4}} & \multirow{2}{*}{\num{2}} & \num{2.1} & 0.3 & 0.38  & 28\\
                                                     %\cline{4-7}
-                              &                     &                    & 4   & 0.43 & 0.5  & 17\\
+                                                    &                     &                    & \num{4}   & 0.43 & 0.5  & 17\\
                               %\cline{2-7}
                               \addlinespace
-                              & \multirow{2}{*}{10} & \multirow{2}{*}{4} & 2.1 & 0.28 & 0.23 & 16\\
+                              & \multirow{2}{*}{\num{10}} & \multirow{2}{*}{\num{4}} & \num{2.1} & 0.28 & 0.23 & 16\\
                                                     %\cline{4-7}
-                              &                     &                    & 4   & 0.32 & 0.29 &  10\\
+                                                    &                     &                    & \num{4}   & 0.32 & 0.29 &  10\\
      \cmidrule(lr){2-4}
      \cmidrule(lr){5-6}
      \cmidrule(lr){7-7}
-    \multirow{4}{*}{\moertelA{} B} &  \multirow{2}{*}{4} & \multirow{2}{*}{2} & 2.1 & 0.77 & 0.38 & 51\\
+     \multirow{4}{*}{\moertelA{} B} &  \multirow{2}{*}{\num{4}} & \multirow{2}{*}{\num{2}} & \num{2.1} & 0.77 & 0.38 & 51\\
                                                     %\cline{4-7}
-                              &                     &                    & 4   & 0.89 & 0.45 & 50\\
+                                                    &                     &                    & \num{4}   & 0.89 & 0.45 & 50\\
                               %\cline{2-7}
                               \addlinespace
-                              & \multirow{2}{*}{10} & \multirow{2}{*}{4} & 2.1 & 0.53 & 0.29 & 45\\
+                              & \multirow{2}{*}{\num{10}} & \multirow{2}{*}{\num{4}} & \num{2.1} & 0.53 & 0.29 & 45\\
                                                     %\cline{4-7}
-                              &                     &                    & 4   & 0.58 & 0.33 & 42\\
+                                                    &                     &                    & \num{4}   & 0.58 & 0.33 & 42\\
      \cmidrule(lr){2-4}
      \cmidrule(lr){5-6}
      \cmidrule(lr){7-7}
-    \multirow{4}{*}{\moertelB{} A} &  \multirow{2}{*}{4} & \multirow{2}{*}{2}  & 2.1 & 0.37 & 0.26 &31\\
+     \multirow{4}{*}{\moertelB{} A} &  \multirow{2}{*}{\num{4}} & \multirow{2}{*}{\num{2}}  & \num{2.1} & 0.37 & 0.26 &31\\
                                                     %\cline{4-7}
-                              &                     &                    & 4   & 0.48 & 0.35 &26\\
+                                                    &                     &                    & \num{4}   & 0.48 & 0.35 &26\\
                               %\cline{2-7}
                               \addlinespace
-                              & \multirow{2}{*}{10} & \multirow{2}{*}{4} & 2.1 & 0.24 & 0.14 &40\\
+                              & \multirow{2}{*}{\num{10}} & \multirow{2}{*}{\num{4}} & \num{2.1} & 0.24 & 0.14 &40\\
                                                     %\cline{4-7}
-                              &                     &                    & 4   & 0.33 & 0.18 &44\\
+                                                    &                     &                    & \num{4}   & 0.33 & 0.18 &44\\
      \cmidrule(lr){2-4}
      \cmidrule(lr){5-6}
      \cmidrule(lr){7-7}
-    \multirow{4}{*}{\moertelB{} B} &  \multirow{2}{*}{4} & \multirow{2}{*}{2}  & 2.1 & 0.41 & 0.31 &25\\
+     \multirow{4}{*}{\moertelB{} B} &  \multirow{2}{*}{\num{4}} & \multirow{2}{*}{\num{2}}  & \num{2.1} & 0.41 & 0.31 &25\\
                                                     %\cline{4-7}
-                              &                     &                    & 4   & 0.51 & 0.40 &22\\
+                                                    &                     &                    & \num{4}   & 0.51 & 0.40 &22\\
                               %\cline{2-7}
                               \addlinespace
-                              & \multirow{2}{*}{10} & \multirow{2}{*}{4} & 2.1 & 0.44 & 0.21 &53\\
+                              & \multirow{2}{*}{\num{10}} & \multirow{2}{*}{\num{4}} & \num{2.1} & 0.44 & 0.21 &53\\
                                                     %\cline{4-7}
-                              &                     &                    & 4   & 0.48 & 0.23 &51\\
+                                                    &                     &                    & \num{4}   & 0.48 & 0.23 &51\\
     \bottomrule[1.5pt]
 \end{tabular}}
     \caption{Die gemessenen und simulierten Konfigurationen der FEP mit den rein scherratenabhängigen Modellen. Der Druck wurde auf der Seite der entsprechenden Mörtelkomponente gemessen.}
@@ -196,7 +196,7 @@ Das bedeutet, dass für die A Komponente die Messstelle auf der A Seite in Abbil
     \rotatebox{90}{
     \includegraphics[width=0.5\textwidth]{figures/fepSim.PNG}
     }
-    \caption{Eine Simulation der Funktionsersatzprüfung. Unten die Druckverteilung mit eingezeichneten Stromlinien, oben die variable Vikosität. Schön zu sehen ist das blockartige Strömen des Mörtels im Einlaufkolben anhand des grossen roten Gebietes hoher Viskosität und die abrupte Abnahme der Viskosität in den Blenden.}
+    \caption{Eine Simulation der Funktionsersatzprüfung. Unten die Druckverteilung (blau: tief, rot: hoch) mit eingezeichneten Stromlinien, oben die variable Vikosität. Schön zu sehen ist das blockartige Strömen des Mörtels im Einlaufkolben anhand des grossen roten Gebietes hoher Viskosität und die abrupte Abnahme der Viskosität in den Blenden.}
     \label{fig:fepSimResult}
 \end{figure}
 
@@ -216,7 +216,7 @@ In Tabelle~\ref{fig:mischerVergleich} sind die gemessenen und die simulierten Dr
 %
 \begin{table}[tb]
 \noindent\makebox[\textwidth]{%
-    \begin{tabular}{l c r r r} 
+    \begin{tabular}{l c S S S} 
         \toprule[1.5pt]
         \multicolumn{2}{c}{\textbf{Messaufbau}} &
         \multicolumn{2}{c}{\textbf{Druckverlust}} & 
@@ -226,30 +226,30 @@ In Tabelle~\ref{fig:mischerVergleich} sind die gemessenen und die simulierten Dr
     \cmidrule(lr){1-2}
     \cmidrule(lr){3-4}
     \cmidrule(lr){5-5}
-    \multirow{2}{*}{\moertelA{} A}  & 2.1 & 4.48 & 4.26 & 5\\
+    \multirow{2}{*}{\moertelA{} A}  & \num{2.1} & 4.48 & 4.26 & 5\\
                                %\cline{2-5}
-                               & 4   & 6.86 & 6.09 &11\\
+                               & \num{4}   & 6.86 & 6.09 &11\\
     %\cmidrule(lr){1-2}
     %\cmidrule(lr){3-4}
     %\cmidrule(lr){5-5}
     \addlinespace
-    \multirow{2}{*}{\moertelA{} B}  & 2.1 & 1.60 & 1.95 &22\\
+    \multirow{2}{*}{\moertelA{} B}  & \num{2.1} & 1.60 & 1.95 &22\\
                                %\cline{2-5}
-                               & 4   & 2.16 & 2.48 &15\\
+                               & \num{4}   & 2.16 & 2.48 &15\\
     %\cmidrule(lr){1-2}
     %\cmidrule(lr){3-4}
     %\cmidrule(lr){5-5}
     \addlinespace
-    \multirow{2}{*}{\moertelB{} A}   & 2.1 & 2.43 & 2.98 &23\\
+    \multirow{2}{*}{\moertelB{} A}   & \num{2.1} & 2.43 & 2.98 &23\\
                                %\cline{2-5}
-                               & 4   & 3.95 & 4.49 &14\\
+                               & \num{4}   & 3.95 & 4.49 &14\\
     %\cmidrule(lr){1-2}
     %\cmidrule(lr){3-4}
     %\cmidrule(lr){5-5}
     \addlinespace
-    \multirow{2}{*}{\moertelB{} B}   & 2.1 & 1.20 & 1.49 &24\\
+    \multirow{2}{*}{\moertelB{} B}   & \num{2.1} & 1.20 & 1.49 &24\\
                                %\cline{2-5}
-                               & 4   & 1.84 & 2.13 &16\\
+                               & \num{4}   & 1.84 & 2.13 &16\\
     \bottomrule[1.5pt]
 \end{tabular}}
     \caption{Die gemessenen und simulierten Konfigurationen des Mischers mit den rein scherratenabhängigen Modellen. Die angegebene Einlassgeschwindigkeit entspricht dabei der Kolbengeschwindigkeit in der FEP.}
@@ -265,3 +265,4 @@ In Tabelle~\ref{fig:mischerVergleich} sind die gemessenen und die simulierten Dr
 %
 Die Abweichungen bei der Simulation des Mi\-schers sind, relativ gesehen, deutlich geringer als beim Druckverlust über die Blen\-den in der FEP. Einer der Gründe dafür ist, dass die Scherraten nun in einem Bereich sind, der auch vermessen wurden. 
 Zudem ist die Messunsicherheit bei diesen Messungen deutlich geringer.
+%Die Gründe für die verbleibenden Abweichungen konnten nicht restlos geklärt werden. Mögliche Ursachen sind die Einflüsse von Temperatur und Lagerdauer auf die viskosen Eigenschaften der Mörtel.

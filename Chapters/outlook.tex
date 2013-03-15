@@ -1,29 +1,27 @@
 \section{Zusammenfassung und Ausblick}
 \label{Kapitel:Outlook}
-In dieser Arbeit wurden zwei von der Firma Hilti AG in der Befestigungs"-technik verwendete Mörtel mittels numerischer Simulationen untersucht.
-Ziel der Arbeit war, die Fliess"-vorgänge dieser rheologisch komplexen Mörtel mithilfe der Simulationssoftware \openfoam{} zu modellieren. Die Ergebnisse sollen das für die Produktentwicklung entscheidende Verständnis dieser Fliess"-vorgänge verbessern.
+In dieser Arbeit wurden zwei von der Firma Hilti AG in der Befestigungs"-technik hergestellte Mörtel mittels numerischer Simulationen untersucht.
+Ziel der Arbeit war, die Fliess"-vorgänge dieser rheologisch komplexen Mörtel mithilfe der freien Simulationssoftware \openfoam{} abzubilden. Die Er"-gebnisse sollen das für die Produktentwicklung entscheidende Verständnis dieser Fliess"-vorgänge weiter verbessern.
 
 Die untersuchten Mörtel zeigen dabei ein stark nicht-Newtonsches Verhalten.
 Dies äussert sich sowohl in einer Scherverdünnung (Struktur"-vis"-ko"-si"-tät), als auch in viskoelastischen Phänomenen. Zur Modellierung dieser Eigenschaften wurden die empirischen Modelle Herschel-Bulkley, Carreau-Yasuda und White-Metzner verwendet.
-Die grundlegenden Gleichungen, bestehend aus den Erhaltungssätzen für Masse und Impuls und den aus den Modellen resultierenden Schliessungsansätzen, wurden numerisch gelöst. Die benötigten Ergänzungen sowie die speziellen rheologischen Schliessungsansätze wurden in \openfoam{} implementiert.
-%Der Firma Hilti steht mit den programmierten Routinen ein Grundgerüst zur Verfügung, mit dem sie in Zukunft weitere Materialmodelle und -para"-me"-ter verwenden kann, um die Fliessvorgänge in ihrem Auspressgerät noch besser zu verstehen.
+Die grundlegenden Gleichungen, bestehend aus den Erhaltungssätzen für Masse und Impuls und den aus den Modellen resultierenden Schliessungsansätzen, wurden numerisch mit \openfoam{} gelöst. Die benötigten Ergänzungen sowie die speziellen rheo"-logischen Schliessungsansätze wurden dort implementiert.
 
 Die für die Modelle notwendigen Materialparameter wurden mithilfe eines in Python implementierten Optimierungsverfahrens an Messdaten angepasst. Diese Daten stammen aus zwei verschiedenen Rheometern: Einem Platte-Platte Rheometer und einem Kapillarrheometer.
 Ein systematischer Fehler in den Platte-Platte Rheometerdaten durch einen um den Scherspalt herum montierten Ring wurde durch eine entsprechende Korrektursimulation ausgeglichen.
-Die Verifizierung der verwendeten Modelle und der berechneten Parameter geschah mittels Simulation des Kapillarrheometers, bei der eine gute Übereinstimmung mit der Messung gefunden wurde.
-Dabei wurde auch festgestellt, dass der Einfluss der Viskoelastizität minimal ist und andere Faktoren wie Alter und Produktionscharge die viskosen Eigenschaften des Mörtels weit stärker beeinflussen. 
+Die Verifizierung der verwendeten Modelle und der berechneten Parameter geschah mittels Simulation des Kapillarrheometers. Dies lieferte eine gute Übereinstimmung mit der Messung.
+Dabei wurde auch festgestellt, dass der Einfluss der Viskoelastizität minimal ist und andere Faktoren wie Temperatur und Lagerdauer die viskosen Eigenschaften des Mörtels weit stärker beeinflussen. 
 Aufgrund des starken Anstieges der Rechenzeit bei der Verwendung des viskoelastischen Modells wurde dieses deshalb bei der Validierung in Kapitel~\ref{Kapitel:Auspressgeraet} nicht mehr verwendet.
 
 Die Validierung geschah anhand eines anwendungsnahen Strömungsversuches. Dabei wurde eine vereinfachte Nachbildung des realen Auspressgerätes für die Hilti Mörtel gebaut und vermessen, um Einflüsse, die ihren Ursprung nicht in Eigenschaften des Fluids haben, auszuschliessen.
-Die Geo\-me\-trie dieser Funktionsersatzprüfung und der daran anschliessende Mischer wurde im CAD nachgebildet und für die Strömungssimulation mit ICEM Tetra vernetzt.
-
+Die Geo\-me\-trie dieser Funktionsersatzprüfung und der daran anschliessende Mischer wurden im CAD nachgebildet und für die Strömungssimulation mit ICEM Tetra vernetzt.
 Als beobachtete Grösse wurde der Druckverlust über die Blenden in der FEP und über den Mischer verwendet.
-Die Resultate in der FEP zeigen ein tendenziell richtiges Verhalten, eine genaue Nachbildung des Druckunterschiedes konnte aber nicht erreicht werden. 
-Ein möglicher Grund für die festgestellten Abweichungen zwischen Simulation und Messung ist die hohe Unsicherheit in der Druckverlustmessung über die Blende. Dafür spricht auch die deutlich kleinere Abweichung bei der Simulation des Mischers.
-%Weiter wurde im Laufe der Messungen festgestellt, dass die viskosen Eigenschaften der vermessenen Mörtel stark beinflusst werden von Alter, Temperatur und Produktionscharge.
+
+Die Resultate in der FEP zeigen qualitativ das richtige Verhalten. Der Druckverlust in der Funktionsersatzprüfung konnte jedoch nicht zufriedenstellend abgebildet werden. 
+Ein möglicher Grund für die festgestellten Abwei"-chungen zwischen Simulation und Messung ist die hohe Unsicherheit in der Druckverlustmessung über die Blende. Dafür spricht auch die deutlich kleinere Abweichung bei der Simulation des Mischers.
 Nicht weiter untersucht wurden in dieser Arbeit die thixotropen Eigenschaften der vermessenen Mörtel. 
-Diese können ebenfalls einen Einfluss auf die Messergebnisse haben, auch wenn im Messaufbau versucht wurde diese Einflüsse zu minimieren.
+Diese können ebenfalls einen Einfluss auf die Messergebnisse haben, auch wenn im Messaufbau versucht wurde diese Einflüsse zu mi\-ni\-mie\-ren.
 Eine mögliche Erweiterung dieser Arbeit ist deshalb die Berücksichtigung von thixotropen Effekten.
 
-Falls trotz des kleinen Einflusses auf den Druckunterschied beschlossen wird, das viskoelastische Modell zu verwenden, muss der verwendete Algorithmus im Hinblick auf die Effizienz und Stabilität noch optimiert werden. Die benötigte Anzahl an Iterationsschritten ist zu gross, um Parameterstudien durchführen zu können.
+Falls trotz des kleinen Einflusses auf den Druckunterschied beschlossen wird, das viskoelastische Modell zu verwenden, muss der verwendete Algorithmus im Hinblick auf Effizienz und Stabilität noch optimiert werden. Die benötigte Anzahl an Iterationsschritten ist zu gross, um Parameterstudien durchführen zu können.
 

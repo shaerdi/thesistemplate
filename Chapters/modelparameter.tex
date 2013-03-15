@@ -133,7 +133,7 @@ Dieser Vorgang ist in Abbildung~\ref{fig:korrekturSim} verdeutlicht.
         \node[block] (init) {Messung};
         \node[block, below of=init] (cfd) {Simulation};
         \path (init) -- (cfd) node[midway] (m) {};
-        \node[cloud, right of=m] (d) {d};
+        \node[cloud, right of=m] (d) {$\Delta$M};
         \node[cloud, left of=m] (omeg) {$\omega$};
         \node[block, text width=10em, node distance = 4cm, right of=d] (opt) {Optimierung};
         %
@@ -156,10 +156,8 @@ Beim Platte-Platte Rheometer handelt es sich um eine rotationssymmetrische Geome
     %\includegraphics[width=\textwidth]{figures/plattenRheoFullCircAnnot.png}
     \subfloat[Ohne Ring]{
     \begin{tikzpicture}[scale=0.7]
-        \draw[fill=lightgray] (0,0) -- ++ (5,0) -- ++ (0,2) -- ++ (-5,0) -- ++ (0,-2);
-        \draw[ultra thick,<->] (1,0) -- (0,0) -- (0,1);
-        \node[left] at (0,1) {z};
-        \node[below] at (1,0) {r};
+        \draw[fill=lightgray] (0,0) rectangle (5,2);
+        \draw[ultra thick,<->] (1,0) node[below] {r} -| (0,1) node[left] {z};
         \node[below] at (3,0) {$\u=0$};
         \node[below] at (5,0) {R};
         \node[right] at (5,1) {$\frac{\partial\u}{\partial r}=0$};
@@ -169,13 +167,9 @@ Beim Platte-Platte Rheometer handelt es sich um eine rotationssymmetrische Geome
     }
     \subfloat[Mit Ring]{
     \begin{tikzpicture}[scale=0.7]
-        \path[fill=lightgray] (0,0) -- ++ (5,0) -- ++ (0,2) -- ++ (-5,0) -- ++ (0,-2);
-        \draw[fill=lightgray] (5,0) -- ++ (1,0) -- ++ (0,2) -- ++ (-1,0) ;
-        \draw (0,0) -- ++ (5,0) -- ++ (0,2) -- ++ (-5,0) -- ++ (0,-2);
-        %\draw (6,0) -- (6,2);
-        \draw[ultra thick,<->] (1,0) -- (0,0) -- (0,1);
-        \node[left] at (0,1) {z};
-        \node[below] at (1,0) {r};
+        \draw[fill=lightgray] (0,0) rectangle (6,2);
+        \draw[gray, dashed] (5,0) -- ++ (0,2);
+        \draw[ultra thick,<->] (1,0) node[below] {r} -| (0,1) node[left] {z};
         \node[below] at (3,0) {$\u=0$};
         \node[below] at (5,0) {R};
         \node[below right] at (6,0) {R+S};
@@ -398,7 +392,7 @@ Dabei wurden sowohl Simulationen mit dem rein scherratenabhängigen Herschel-Bul
 
 \paragraph{Scherratenabhängiges Modell}
 Die Simulationen mit dem scherratenabhängigen Modell wurden aufgrund der rotationssymmetrischen Geometrie ebenfalls nur für ein Segment von fünf Grad des Rheometers durchgeführt, die Randbedingungen waren dabei eine konstante Geschwindigkeit am Einlass, konstanter Druck am Auslass und Haftbedingungen an den Wänden. 
-Das verwendete Netz wurde so skaliert, dass die Auflösung nahe an der Einlassdüse zur Kapillare sehr fein aufgelöst ist, während in Regionen die weit von der Düse entfernt sind, eine eher grobe Auflösung verwendet wurde. 
+Das verwendete Netz, erstellt mit \codeemph{blockMesh}, wurde so skaliert, dass die Auflösung nahe an der Einlassdüse zur Kapillare sehr fein aufgelöst ist, während in Regionen die weit von der Düse entfernt sind, eine eher grobe Auflösung verwendet wurde. 
 In Abbildung~\ref{fig:kapRheoSim} sind diese Informationen dargestellt, die Resultate sind in Tabelle \ref{fig:kapRheoResults} aufgeführt.\\
 Für die beiden \moertelB{} Komponenten und die \moertelA{} A Komponente konnte eine gute Über"-einstimmung mit den Messwerten mit unter 10\% Ab\-wei\-chung erreicht werden. Beim \moertelA{} B Mörtel konnte diese Genauigkeit nicht erreicht werden. Ein möglicher Grund ist die schlechtere Qualität des Parameterfits für diesen Mörtel.
 %
@@ -464,7 +458,7 @@ Für die beiden \moertelB{} Komponenten und die \moertelA{} A Komponente konnte 
                                   & 1.07 & 1.46 & 1.53 &  4.74\\
                                   & 2.67 & 2.42 & 2.54 &  4.53\\
                                   & 6.02 & 4.22 & 4.09 &  3.13\\
-                                  & 13.4 & 6.27 & 6.59 &  4.76\\
+                                  & 13.37 & 6.27 & 6.59 &  4.76\\
         \cmidrule(lr){1-2}
         \cmidrule(lr){3-4}
         \cmidrule(lr){5-5}
@@ -496,7 +490,7 @@ Für die beiden \moertelB{} Komponenten und die \moertelA{} A Komponente konnte 
 \end{table}
 
 \paragraph{Viskoelastisches Modell}
-Für die viskoelastischen Simulationen konnte nicht nur ein Segment des Kapillarrheometers verwendet werden, da die 'wedge'-Randbedingung \footnote{Randbedingung, die von \openfoam{} für Front und Rückseite einer rotationssymmetrischen Geometrie verwendet wird.} von \openfoam{} die Resultate verfälschte. Daher wurde ein Netz des ganzen Rheometers erstellt und die Simulationen damit durchgeführt.
+Für die viskoelastischen Simulationen konnte nicht nur ein Segment des Kapillarrheometers verwendet werden, da die 'wedge'-Randbedingung \footnote{Randbedingung, die von \openfoam{} für Front und Rückseite einer rotationssymmetrischen Geometrie verwendet wird.} von \openfoam{} die Resultate verfälschte. Daher wurde mit \codeemph{blockMesh} ein Netz des ganzen Rheometers erstellt und die Simulationen damit durchgeführt.
 
 Der für viskoelastische Fluide typische Wirbel bei einer plötzlichen Verengung der Fliessgeometrie \cite{Evans198611} konnte so erfolgreich nachgebildet werden. Abbildung~\ref{kapRheoVisco} zeigt das Auftreten dieses Wirbels in einer Kapillarrheometer Simulation.
 %
@@ -510,7 +504,7 @@ Der für viskoelastische Fluide typische Wirbel bei einer plötzlichen Verengung
     \includegraphics[width=\textwidth]{figures/kapRheoSimTau.PNG}
     \label{fig:kapRheoVisco:subB}
     }
-    \caption{Viskoelastische Simulation des Kapillarrheometers. Die Vergrösserung in \subref{fig:kapRheoVisco:subA} zeigt den sich bildenden Wirbel in der laminaren Strömung, der auf die Visko\-elastizität zurückzuführen ist. Das Rheometer ist nach dem Druckverlauf eingefärbt (blau: tief, rot: hoch). Abbildung~\subref{fig:kapRheoVisco:subB} ist nach der berechneten Schubspannung eingefärbt. In der Kapillare nimmt sie in radialer Richtun zu, beim Einlass bildet sich ein Gebiet erhöhter Schubspannung durch die Verengung des Querschnittes.}
+    \caption{Viskoelastische Simulation des Kapillarrheometers. Die Vergrösserung in \subref{fig:kapRheoVisco:subA} zeigt den sich bildenden Wirbel in der laminaren Strömung, der auf die Visko\-elastizität zurückzuführen ist. Das Rheometer ist nach dem Druckverlauf eingefärbt (blau: tief, rot: hoch). Abbildung~\subref{fig:kapRheoVisco:subB} ist nach der berechneten Schubspannung eingefärbt (blau: tief, rot: hoch). In der Kapillare nimmt sie in radialer Richtung nach aussen zu, am Einlass in die Drossel bildet sich ein Gebiet erhöhter Schubspannung durch die Verengung des Querschnittes.}
     \label{kapRheoVisco}
 \end{figure}
 %

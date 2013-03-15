@@ -47,10 +47,11 @@ font = {'family' : 'normal',
         'size'   : fontSizeLegend}
 
 matplotlib.rc('font', **font)
+pylab.rcParams['mathtext.default']='regular'
 
 legend(loc='lower left', prop={'size':fontSizeLegend})
-xlabel('Scherrate')
-ylabel("Viskosit$\ddot{\mathbf{\mathrm{a}}}$t")
+xlabel('Scherrate $\dot{\gamma}$ / $s^{-1}$')
+ylabel("Viskosit$\ddot{a}$t $\eta$/ Pa s")
 ylim([5e0,1e3])
 setp(ax.get_xticklabels(), fontsize=fontSizeTicks)
 setp(ax.get_yticklabels(), fontsize=fontSizeTicks)

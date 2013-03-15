@@ -8,7 +8,7 @@ Dabei wird abwechselnd eine Aktualisierung des Druck- und des Ge\-schwin\-dig\-k
 Ein Iterationsschritt des SIMPLE Algorithmus kann dabei wie folgt zusammengefasst werden:
 %
 \begin{outline}[enumerate]
-    \1 Schätze ein Druckfeld $p^*$ mithilfe von $\u$.
+    \1 Starte mit einem Druckfeld $p^*$.
     \1 Berechne ausgehend von $p^*$ ein Geschwindigkeitsfeld $\u^*$ mit Hilfe der (stationären) Impulsgleichung.
     \1 Berechne eine Druckkorrektur $p'$ durch das Lösen der Druckkorrekturgleichung $\nabla^2p=-\nabla \cdot \left( \u^*\cdot\nabla \right)\u^*$.
     \1 Berechne ein neues Druckfeld $p^{**}=p^*+\alpha p'$, wobei $\alpha \in (0,1]$ ein Unterrelaxationsparameter \footnote{Unterrelaxation bezeichnet die bei der iterativen Lösung von nichtlinearen Problemen verwendete Dämpfung der Korrekturschritte.} ist.
@@ -22,11 +22,11 @@ Der \textbf{P}ressure \textbf{I}mplicit with \textbf{S}plit \textbf{O}perator (P
 Ähnlich wie der \mbox{SIMPLE} Algorithmus wird dabei zwischen Druck und Ge\-schwin\-dig\-keit iteriert. Die Hauptunterschiede sind, dass keine Unterrelaxation angewendet wird, und dass die Impulsgleichung mehrfach gelöst wird:
 %
 \begin{outline}[enumerate]
-    \1 Schätze ein Druckfeld $p^*$ mithilfe von $\u$.
+    \1 Starte mit einem Druckfeld $p^*$.
     \1 Ausgehend von $p^*$ berechne ein Geschwindigkeitsfeld $\u^*$ mit Hilfe der instationären Impulsgleichung.
     \1 Berechne eine Druckkorrektur $p'$ durch das Lösen der Druckkorrekturgleichung $\nabla^2p=-\nabla \cdot \left( \u^*\cdot\nabla \right)\u^*$.
     \1 Berechne ein neues Druckfeld $p^{**}=p^*+ p'$.
-    \1 Korrigiere die Geschwindigkeit um $\nabla \u=0$ zu erfüllen..
+    \1 Korrigiere die Geschwindigkeit um $\nabla \u=0$ zu erfüllen.
     \1 Die Schritte 3-5 werden pro Zeitschritt eine vom Anwender bestimmte Anzahl mal ausgeführt.
 \end{outline}
 %
